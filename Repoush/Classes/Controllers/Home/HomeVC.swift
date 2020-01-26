@@ -12,6 +12,7 @@ class HomeVC: UITabBarController {
 
     // MARK: - IBOutlets
     @IBOutlet weak var collectionViewPost: UICollectionView!
+    @IBOutlet weak var viewLookAt: UIButton!
     
     // MARK: - Property initialization
     
@@ -22,6 +23,10 @@ class HomeVC: UITabBarController {
     }
 
     // MARK: - Action Methods
+    @IBAction func btnLookAt_Action(_ sender: UIButton) {
+        
+    }
+    
     @IBAction func btnPostType_Action(_ sender: UIButton) {
         
     }
