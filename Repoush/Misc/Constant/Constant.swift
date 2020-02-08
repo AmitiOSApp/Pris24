@@ -64,12 +64,13 @@ let colorFaqBg          = UIColor(red: 242/255, green: 181/255, blue: 52/255, al
 let colorRed            = UIColor(red: 195/255, green: 60/255, blue: 24/255, alpha: 1.0)
 let colorGroupBG        = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1.0)
 let colorDarkGray       = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0)
-let colorAppTheme       = UIColor(red: 57/255, green: 139/255, blue: 197/255, alpha: 1.0)
-let colorLight          = UIColor(red: 239/255, green: 239/255, blue: 244/255, alpha: 1.0)
+let colorAppTheme       = UIColor(red: 246/255, green: 114/255, blue: 128/255, alpha: 1.0)
+let colorLight          = UIColor(red: 228/255, green: 228/255, blue: 228/255, alpha: 1.0)
 
 let colorClear          = UIColor.clear
 let colorWhite          = UIColor.white
 let colorBlack          = UIColor.black
+let colorLightGray      = UIColor.lightGray
 
 //************************** Constants for Font **************************//
 let AppFontRegular   = "SegoeCondensed"
