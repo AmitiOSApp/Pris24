@@ -20,21 +20,32 @@ class HomeVC: UIViewController {
     @IBOutlet weak var viewKidsSeparater: UIView!
 
     // MARK: - Property initialization
-    private var isWomen = false
+    private var categoryId = 0
+    private var arrProduct = NSMutableArray()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        if categoryId != 0 {
+            getProductAPI_Call()
+        }
+    }
 
     // MARK: - Action Methods
     @IBAction func btnLookAt_Action(_ sender: UIButton) {
         
-        isWomen = sender.tag == 100 ? true : false
+        categoryId = sender.tag == 100 ? 1 : 2
         
         viewBG.isHidden = true
         viewLookAt.isHidden = true
+        
+        getProductAPI_Call()
     }
     
     @IBAction func btnPostType_Action(_ sender: UIButton) {
@@ -42,6 +53,8 @@ class HomeVC: UIViewController {
         viewWomenSeparater.backgroundColor = sender.tag == 200 ? colorAppTheme : colorLightGray
         viewKidsSeparater.backgroundColor = sender.tag == 200 ? colorLightGray : colorAppTheme
         
+        categoryId = sender.tag == 200 ? 1 : 2
+
         if sender.tag == 200 {
             btnWomen.setTitleColor(colorAppTheme, for: .normal)
             btnKids.setTitleColor(colorLight, for: .normal)
@@ -50,15 +63,60 @@ class HomeVC: UIViewController {
             btnKids.setTitleColor(colorAppTheme, for: .normal)
             btnWomen.setTitleColor(colorLight, for: .normal)
         }
+        getProductAPI_Call()
     }
     
+    // MARK: - Private Methods
+    private func getProductData() {
+        // Perform Get product API
+        getProductAPI_Call()
+    }
+    
+    // MARK: - API Methods
+    private func getProductAPI_Call() {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
+                kAPI_CategoryId : categoryId as AnyObject,
+                kAPI_Latitude   : LoggedInUser.shared.latitude as AnyObject,
+                kAPI_Longitude  : LoggedInUser.shared.longitude as AnyObject,
+                kAPI_Language   : "en" as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.getAllProduct(postParams), callerObj: self, showHud: true) { [weak self] (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+            
+            if jsonObj["responseData"].arrayObject != nil {
+                let arrTemp = jsonObj["responseData"].arrayObject! as NSArray
+                self?.arrProduct = NSMutableArray(array: arrTemp.reversed())
+            }
+            
+            DispatchQueue.main.async {
+                self?.collectionViewPost.reloadData()
+            }
+        }
+    }
+
 }
 
 // MARK: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
 extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return arrProduct.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

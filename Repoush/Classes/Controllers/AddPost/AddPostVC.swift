@@ -14,11 +14,48 @@ class AddPostVC: UIViewController {
     @IBOutlet weak var collectionViewCategory: UICollectionView!
     
     // MARK: - Property initialization
+    private var categoryId = 1
+    private var arrSubcategory = NSMutableArray()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+
+    // MARK: - API Methods
+    private func getSubcategoryAPI_Call() {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_CategoryId : categoryId as AnyObject,
+                kAPI_Language   : "en" as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.getSubCategory(postParams), callerObj: self, showHud: true) { [weak self] (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+            
+            if jsonObj["responseData"].arrayObject != nil {
+                let arrTemp = jsonObj["responseData"].arrayObject! as NSArray
+                self?.arrSubcategory = NSMutableArray(array: arrTemp.reversed())
+            }
+            
+            DispatchQueue.main.async {
+                self?.collectionViewCategory.reloadData()
+            }
+        }
     }
 
 }

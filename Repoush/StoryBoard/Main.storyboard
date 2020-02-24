@@ -98,6 +98,9 @@
                                 </constraints>
                                 <inset key="titleEdgeInsets" minX="0.0" minY="-17" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="SIGN UP" backgroundImage="signup_btn"/>
+                                <connections>
+                                    <segue destination="2dG-Gc-r7l" kind="show" id="ts9-QL-qfV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -138,7 +141,7 @@
                                         <color key="textColor" red="0.19215686269999999" green="0.23921568630000001" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eyf-b2-twj" customClass="TIFAttributedButton" customModule="Moodery" customModuleProvider="target">
+                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Eyf-b2-twj" customClass="TIFAttributedButton" customModule="Repoush" customModuleProvider="target">
                                         <rect key="frame" x="56" y="133" width="208" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Eyf-b2-twj" secondAttribute="height" multiplier="208:35" id="fDE-0l-S4N"/>
@@ -177,7 +180,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kop-RH-3Zr">
                                         <rect key="frame" x="30" y="191" width="260" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-7S-ajO" customClass="CustomTextField" customModule="Moodery" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-7S-ajO" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="233" height="43"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -186,6 +189,9 @@
                                                         <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="h64-Ac-icV" id="10B-U3-A1e"/>
+                                                </connections>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="vcR-JV-rsC">
                                                 <rect key="frame" x="241" y="13.5" width="19" height="18.5"/>
@@ -214,7 +220,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YRp-ye-poh">
                                         <rect key="frame" x="30" y="244" width="260" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kpX-fy-afa" customClass="CustomTextField" customModule="Moodery" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kpX-fy-afa" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="233" height="45"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -223,6 +229,9 @@
                                                         <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="h64-Ac-icV" id="khR-gb-WZB"/>
+                                                </connections>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="7Gt-ih-zZD">
                                                 <rect key="frame" x="241" y="13.5" width="19" height="18.5"/>
@@ -280,7 +289,7 @@
                                         <inset key="titleEdgeInsets" minX="0.0" minY="-30" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="LOGIN" backgroundImage="login"/>
                                         <connections>
-                                            <action selector="btnLogin_Action:" destination="h64-Ac-icV" eventType="touchUpInside" id="99y-xn-WiW"/>
+                                            <action selector="btnLogin_Action:" destination="h64-Ac-icV" eventType="touchUpInside" id="jXk-Xh-cGN"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -316,6 +325,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="0Xk-pc-7ta"/>
                     </view>
+                    <connections>
+                        <outlet property="txfMobileNumber" destination="QAX-7S-ajO" id="Wtb-Ed-a4a"/>
+                        <outlet property="txfPassword" destination="kpX-fy-afa" id="wGf-q2-KNe"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZ0-I2-FO4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -326,20 +339,20 @@
             <objects>
                 <viewController storyboardIdentifier="SignUpVC" id="2dG-Gc-r7l" customClass="SignUpVC" customModule="Repoush" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b6D-sZ-gmj">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="650"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qub-dz-sRe">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="700"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="650"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign Up" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hY2-sh-f1S">
-                                        <rect key="frame" x="115" y="88" width="90.5" height="27"/>
+                                        <rect key="frame" x="115" y="65" width="90.5" height="27"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Bold" family="Montserrat" pointSize="22"/>
                                         <color key="textColor" red="0.19215686269999999" green="0.23921568630000001" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rly-l4-8mm" customClass="TIFAttributedButton" customModule="Moodery" customModuleProvider="target">
-                                        <rect key="frame" x="56" y="123" width="208" height="35"/>
+                                    <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rly-l4-8mm" customClass="TIFAttributedButton" customModule="Repoush" customModuleProvider="target">
+                                        <rect key="frame" x="56" y="100" width="208" height="35"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="rly-l4-8mm" secondAttribute="height" multiplier="208:35" id="SUu-qt-LcM"/>
                                         </constraints>
@@ -378,12 +391,12 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fZ-I3-1Me">
-                                        <rect key="frame" x="25" y="174" width="270" height="45"/>
+                                        <rect key="frame" x="25" y="151" width="270" height="45"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iJU-QX-x7b">
                                                 <rect key="frame" x="0.0" y="0.0" width="130" height="45"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IaD-fQ-ttQ" customClass="CustomTextField" customModule="Moodery" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IaD-fQ-ttQ" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="43"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -392,6 +405,9 @@
                                                                 <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="2dG-Gc-r7l" id="wfh-Ny-LDC"/>
+                                                        </connections>
                                                     </textField>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="Nd7-Ba-BGQ">
                                                         <rect key="frame" x="111" y="13.5" width="19" height="18.5"/>
@@ -419,7 +435,7 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yfe-2F-VnZ">
                                                 <rect key="frame" x="140" y="0.0" width="130" height="45"/>
                                                 <subviews>
-                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5vz-he-kYS" customClass="CustomTextField" customModule="Moodery" customModuleProvider="target">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5vz-he-kYS" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="106" height="43"/>
                                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -428,6 +444,9 @@
                                                                 <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             </userDefinedRuntimeAttribute>
                                                         </userDefinedRuntimeAttributes>
+                                                        <connections>
+                                                            <outlet property="delegate" destination="2dG-Gc-r7l" id="rOb-Yu-BOj"/>
+                                                        </connections>
                                                     </textField>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user" translatesAutoresizingMaskIntoConstraints="NO" id="IZQ-f9-JO4">
                                                         <rect key="frame" x="111" y="13.5" width="19" height="18.5"/>
@@ -467,9 +486,9 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ogb-ho-NR0">
-                                        <rect key="frame" x="25" y="229" width="270" height="45"/>
+                                        <rect key="frame" x="25" y="206" width="270" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-86-gwr" customClass="CustomTextField" customModule="Moodery" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-86-gwr" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="161" height="43"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -478,11 +497,14 @@
                                                         <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="2dG-Gc-r7l" id="X6a-OV-BTG"/>
+                                                </connections>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phone" translatesAutoresizingMaskIntoConstraints="NO" id="QeX-Q5-4hf">
                                                 <rect key="frame" x="171" y="13.5" width="19" height="18.5"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPv-J0-ALP">
+                                            <button opaque="NO" tag="100" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPv-J0-ALP">
                                                 <rect key="frame" x="200" y="16" width="70" height="25"/>
                                                 <color key="backgroundColor" red="0.93828815221786499" green="0.44969576597213745" blue="0.49730205535888672" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -498,6 +520,9 @@
                                                         <real key="value" value="3"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="btnUser_Action:" destination="2dG-Gc-r7l" eventType="touchUpInside" id="Ug9-Xw-RsK"/>
+                                                </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input" translatesAutoresizingMaskIntoConstraints="NO" id="lMZ-SP-YAM">
                                                 <rect key="frame" x="0.0" y="43" width="185" height="2"/>
@@ -523,9 +548,9 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp7-EV-NJE">
-                                        <rect key="frame" x="25" y="284" width="270" height="45"/>
+                                        <rect key="frame" x="25" y="261" width="270" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txZ-QB-kkE" customClass="CustomTextField" customModule="Moodery" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txZ-QB-kkE" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="161" height="45"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
@@ -534,6 +559,9 @@
                                                         <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="2dG-Gc-r7l" id="UwS-7W-0L6"/>
+                                                </connections>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="otp" translatesAutoresizingMaskIntoConstraints="NO" id="xx3-4e-SNa">
                                                 <rect key="frame" x="171" y="16.5" width="19" height="18.5"/>
@@ -542,7 +570,7 @@
                                                     <constraint firstAttribute="width" constant="19" id="x62-PV-wyf"/>
                                                 </constraints>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxd-nK-yh0">
+                                            <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxd-nK-yh0">
                                                 <rect key="frame" x="200" y="16" width="70" height="25"/>
                                                 <color key="backgroundColor" red="0.93828815219999995" green="0.449695766" blue="0.4973020554" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
@@ -558,6 +586,9 @@
                                                         <real key="value" value="3"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="btnUser_Action:" destination="2dG-Gc-r7l" eventType="touchUpInside" id="YaV-gU-gRM"/>
+                                                </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input" translatesAutoresizingMaskIntoConstraints="NO" id="3M5-UB-aO4">
                                                 <rect key="frame" x="0.0" y="43" width="185" height="2"/>
@@ -583,20 +614,26 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NK-MF-R2N">
-                                        <rect key="frame" x="25" y="339" width="270" height="45"/>
+                                        <rect key="frame" x="25" y="316" width="270" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="City" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JWl-ub-1yd" customClass="CustomTextField" customModule="Moodery" customModuleProvider="target">
+                                            <button opaque="NO" tag="102" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x52-E5-pjt">
                                                 <rect key="frame" x="0.0" y="0.0" width="241" height="43"/>
+                                                <connections>
+                                                    <action selector="btnUser_Action:" destination="2dG-Gc-r7l" eventType="touchUpInside" id="f2y-Bq-V8t"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4cq-aY-K6E">
+                                                <rect key="frame" x="0.0" y="13.5" width="241" height="18.5"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
-                                                        <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </textField>
+                                                <color key="textColor" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="location" translatesAutoresizingMaskIntoConstraints="NO" id="ZEB-DF-0EK">
                                                 <rect key="frame" x="251" y="13.5" width="19" height="18.5"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="19" id="7tv-2u-lpq"/>
+                                                    <constraint firstAttribute="height" constant="18.5" id="ugi-X2-YYp"/>
+                                                </constraints>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input" translatesAutoresizingMaskIntoConstraints="NO" id="BFg-IG-6LE">
                                                 <rect key="frame" x="0.0" y="43" width="270" height="2"/>
@@ -607,22 +644,25 @@
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="BFg-IG-6LE" firstAttribute="top" secondItem="x52-E5-pjt" secondAttribute="bottom" id="0xq-3d-dHv"/>
                                             <constraint firstItem="BFg-IG-6LE" firstAttribute="leading" secondItem="1NK-MF-R2N" secondAttribute="leading" id="6f8-BH-oKe"/>
                                             <constraint firstAttribute="bottom" secondItem="BFg-IG-6LE" secondAttribute="bottom" id="8jm-4w-8v7"/>
+                                            <constraint firstItem="4cq-aY-K6E" firstAttribute="leading" secondItem="1NK-MF-R2N" secondAttribute="leading" id="92v-PO-NYZ"/>
                                             <constraint firstItem="ZEB-DF-0EK" firstAttribute="centerY" secondItem="1NK-MF-R2N" secondAttribute="centerY" id="BBX-KQ-bPk"/>
-                                            <constraint firstItem="JWl-ub-1yd" firstAttribute="leading" secondItem="1NK-MF-R2N" secondAttribute="leading" id="JKE-OS-8Po"/>
-                                            <constraint firstItem="BFg-IG-6LE" firstAttribute="top" secondItem="JWl-ub-1yd" secondAttribute="bottom" id="KwJ-1g-Goo"/>
+                                            <constraint firstItem="x52-E5-pjt" firstAttribute="leading" secondItem="1NK-MF-R2N" secondAttribute="leading" id="BNj-fp-PlL"/>
                                             <constraint firstAttribute="width" secondItem="1NK-MF-R2N" secondAttribute="height" multiplier="6:1" id="MXS-Hx-4O4"/>
-                                            <constraint firstItem="ZEB-DF-0EK" firstAttribute="leading" secondItem="JWl-ub-1yd" secondAttribute="trailing" constant="10" id="Mjh-Vw-hpW"/>
                                             <constraint firstAttribute="trailing" secondItem="ZEB-DF-0EK" secondAttribute="trailing" id="N4z-Dh-nuJ"/>
+                                            <constraint firstItem="ZEB-DF-0EK" firstAttribute="leading" secondItem="x52-E5-pjt" secondAttribute="trailing" constant="10" id="RyA-Mi-spq"/>
                                             <constraint firstAttribute="trailing" secondItem="BFg-IG-6LE" secondAttribute="trailing" id="S9g-OJ-aqD"/>
-                                            <constraint firstItem="JWl-ub-1yd" firstAttribute="top" secondItem="1NK-MF-R2N" secondAttribute="top" id="g7w-Pk-PKl"/>
+                                            <constraint firstItem="x52-E5-pjt" firstAttribute="top" secondItem="1NK-MF-R2N" secondAttribute="top" id="V3Y-yW-b4k"/>
+                                            <constraint firstItem="ZEB-DF-0EK" firstAttribute="leading" secondItem="4cq-aY-K6E" secondAttribute="trailing" constant="10" id="c2p-6O-VHP"/>
+                                            <constraint firstItem="4cq-aY-K6E" firstAttribute="centerY" secondItem="1NK-MF-R2N" secondAttribute="centerY" id="rA3-NV-MBn"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16b-1T-30u">
-                                        <rect key="frame" x="25" y="394" width="270" height="45"/>
+                                        <rect key="frame" x="25" y="371" width="270" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bgj-3u-XMg" customClass="CustomTextField" customModule="Moodery" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bgj-3u-XMg" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="241" height="45"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -631,6 +671,9 @@
                                                         <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="2dG-Gc-r7l" id="CHO-49-p0a"/>
+                                                </connections>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="60t-uu-2CD">
                                                 <rect key="frame" x="251" y="13.5" width="19" height="18.5"/>
@@ -657,9 +700,9 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wDa-Hf-xsb">
-                                        <rect key="frame" x="25" y="449" width="270" height="45"/>
+                                        <rect key="frame" x="25" y="426" width="270" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pos-TT-zza" customClass="CustomTextField" customModule="Moodery" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Pos-TT-zza" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="241" height="45"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
                                                 <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
@@ -668,6 +711,9 @@
                                                         <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <outlet property="delegate" destination="2dG-Gc-r7l" id="ezu-lg-hZg"/>
+                                                </connections>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="password" translatesAutoresizingMaskIntoConstraints="NO" id="x1m-xB-jyb">
                                                 <rect key="frame" x="251" y="13.5" width="19" height="18.5"/>
@@ -694,12 +740,12 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ehH-0J-4h7">
-                                        <rect key="frame" x="25" y="505" width="270" height="40"/>
+                                        <rect key="frame" x="25" y="482" width="270" height="40"/>
                                         <subviews>
-                                            <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrb-Se-X2y" customClass="TIFAttributedButton" customModule="Moodery" customModuleProvider="target">
+                                            <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrb-Se-X2y" customClass="TIFAttributedButton" customModule="Repoush" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="270" height="40"/>
                                                 <inset key="titleEdgeInsets" minX="8" minY="-1" maxX="0.0" maxY="0.0"/>
-                                                <state key="normal" image="checkbox">
+                                                <state key="normal">
                                                     <attributedString key="attributedTitle">
                                                         <fragment content="I agree to the following ">
                                                             <attributes>
@@ -717,13 +763,15 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
-                                                <state key="selected" image="checkbox_check"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                         <real key="value" value="11"/>
                                                     </userDefinedRuntimeAttribute>
                                                     <userDefinedRuntimeAttribute type="string" keyPath="fontFamily" value="Montserrat-Regular"/>
                                                 </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="btnUser_Action:" destination="2dG-Gc-r7l" eventType="touchUpInside" id="4kX-zH-kp2"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -736,7 +784,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" tag="104" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bmm-Li-Hlu">
-                                        <rect key="frame" x="25" y="575" width="270" height="80"/>
+                                        <rect key="frame" x="25" y="552" width="270" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="NID-lu-YV5"/>
                                         </constraints>
@@ -744,13 +792,13 @@
                                         <inset key="titleEdgeInsets" minX="0.0" minY="-30" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="SIGN UP" backgroundImage="login"/>
                                         <connections>
-                                            <action selector="btnSignUp_Action:" destination="2dG-Gc-r7l" eventType="touchUpInside" id="bE6-h7-LrG"/>
+                                            <action selector="btnUser_Action:" destination="2dG-Gc-r7l" eventType="touchUpInside" id="mFm-u5-bOi"/>
                                         </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="1NK-MF-R2N" firstAttribute="top" secondItem="qp7-EV-NJE" secondAttribute="bottom" constant="10" id="459-xo-52h"/>
-                                    <constraint firstItem="hY2-sh-f1S" firstAttribute="top" secondItem="Qub-dz-sRe" secondAttribute="top" constant="88" id="5rf-JC-C93"/>
+                                    <constraint firstItem="hY2-sh-f1S" firstAttribute="top" secondItem="Qub-dz-sRe" secondAttribute="top" constant="65" id="5rf-JC-C93"/>
                                     <constraint firstItem="wDa-Hf-xsb" firstAttribute="leading" secondItem="Qub-dz-sRe" secondAttribute="leading" constant="25" id="7it-ae-dGi"/>
                                     <constraint firstAttribute="trailing" secondItem="Bmm-Li-Hlu" secondAttribute="trailing" constant="25" id="7jE-fu-rfv"/>
                                     <constraint firstItem="1NK-MF-R2N" firstAttribute="leading" secondItem="Qub-dz-sRe" secondAttribute="leading" constant="25" id="AMc-kg-8rR"/>
@@ -793,7 +841,17 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TZI-6c-DHx"/>
                     </view>
-                    <size key="freeformSize" width="320" height="700"/>
+                    <size key="freeformSize" width="320" height="650"/>
+                    <connections>
+                        <outlet property="btnTermsCondition" destination="hrb-Se-X2y" id="c2K-gf-vqV"/>
+                        <outlet property="lblAddress" destination="4cq-aY-K6E" id="ISI-Xv-iPU"/>
+                        <outlet property="txfConfirmPassword" destination="Pos-TT-zza" id="jel-sx-XQJ"/>
+                        <outlet property="txfFirstName" destination="IaD-fQ-ttQ" id="PIU-08-h2H"/>
+                        <outlet property="txfLastName" destination="5vz-he-kYS" id="hoa-k7-Q6H"/>
+                        <outlet property="txfMobileNumber" destination="Bvd-86-gwr" id="mZO-i9-vrY"/>
+                        <outlet property="txfPassword" destination="bgj-3u-XMg" id="Yni-gF-GQd"/>
+                        <outlet property="txfVerifyOtp" destination="txZ-QB-kkE" id="Q6R-Ch-ZCE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4qc-Z1-KfD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -801,8 +859,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkbox" width="16" height="16"/>
-        <image name="checkbox_check" width="16" height="16"/>
         <image name="input" width="250" height="1"/>
         <image name="lending" width="310" height="551"/>
         <image name="location" width="19" height="18.5"/>
@@ -817,6 +873,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5Jp-2I-qGF"/>
-        <segue reference="dIp-gX-B6h"/>
+        <segue reference="u6u-YR-gS5"/>
     </inferredMetricsTieBreakers>
 </document>

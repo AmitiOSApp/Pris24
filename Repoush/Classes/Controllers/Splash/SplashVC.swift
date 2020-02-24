@@ -19,10 +19,24 @@ class SplashVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: { [weak self] in
-            let objWelcome = self?.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC")
-            self?.navigationController?.show(objWelcome!, sender: nil)
-        })
+        if UserDefaults.standard.bool(forKey: Key_UD_IsUserLoggedIn) {
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: { [weak self] in
+                
+                LoggedInUser.shared.initializeFromUserDefault()
+                
+                let vc = Util.loadViewController(fromStoryboard: "TabBarVC", storyboardName: "Home") as? TabBarVC
+                if let aVc = vc {
+                    self?.present(aVc, animated: true, completion: nil)
+                }
+            })
+        }
+        else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: { [weak self] in
+                let objLogin = self?.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
+                self?.navigationController?.show(objLogin!, sender: nil)
+            })
+        }
     }
 
 }

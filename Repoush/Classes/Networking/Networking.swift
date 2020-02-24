@@ -9,32 +9,32 @@ struct Networking {
     enum Router: URLRequestConvertible {
         
         // MARK: - API name
-        case userRegistration([String: Any])
-        case userLogin([String: Any])
-        case addPost([String: Any])
-        case getPost([String: Any])
         case sendOTP([String: Any])
         case verifyOTP([String: Any])
-        case setNewPassword([String: Any])
+        case userRegistration([String: Any])
+        case userLogin([String: Any])
+        case getSubCategory([String: Any])
+        case postProduct([String: Any])
+        case getAllProduct([String: Any])
 
         // MARK: - Methods
         var method: Alamofire.HTTPMethod {
             
             switch self {
             //** Post Api
-            case .userRegistration:
-                return .post
-            case .userLogin:
-                return .post
-            case .addPost:
-                return .post
-            case .getPost:
-                return .post
             case .sendOTP:
                 return .post
             case .verifyOTP:
                 return .post
-            case .setNewPassword:
+            case .userRegistration:
+                return .post
+            case .userLogin:
+                return .post
+            case .getSubCategory:
+                return .post
+            case .postProduct:
+                return .post
+            case .getAllProduct:
                 return .post
             }
         }
@@ -43,20 +43,20 @@ struct Networking {
         var path: String {
             
             switch self {
+            case .sendOTP:
+                return "send_otp"
+            case .verifyOTP:
+                return "verify_otp"
             case .userRegistration:
                 return "userRegistration"
             case .userLogin:
                 return "userLogin"
-            case .addPost:
-                return "addPost"
-            case .getPost:
-                return "getPost"
-            case .sendOTP:
-                return "forgotPassword"
-            case .verifyOTP:
-                return "verify_otp"
-            case .setNewPassword:
-                return "setNewpassword"
+            case .getSubCategory:
+                return "getSubCategory"
+            case .postProduct:
+                return "postProduct"
+            case .getAllProduct:
+                return "getAllProducts"
             }
         }
         
@@ -74,19 +74,19 @@ struct Networking {
             urlRequest.setValue("keep-alive", forHTTPHeaderField: "Connection")
             
             switch self {
-            case .userRegistration(let parameters):
-                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
-            case .userLogin(let parameters):
-                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
-            case .addPost(let parameters):
-                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
-            case .getPost(let parameters):
-                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .sendOTP(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .verifyOTP(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
-            case .setNewPassword(let parameters):
+            case .userRegistration(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .userLogin(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .getSubCategory(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .postProduct(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .getAllProduct(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             }
             return urlRequest

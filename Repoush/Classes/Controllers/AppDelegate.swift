@@ -13,6 +13,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     let reachability = try! Reachability()
+    var certificateType = ""
+    var latitude = 0.0
+    var longitude = 0.0
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -26,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Setup Network status
         setupReachability(nil, useClosures: false)
         startNotifier()
+        
+        // Configure Google places API key
+        GMSPlacesClient.provideAPIKey("AIzaSyDGK6hZzj4wC-eCCLnFf8VKdNdtnvkc3S8")
+
+        setCertificateType()
         
         // Setup global navigation
         let backButtonImage = UIImage(named: "icon_back_gray3")
@@ -72,6 +80,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         //[self initShareSDK];
     }
     
+    // MARK: - Private Methods
+    private func setCertificateType() {
+        // Build change - Manage certificate type according to app mode
+        certificateType = kCertificateDevelopment
+        
+        // certificateType = kCertificateProduction
+    }
+
     // MARK: - Network Reachability Methods
     func setupReachability(_ hostName: String?, useClosures: Bool) {
         NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)

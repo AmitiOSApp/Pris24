@@ -14,5 +14,6 @@
 @import SwiftyJSON;
 @import IQKeyboardManagerSwift;
 @import Reachability;
+@import GooglePlaces;
 
 #endif /* Repoush_Bridging_Header_h */

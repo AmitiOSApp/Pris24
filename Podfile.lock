@@ -1,5 +1,15 @@
 PODS:
   - Alamofire (4.9.1)
+  - GoogleMaps (3.1.0):
+    - GoogleMaps/Maps (= 3.1.0)
+  - GoogleMaps/Base (3.1.0)
+  - GoogleMaps/Maps (3.1.0):
+    - GoogleMaps/Base
+  - GooglePlacePicker (3.1.0):
+    - GoogleMaps (= 3.1.0)
+    - GooglePlaces (= 3.1.0)
+  - GooglePlaces (3.1.0):
+    - GoogleMaps/Base (= 3.1.0)
   - IQKeyboardManagerSwift (6.5.4)
   - Kingfisher (5.12.0):
     - Kingfisher/Core (= 5.12.0)
@@ -9,6 +19,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - GooglePlacePicker
+  - GooglePlaces
   - IQKeyboardManagerSwift
   - Kingfisher
   - ReachabilitySwift
@@ -17,6 +29,9 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - GoogleMaps
+    - GooglePlacePicker
+    - GooglePlaces
     - IQKeyboardManagerSwift
     - Kingfisher
     - ReachabilitySwift
@@ -24,11 +39,14 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
+  GooglePlacePicker: fa975116ac202ac29822c0a79758ea1c4db5a95f
+  GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
   IQKeyboardManagerSwift: 2dde0fc70110e8eac7ccce2a46fdbec6a850b414
   Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 00fac5597e8fe55a446614c6a126adb5ca852ecb
+PODFILE CHECKSUM: 6038c05332aacacfb4a1d10548e69336671898d1
 
 COCOAPODS: 1.8.4

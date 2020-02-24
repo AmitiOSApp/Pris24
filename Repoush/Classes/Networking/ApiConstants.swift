@@ -7,7 +7,7 @@ import UIKit
 //let kAPI_BaseURL                       = "http://18.222.1.10/project_klu/index.php/"
 
 //For Development
-let kAPI_BaseURL                        = "http://24x7webtesting.com/moodery/service/"
+let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush/service/"
 let kAPI_ImageBaseURL                   = "http://24x7webtesting.com/moodery/post/"
 
 //************************** Constant for API Keys **************************//
@@ -29,6 +29,9 @@ let kAPI_DeviceToken                    = "device_token"
 let kAPI_DeviceType                     = "device_type"
 let kAPI_CertificateType                = "certificate_type"
 let kAPI_LoginType                      = "login_type"
+let kAPI_Latitude                       = "latitude"
+let kAPI_Longitude                      = "lognitude"
+let kAPI_Address                        = "address"
 
 let kAPI_ServerNotificationDateFormat   = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"
 let kAPI_24HourTimeFormat               = "HH:mm:ss"
@@ -47,11 +50,11 @@ let kAPI_Gender                         = "gender"
 let kAPI_UserImage                      = "user_img"
 let kAPI_OTP                            = "otp"
 let kAPI_NewPassword                    = "new_password"
+let kAPI_MobileNumber                   = "mobile_number"
+let kAPI_Language                       = "language"
 
-// MARK: - Api Constant for Add post
-let kAPI_PostContent                    = "post_content"
-let kAPI_PostImage                      = "post_image"
-let kAPI_PostVideo                      = "post_video"
+// MARK: - Api Constant for Product
+let kAPI_CategoryId                     = "category_id"
 
 //**    Result Success |"1"| / Failure |"0"|
 let kAPI_Result_Success      = "1"
