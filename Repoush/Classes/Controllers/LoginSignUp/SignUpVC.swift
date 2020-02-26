@@ -19,9 +19,9 @@ class SignUpVC: UIViewController {
     @IBOutlet weak var txfConfirmPassword: UITextField!
     @IBOutlet weak var lblAddress: UILabel!
     @IBOutlet weak var btnTermsCondition: UIButton!
-    
+    @IBOutlet weak var viewExtraDetail: UIView!
+
     @IBOutlet weak var viewVerifyOtpHgtConst: NSLayoutConstraint!
-    @IBOutlet weak var viewExtraDetailHgtConst: NSLayoutConstraint!
 
     // MARK: - Property initialization
     private enum ActionType: Int {

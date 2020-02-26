@@ -672,6 +672,15 @@ class Util : NSObject {
         return headerHeight
     }
 
+    class func createUsername(_ dictTemp: NSDictionary) -> String {
+        let firstName = dictTemp["first_name"] as? String
+        let lastName = dictTemp["last_name"] as? String
+        
+        let username = "\(firstName ?? "") \(lastName ?? "")"
+        
+        return username
+    }
+
 }
 
 extension CALayer {

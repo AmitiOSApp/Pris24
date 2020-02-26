@@ -95,6 +95,8 @@ class HomeVC: UIViewController {
             let jsonObj = JSON(result)
             
             if jsonObj[Key_ResponseCode].intValue == 500 {
+                self?.arrProduct.removeAllObjects()
+                self?.collectionViewPost.reloadData()
                 return
             }
             DLog(message: "\(jsonObj)")
@@ -122,6 +124,18 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostCell", for: indexPath) as? PostCell
+        
+        let dictProduct = arrProduct[indexPath.item] as! NSDictionary
+        
+        cell?.configureCell(dictProduct)
+        
+        cell?.userProfileHandler = {
+            
+        }
+        
+        cell?.placeBidHandler = {
+            
+        }
         
         return cell!
     }
