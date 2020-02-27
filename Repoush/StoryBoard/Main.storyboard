@@ -180,10 +180,16 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kop-RH-3Zr">
                                         <rect key="frame" x="30" y="191" width="260" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Phone" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-7S-ajO" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="233" height="43"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+98" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mk2-AX-QB0">
+                                                <rect key="frame" x="0.0" y="13.5" width="27.5" height="18.5"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QAX-7S-ajO" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
+                                                <rect key="frame" x="35" y="0.0" width="198" height="43"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                         <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -209,9 +215,11 @@
                                             <constraint firstItem="QAX-7S-ajO" firstAttribute="top" secondItem="Kop-RH-3Zr" secondAttribute="top" id="FcP-Iz-st1"/>
                                             <constraint firstAttribute="trailing" secondItem="oX5-t1-Gvj" secondAttribute="trailing" id="Hol-Ee-beq"/>
                                             <constraint firstAttribute="width" secondItem="Kop-RH-3Zr" secondAttribute="height" multiplier="52:9" id="L5U-e1-WdJ"/>
+                                            <constraint firstItem="mk2-AX-QB0" firstAttribute="leading" secondItem="Kop-RH-3Zr" secondAttribute="leading" id="PPh-uO-EoD"/>
                                             <constraint firstItem="vcR-JV-rsC" firstAttribute="centerY" secondItem="Kop-RH-3Zr" secondAttribute="centerY" id="PuP-es-AsH"/>
                                             <constraint firstItem="oX5-t1-Gvj" firstAttribute="top" secondItem="QAX-7S-ajO" secondAttribute="bottom" id="R4Z-kN-9IX"/>
-                                            <constraint firstItem="QAX-7S-ajO" firstAttribute="leading" secondItem="Kop-RH-3Zr" secondAttribute="leading" id="TEC-F7-Xzp"/>
+                                            <constraint firstItem="QAX-7S-ajO" firstAttribute="leading" secondItem="Kop-RH-3Zr" secondAttribute="leading" constant="35" id="TEC-F7-Xzp"/>
+                                            <constraint firstItem="mk2-AX-QB0" firstAttribute="centerY" secondItem="Kop-RH-3Zr" secondAttribute="centerY" id="YW7-M8-K66"/>
                                             <constraint firstItem="vcR-JV-rsC" firstAttribute="leading" secondItem="QAX-7S-ajO" secondAttribute="trailing" constant="8" id="kF0-oI-bes"/>
                                             <constraint firstAttribute="bottom" secondItem="oX5-t1-Gvj" secondAttribute="bottom" id="yEZ-za-wTV"/>
                                             <constraint firstItem="oX5-t1-Gvj" firstAttribute="leading" secondItem="Kop-RH-3Zr" secondAttribute="leading" id="yEd-Ek-yWE"/>
@@ -488,10 +496,16 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ogb-ho-NR0">
                                         <rect key="frame" x="25" y="206" width="270" height="45"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-86-gwr" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="161" height="43"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+98" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GPz-h9-Swx">
+                                                <rect key="frame" x="0.0" y="13.5" width="27.5" height="18.5"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Mobile number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bvd-86-gwr" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
+                                                <rect key="frame" x="35" y="0.0" width="126" height="43"/>
+                                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                         <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -537,23 +551,25 @@
                                             <constraint firstAttribute="bottom" secondItem="lMZ-SP-YAM" secondAttribute="bottom" id="ERG-KQ-2Mh"/>
                                             <constraint firstItem="lMZ-SP-YAM" firstAttribute="top" secondItem="Bvd-86-gwr" secondAttribute="bottom" id="IYC-zW-aSQ"/>
                                             <constraint firstItem="lMZ-SP-YAM" firstAttribute="leading" secondItem="ogb-ho-NR0" secondAttribute="leading" id="MOK-m9-4dn"/>
+                                            <constraint firstItem="GPz-h9-Swx" firstAttribute="leading" secondItem="ogb-ho-NR0" secondAttribute="leading" id="O2Q-e1-TPe"/>
                                             <constraint firstAttribute="trailing" secondItem="cPv-J0-ALP" secondAttribute="trailing" id="PdF-7d-0K3"/>
                                             <constraint firstAttribute="trailing" secondItem="QeX-Q5-4hf" secondAttribute="trailing" constant="80" id="U0d-7r-qTg"/>
-                                            <constraint firstItem="Bvd-86-gwr" firstAttribute="leading" secondItem="ogb-ho-NR0" secondAttribute="leading" id="XMp-oG-vmx"/>
+                                            <constraint firstItem="Bvd-86-gwr" firstAttribute="leading" secondItem="ogb-ho-NR0" secondAttribute="leading" constant="35" id="XMp-oG-vmx"/>
                                             <constraint firstAttribute="bottom" secondItem="cPv-J0-ALP" secondAttribute="bottom" constant="4" id="g90-0i-Jnz"/>
                                             <constraint firstAttribute="height" constant="45" id="i1T-Vk-t14"/>
+                                            <constraint firstItem="GPz-h9-Swx" firstAttribute="centerY" secondItem="ogb-ho-NR0" secondAttribute="centerY" id="juP-d8-D5o"/>
                                             <constraint firstItem="QeX-Q5-4hf" firstAttribute="centerY" secondItem="ogb-ho-NR0" secondAttribute="centerY" id="kvJ-bf-414"/>
                                             <constraint firstItem="QeX-Q5-4hf" firstAttribute="leading" secondItem="Bvd-86-gwr" secondAttribute="trailing" constant="10" id="u7F-Pd-8xc"/>
                                             <constraint firstItem="Bvd-86-gwr" firstAttribute="top" secondItem="ogb-ho-NR0" secondAttribute="top" id="wTJ-nS-4Wo"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp7-EV-NJE">
-                                        <rect key="frame" x="25" y="261" width="270" height="45"/>
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qp7-EV-NJE">
+                                        <rect key="frame" x="25" y="261" width="270" height="0.0"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter OTP" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="txZ-QB-kkE" customClass="CustomTextField" customModule="Repoush" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="161" height="45"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="161" height="0.0"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="15"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="color" keyPath="placeHolderColor">
                                                         <color key="value" red="0.75294117650000003" green="0.7843137255" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -564,14 +580,14 @@
                                                 </connections>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="otp" translatesAutoresizingMaskIntoConstraints="NO" id="xx3-4e-SNa">
-                                                <rect key="frame" x="171" y="16.5" width="19" height="18.5"/>
+                                                <rect key="frame" x="171" y="-28.5" width="19" height="18.5"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="18.5" id="bgN-Pu-lWT"/>
                                                     <constraint firstAttribute="width" constant="19" id="x62-PV-wyf"/>
                                                 </constraints>
                                             </imageView>
                                             <button opaque="NO" tag="101" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oxd-nK-yh0">
-                                                <rect key="frame" x="200" y="16" width="70" height="25"/>
+                                                <rect key="frame" x="200" y="-29" width="70" height="25"/>
                                                 <color key="backgroundColor" red="0.93828815219999995" green="0.449695766" blue="0.4973020554" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="1bE-Ll-fP8"/>
@@ -591,7 +607,7 @@
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="input" translatesAutoresizingMaskIntoConstraints="NO" id="3M5-UB-aO4">
-                                                <rect key="frame" x="0.0" y="43" width="185" height="2"/>
+                                                <rect key="frame" x="0.0" y="-2" width="185" height="2"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="2" id="J5f-5v-Rse"/>
                                                 </constraints>
@@ -609,12 +625,12 @@
                                             <constraint firstItem="txZ-QB-kkE" firstAttribute="top" secondItem="qp7-EV-NJE" secondAttribute="top" id="Mbb-PR-1sp"/>
                                             <constraint firstItem="3M5-UB-aO4" firstAttribute="top" secondItem="xx3-4e-SNa" secondAttribute="bottom" constant="8" id="ZVw-1M-pvS"/>
                                             <constraint firstAttribute="bottom" secondItem="3M5-UB-aO4" secondAttribute="bottom" id="iFE-lx-ble"/>
-                                            <constraint firstAttribute="height" constant="45" id="oaD-Lt-mjG"/>
+                                            <constraint firstAttribute="height" id="oaD-Lt-mjG"/>
                                             <constraint firstItem="oxd-nK-yh0" firstAttribute="leading" secondItem="xx3-4e-SNa" secondAttribute="trailing" constant="10" id="rXZ-wb-gSu"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8J2-W7-jfm">
-                                        <rect key="frame" x="0.0" y="316" width="320" height="330"/>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8J2-W7-jfm">
+                                        <rect key="frame" x="0.0" y="271" width="320" height="330"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1NK-MF-R2N">
                                                 <rect key="frame" x="25" y="0.0" width="270" height="45"/>
@@ -756,7 +772,7 @@
                                                     <button opaque="NO" tag="103" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hrb-Se-X2y" customClass="TIFAttributedButton" customModule="Repoush" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="0.0" width="270" height="40"/>
                                                         <inset key="titleEdgeInsets" minX="8" minY="-1" maxX="0.0" maxY="0.0"/>
-                                                        <state key="normal">
+                                                        <state key="normal" image="checkbox">
                                                             <attributedString key="attributedTitle">
                                                                 <fragment content="I agree to the following ">
                                                                     <attributes>
@@ -774,6 +790,7 @@
                                                                 </fragment>
                                                             </attributedString>
                                                         </state>
+                                                        <state key="selected" image="checkbox_check"/>
                                                         <userDefinedRuntimeAttributes>
                                                             <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
                                                                 <real key="value" value="11"/>
@@ -880,6 +897,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="checkbox" width="12.5" height="12.5"/>
+        <image name="checkbox_check" width="12.5" height="12.5"/>
         <image name="input" width="250" height="1"/>
         <image name="lending" width="310" height="551"/>
         <image name="location" width="19" height="18.5"/>

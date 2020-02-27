@@ -46,6 +46,13 @@ class PostCell: UICollectionViewCell {
         btnDistance.setTitle("\(dictProduct["distance"] ?? "0.0")", for: .normal)
         lblOriginalPrice.text = "$\(dictProduct["base_price"] ?? "0.0")"
         lblOfferPrice.text = "$\(dictProduct["offer_price"] ?? "0.0")"
+        
+        if dictProduct["offer_price"] as? String == LoggedInUser.shared.id {
+            btnPlaceBid.isHidden = true
+        }
+        else {
+            btnPlaceBid.isHidden = false
+        }
     }
     
 }

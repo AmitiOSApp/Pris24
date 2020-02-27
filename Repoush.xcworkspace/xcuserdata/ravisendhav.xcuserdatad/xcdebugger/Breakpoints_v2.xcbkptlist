@@ -9,46 +9,30 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Repoush/Classes/Controllers/LoginSignUp/SignUpVC.swift"
-            timestampString = "604387540.7820081"
+            filePath = "Repoush/Classes/Controllers/AddPost/AddPostVC.swift"
+            timestampString = "604471553.391721"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "204"
-            endingLineNumber = "204"
-            landmarkName = "userRegistrationAPI_Call()"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
+            landmarkName = "postProductAPI_Call()"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Repoush.SignUpVC.(userRegistrationAPI_Call in _57B96CDBE7A199B049AD446D514D37C8)() -&gt; ()"
-                  moduleName = "Repoush"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/LoginSignUp/SignUpVC.swift"
-                  timestampString = "604387541.0377851"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "204"
-                  endingLineNumber = "204"
-                  offsetFromSymbolStart = "4914">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in Repoush.SignUpVC.(userRegistrationAPI_Call in _57B96CDBE7A199B049AD446D514D37C8)() -&gt; ()"
-                  moduleName = "Repoush"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/LoginSignUp/SignUpVC.swift"
-                  timestampString = "604387541.040889"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "206"
-                  endingLineNumber = "206"
-                  offsetFromSymbolStart = "216">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Repoush/Classes/Controllers/AddPost/AddPostVC.swift"
+            timestampString = "604471553.3918051"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "85"
+            endingLineNumber = "85"
+            landmarkName = "btnUser_Action(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

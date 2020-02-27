@@ -55,6 +55,16 @@ let kAPI_Language                       = "language"
 
 // MARK: - Api Constant for Product
 let kAPI_CategoryId                     = "category_id"
+let kAPI_SubcategoryId                  = "subcategory_id"
+let kAPI_Selling                        = "selling"
+let kAPI_Size                           = "size"
+let kAPI_Condition                      = "condition"
+let kAPI_BasePrice                      = "base_price"
+let kAPI_OfferPrice                     = "offer_price"
+let kAPI_Discount                       = "discount"
+let kAPI_Brand                          = "brand"
+let kAPI_Description                    = "description"
+let kAPI_ProductImage                   = "product_image[]"
 
 //**    Result Success |"1"| / Failure |"0"|
 let kAPI_Result_Success      = "1"

@@ -44,6 +44,9 @@ class SignUpVC: UIViewController {
             if !Util.isValidString(txfMobileNumber.text!) {
                 Util.showAlertWithMessage("Please enter mobile number", title: Key_Alert); return
             }
+            else if txfMobileNumber.text!.count < 10 {
+                Util.showAlertWithMessage("Please enter valid mobile number", title: Key_Alert); return
+            }
             // Perform Send OTP API
             sendOTPAPI_Call()
         }
@@ -150,6 +153,10 @@ class SignUpVC: UIViewController {
             DLog(message: "\(result)")
             
             Util.showAlertWithMessage(jsonObj[Key_Message].stringValue, title: "")
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.viewVerifyOtpHgtConst.constant = 45.0
+            }
         }
     }
 
@@ -179,6 +186,11 @@ class SignUpVC: UIViewController {
             DLog(message: "\(result)")
             
             Util.showAlertWithMessage(jsonObj[Key_Message].stringValue, title: "")
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.viewExtraDetail.isHidden = false
+                self?.txfMobileNumber.isUserInteractionEnabled = false
+            }
         }
     }
 
@@ -276,3 +288,20 @@ extension SignUpVC: GMSAutocompleteViewControllerDelegate {
     }
     
 }
+
+// MARK: - UITextFieldDelegate Methods
+extension SignUpVC: UITextFieldDelegate {
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        let str = (textField.text! as NSString).replacingCharacters(in: range, with: string)
+        
+        if textField == txfMobileNumber {
+            if str.count >= 11 {
+                return false
+            }
+        }
+        return true
+    }
+}
+

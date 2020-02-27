@@ -12,5 +12,15 @@ class ProductImageCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
     @IBOutlet weak var imgviewProduct: UIImageView!
+    @IBOutlet weak var btnCross: UIButton!
+
+    var crossHandler: (() -> Void)?
+
+    // MARK: Action Methods
+    @IBAction func btnCross_Action(_ sender: UIButton) {
+        if (crossHandler != nil) {
+            crossHandler!()
+        }
+    }
 
 }
