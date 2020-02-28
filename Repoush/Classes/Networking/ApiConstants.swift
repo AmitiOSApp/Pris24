@@ -65,6 +65,9 @@ let kAPI_Discount                       = "discount"
 let kAPI_Brand                          = "brand"
 let kAPI_Description                    = "description"
 let kAPI_ProductImage                   = "product_image[]"
+let kAPI_Type                           = "type"
+let kAPI_BidAmount                      = "bid_amount"
+let kAPI_ProductId                      = "product_id"
 
 //**    Result Success |"1"| / Failure |"0"|
 let kAPI_Result_Success      = "1"

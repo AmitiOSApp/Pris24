@@ -18,10 +18,19 @@ class HomeVC: UIViewController {
     @IBOutlet weak var btnKids: UIButton!
     @IBOutlet weak var viewWomenSeparater: UIView!
     @IBOutlet weak var viewKidsSeparater: UIView!
+    @IBOutlet weak var viewPlaceBid: UIView!
+    @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var lblLastBidAmount: UILabel!
+    @IBOutlet weak var lblTotalBid: UILabel!
+    @IBOutlet weak var btnOnePercent: UIButton!
+    @IBOutlet weak var btnFivePercent: UIButton!
+    @IBOutlet weak var btnTenPercent: UIButton!
+    @IBOutlet weak var txfBidAmount: UITextField!
 
     // MARK: - Property initialization
     private var categoryId = 0
     private var arrProduct = NSMutableArray()
+    private var dictProduct = NSDictionary()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -64,6 +73,17 @@ class HomeVC: UIViewController {
             btnWomen.setTitleColor(colorLight, for: .normal)
         }
         getProductAPI_Call()
+    }
+    
+    @IBAction func btnPlaceBid_Action(_ sender: UIButton) {
+        
+        if sender.titleLabel?.text == "CANCEL" {
+            viewBG.isHidden = true
+            viewPlaceBid.isHidden = true
+        }
+        else {
+            
+        }
     }
     
     // MARK: - Private Methods
@@ -112,6 +132,33 @@ class HomeVC: UIViewController {
         }
     }
 
+    private func placeBidAPI_Call() {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
+                kAPI_ProductId  : dictProduct[""] as AnyObject,
+                kAPI_BidAmount  : txfBidAmount.text as AnyObject,
+                kAPI_Language   : "en" as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.placeBid(postParams), callerObj: self, showHud: true) { (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+        }
+    }
+
 }
 
 // MARK: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
@@ -135,6 +182,13 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
         
         cell?.placeBidHandler = {
             
+            self.dictProduct = self.arrProduct[indexPath.item] as! NSDictionary
+            
+            self.lblLastBidAmount.text = "$\(self.dictProduct["base_price"] ?? "0.0")"
+            self.lblTotalBid.text = "$\(self.dictProduct["base_price"] ?? "0.0")"
+
+            self.viewBG.isHidden = false
+            self.viewPlaceBid.isHidden = false
         }
         
         return cell!

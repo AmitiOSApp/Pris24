@@ -16,6 +16,10 @@ struct Networking {
         case getSubCategory([String: Any])
         case postProduct([String: Any])
         case getAllProduct([String: Any])
+        case placeBid([String: Any])
+        case getAllUserProducts([String: Any])
+        case getAllBid([String: Any])
+        case getUserHistoryProduct([String: Any])
 
         // MARK: - Methods
         var method: Alamofire.HTTPMethod {
@@ -35,6 +39,14 @@ struct Networking {
             case .postProduct:
                 return .post
             case .getAllProduct:
+                return .post
+            case .placeBid:
+                return .post
+            case .getAllUserProducts:
+                return .post
+            case .getAllBid:
+                return .post
+            case .getUserHistoryProduct:
                 return .post
             }
         }
@@ -57,6 +69,14 @@ struct Networking {
                 return "postProduct"
             case .getAllProduct:
                 return "getAllProducts"
+            case .placeBid:
+                return "place_bid"
+            case .getAllUserProducts:
+                return "getAllUserProducts"
+            case .getAllBid:
+                return "get_AllBid"
+            case .getUserHistoryProduct:
+                return "getUserHistoryProducts"
             }
         }
         
@@ -87,6 +107,14 @@ struct Networking {
             case .postProduct(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .getAllProduct(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .placeBid(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .getAllUserProducts(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .getAllBid(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .getUserHistoryProduct(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             }
             return urlRequest
