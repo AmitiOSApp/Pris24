@@ -9,30 +9,46 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Repoush/Classes/Controllers/AddPost/AddPostVC.swift"
-            timestampString = "604560330.138531"
+            filePath = "Repoush/Classes/Controllers/Profile/EditProfileVC.swift"
+            timestampString = "604695948.474561"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "327"
-            endingLineNumber = "327"
-            landmarkName = "postProductAPI_Call()"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "updateProfileAPI_Call()"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Repoush/Classes/Controllers/AddPost/AddPostVC.swift"
-            timestampString = "604560330.138671"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "btnUser_Action(_:)"
-            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Repoush.EditProfileVC.(updateProfileAPI_Call in _DBDFFC49FA63B46F9D8E095426952B79)() -&gt; ()"
+                  moduleName = "Repoush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/Profile/EditProfileVC.swift"
+                  timestampString = "604695948.63651"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "234"
+                  endingLineNumber = "234"
+                  offsetFromSymbolStart = "6259">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Repoush.EditProfileVC.(updateProfileAPI_Call in _DBDFFC49FA63B46F9D8E095426952B79)() -&gt; ()"
+                  moduleName = "Repoush"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/Profile/EditProfileVC.swift"
+                  timestampString = "604695948.639854"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "236"
+                  endingLineNumber = "236"
+                  offsetFromSymbolStart = "93">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

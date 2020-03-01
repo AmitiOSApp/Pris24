@@ -21,7 +21,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var txfCondition: UITextField!
     @IBOutlet weak var txfOriginalPrice: UITextField!
     @IBOutlet weak var txfOfferPrice: UITextField!
-    @IBOutlet weak var txfDiscountPercent: UITextField!
+    @IBOutlet weak var btnDiscountPercent: UIButton!
     @IBOutlet weak var txfBrand: UITextField!
     @IBOutlet weak var txvDescription: CustomTextview!
     @IBOutlet weak var btnRegisteredAddress: UIButton!
@@ -30,8 +30,11 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var tblSize: UITableView!
     @IBOutlet weak var viewDatePicker: UIView!
     @IBOutlet weak var pickerViewGender: UIPickerView!
+    @IBOutlet weak var lblNewAddress: UILabel!
+    @IBOutlet weak var viewBG: UIView!
 
-    @IBOutlet weak var takeImageLeadingConst: NSLayoutConstraint!
+    @IBOutlet weak var imgviewBgHgtConst: NSLayoutConstraint!
+    @IBOutlet weak var viewCollectionHgtConst: NSLayoutConstraint!
     @IBOutlet weak var viewSizeHgtConst: NSLayoutConstraint!
     @IBOutlet weak var viewGenderHgtConst: NSLayoutConstraint!
     @IBOutlet weak var tblSizeHgtConst: NSLayoutConstraint!
@@ -46,25 +49,35 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     private var selectedIndex = 0
     private var arrSize = [String]()
     private var arrProductImage = [UIImage]()
-    
+    private var discountPercent = ""
+    private var latitude = 0.0
+    private var longitude = 0.0
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
+        tap.numberOfTapsRequired = 1
+        viewBG.addGestureRecognizer(tap)
+
         // Perform Get subcategory API
         getSubcategoryAPI_Call()
     }
     
     // MARK: - Action Methods
     @IBAction func btnUser_Action(_ sender: UIButton) {
+        
         if sender.tag == ActionType.women.rawValue {
             btnWomen.isSelected = true
             btnKids.isSelected = false
             
+            btnSize.setTitle("Choose", for: .normal)
             viewGenderHgtConst.constant = 0.0
 
             categoryId = 1
+            selectedIndex = 0
             
             // Perform Get subcategory API
             getSubcategoryAPI_Call()
@@ -73,37 +86,19 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             btnWomen.isSelected = false
             btnKids.isSelected = true
             
+            btnSize.setTitle("Choose", for: .normal)
             categoryId = 2
-            
-            viewGenderHgtConst.constant = 40.0
+            selectedIndex = 0
+
+            viewGenderHgtConst.constant = 48.0
 
             // Perform Get subcategory API
             getSubcategoryAPI_Call()
         }
         else if sender.tag == ActionType.size.rawValue {
-            
             if arrSize.count > 0 {
-                let bgView = UIView(frame: appDelegate.window!.bounds)
-                bgView.tag = 20000002
-                bgView.frame = CGRect.init(x: 0, y: 0, width: ScreenSize.width, height: ScreenSize.height)
-                
-                let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
-                tap.numberOfTapsRequired = 1
-                bgView.addGestureRecognizer(tap)
-                
-                let frame = appDelegate.window?.convert(viewSize.frame, from: self.view)
-                
-                viewSize.frame = frame!
-                viewSize.frame.size.height = ScreenSize.height
-                viewSize.tag = 30000003
+                viewBG.isHidden = false
                 viewSize.isHidden = false
-                
-                appDelegate.window?.addSubview(bgView)
-                appDelegate.window?.addSubview(viewSize)
-                
-                appDelegate.window!.bringSubviewToFront((viewSize)!)
-                bgView.bringSubviewToFront((viewSize)!)
-                
                 tblSize.reloadData()
             }
         }
@@ -112,6 +107,20 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             pickerViewGender.isHidden = false
             
             pickerViewGender.reloadAllComponents()
+        }
+        else if sender.tag == ActionType.registeredAddress.rawValue {
+            sender.isSelected = true
+            btnNewAddress.isSelected = false
+            lblNewAddress.text = ""
+        }
+        else if sender.tag == ActionType.newAddress.rawValue {
+            
+            sender.isSelected = true
+            btnRegisteredAddress.isSelected = false
+
+            let acController = GMSAutocompleteViewController()
+            acController.delegate = self
+            present(acController, animated: true, completion: nil)
         }
         else if sender.tag == ActionType.postNow.rawValue {
             // Check required field validation
@@ -158,6 +167,10 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         present(optionMenu, animated: true, completion: nil)
     }
     
+    @IBAction func btnDiscount_Action(_ sender: UIButton) {
+        calculateDiscount()
+    }
+    
     @IBAction func btnPicker_Action(_ sender: UIButton) {
         if sender.titleLabel?.text == "Done" {
             let selectedIndex = pickerViewGender.selectedRow(inComponent: 0)
@@ -169,14 +182,8 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     @IBAction func btnCross_Action(_ sender: UIButton) {
-        for subview in appDelegate.window!.subviews {
-            if subview.tag == 20000002 {
-                subview.removeFromSuperview()
-            }
-            else if subview.tag == 30000003 {
-                subview.isHidden = true
-            }
-        }
+        viewBG.isHidden = true
+        viewSize.isHidden = true
     }
     
     // MARK: - Private Methods
@@ -197,10 +204,31 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             viewSizeHgtConst.constant = 0.0
         }
         else {
-            viewSizeHgtConst.constant = 40.0
+            viewSizeHgtConst.constant = 48.0
             tblSizeHgtConst.constant = CGFloat(arrSize.count * 35)
         }
         tblSize.reloadData()
+    }
+    
+    private func calculateDiscount() {
+        var originalPrice = 0
+        var offerPrice = 0
+        
+        if Util.isValidString(txfOriginalPrice.text!) && Util.isValidString(txfOfferPrice.text!) {
+            originalPrice = Int(txfOriginalPrice.text ?? "") ?? 0
+            offerPrice = Int(txfOfferPrice.text ?? "") ?? 0
+            
+            if originalPrice > offerPrice {
+                var percentage = (offerPrice / (originalPrice / 100))
+                if percentage > 0 {
+                    percentage = 100 - percentage
+                }
+                btnDiscountPercent.setTitle("\(percentage) %", for: .normal)
+                btnDiscountPercent.setTitleColor(.black, for: .normal)
+                
+                discountPercent = "\(percentage)"
+            }
+        }
     }
     
     private func isRequiredFieldValid() -> Bool {
@@ -223,8 +251,14 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 Util.showAlertWithMessage("Please select gender", title: Key_Alert); return false
             }
         }
+        else if !Util.isValidString(txfOriginalPrice.text!) {
+            Util.showAlertWithMessage("Please enter original price", title: Key_Alert); return false
+        }
         else if !Util.isValidString(txfOfferPrice.text!) {
             Util.showAlertWithMessage("Please enter offer price", title: Key_Alert); return false
+        }
+        else if btnNewAddress.isSelected {
+            Util.showAlertWithMessage("Please select address", title: Key_Alert); return false
         }
         return true
     }
@@ -241,9 +275,6 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         else if txfOfferPrice.isFirstResponder {
             txfOfferPrice.resignFirstResponder()
-        }
-        else if txfDiscountPercent.isFirstResponder {
-            txfDiscountPercent.resignFirstResponder()
         }
         else if txfBrand.isFirstResponder {
             txfBrand.resignFirstResponder()
@@ -305,6 +336,16 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         if btnGender.titleLabel?.text != "Choose" {
             gender = btnGender.titleLabel!.text!
         }
+        
+        var address = LoggedInUser.shared.address
+        var latitude = LoggedInUser.shared.latitude
+        var longitude = LoggedInUser.shared.longitude
+        
+        if btnNewAddress.isSelected {
+            address = lblNewAddress.text
+            latitude = "\(self.latitude)"
+            longitude = "\(self.longitude)"
+        }
 
         let postParams: [String: AnyObject] =
             [
@@ -317,12 +358,12 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 kAPI_Condition        : txfCondition.text as AnyObject,
                 kAPI_BasePrice        : txfOriginalPrice.text as AnyObject,
                 kAPI_OfferPrice       : txfOfferPrice.text as AnyObject,
-                kAPI_Discount         : txfDiscountPercent.text as AnyObject,
+                kAPI_Discount         : discountPercent as AnyObject,
                 kAPI_Brand            : txfBrand.text as AnyObject,
                 kAPI_Description      : txvDescription.text as AnyObject,
-                kAPI_Address          : LoggedInUser.shared.address as AnyObject,
-                kAPI_Latitude         : LoggedInUser.shared.latitude as AnyObject,
-                kAPI_Longitude        : LoggedInUser.shared.longitude as AnyObject,
+                kAPI_Address          : address as AnyObject,
+                "latitude"            : latitude as AnyObject,
+                "lognitute"           : longitude as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -370,14 +411,8 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
 
     // MARK: - Gesture Handler
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
-        for subview in appDelegate.window!.subviews {
-            if subview.tag == 20000002 {
-                subview.removeFromSuperview()
-            }
-            else if subview.tag == 30000003 {
-                subview.isHidden = true
-            }
-        }
+        viewBG.isHidden = true
+        viewSize.isHidden = true
     }
 
 }
@@ -443,6 +478,17 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
             
             cell?.imgviewProduct.image = arrProductImage[indexPath.item]
             
+            cell?.crossHandler = {
+                DispatchQueue.main.async {
+                    self.arrProductImage.remove(at: indexPath.item)
+                    self.collectionViewPostImage.reloadData()
+                    
+                    if self.arrProductImage.count == 0 {
+                        self.viewCollectionHgtConst.constant = 0.0
+                        self.imgviewBgHgtConst.constant = 220.0
+                    }
+                }
+            }
             return cell!
         }
     }
@@ -462,11 +508,21 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        if collectionView == collectionViewCategory {
+            return 0
+        }
+        else {
+            return 10
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
+        if collectionView == collectionViewCategory {
+            return 0
+        }
+        else {
+            return 10
+        }
     }
     
 }
@@ -492,14 +548,8 @@ extension AddPostVC: UITableViewDataSource, UITableViewDelegate {
         btnSize.setTitle(arrSize[indexPath.row], for: .normal)
         btnSize.setTitleColor(.black, for: .normal)
         
-        for subview in appDelegate.window!.subviews {
-            if subview.tag == 20000002 {
-                subview.removeFromSuperview()
-            }
-            else if subview.tag == 30000003 {
-                subview.isHidden = true
-            }
-        }
+        viewBG.isHidden = true
+        viewSize.isHidden = true
     }
     
 }
@@ -535,12 +585,64 @@ extension AddPostVC {
         
         if let pickedImage = info[.originalImage] as? UIImage {
             arrProductImage.append(pickedImage)
-            collectionViewPostImage.reloadData()
+            
+            viewCollectionHgtConst.constant = 90.0
+            imgviewBgHgtConst.constant = 310.0
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+                self.collectionViewPostImage.reloadData()
+            }
         }
         dismiss(animated: true, completion: nil)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
+}
+
+// MARK: - GMSAutocompleteViewControllerDelegate
+extension AddPostVC: GMSAutocompleteViewControllerDelegate {
+    // Handle the user's selection.
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        print("Place name: \(String(describing: place.name))")
+        print("Place address: \(String(describing: place.formattedAddress))")
+        print("Place attributions: \(String(describing: place.attributions))")
+        dismiss(animated: true, completion: nil)
+        
+        forwardGeocoding(address: place.formattedAddress!)
+        
+        self.lblNewAddress.text = place.formattedAddress!
+    }
+    
+    func forwardGeocoding(address: String) {
+        CLGeocoder().geocodeAddressString(address, completionHandler: { (placemarks, error) in
+            if error != nil {
+                print(error!)
+                return
+            }
+            let placemarkCount = placemarks?.count
+            
+            if placemarkCount! > 0 {
+                let placemark = placemarks?[0]
+                let location = placemark?.location
+                let coordinate = location?.coordinate
+                
+                self.latitude = coordinate!.latitude
+                self.longitude = coordinate!.longitude
+            }
+        })
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: \(error)")
+        dismiss(animated: true, completion: nil)
+    }
+    
+    // User cancelled the operation.
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        print("Autocomplete was cancelled.")
         dismiss(animated: true, completion: nil)
     }
     

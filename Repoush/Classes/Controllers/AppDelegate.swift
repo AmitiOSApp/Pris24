@@ -7,15 +7,15 @@
 //
 
 import UIKit
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     var window: UIWindow?
     let reachability = try! Reachability()
     var certificateType = ""
-    var latitude = 0.0
-    var longitude = 0.0
+    var deviceToken = ""
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -33,8 +33,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Configure Google places API key
         GMSPlacesClient.provideAPIKey("AIzaSyDGK6hZzj4wC-eCCLnFf8VKdNdtnvkc3S8")
 
-        setCertificateType()
+        application.applicationIconBadgeNumber = 0
         
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().removeAllDeliveredNotifications()
+        
+        // Register the App for PNs
+        // registerForPushNotifications()
+        
+        setCertificateType()
+
         // Setup global navigation
         let backButtonImage = UIImage(named: "icon_back_gray3")
         UIBarButtonItem.appearance().setBackButtonBackgroundImage(backButtonImage, for: .normal, barMetrics: .default)
@@ -169,6 +177,57 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 subview.removeFromSuperview()
             }
         }
+    }
+
+    // MARK: - Request for PNs
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            print("Permission granted: \(granted)")
+            guard granted else {
+                return
+            }
+            self.getNotificationSettings()
+        }
+    }
+    
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+        }
+    }
+    
+    // Called when APNs has assigned the device a unique token
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        
+        // Convert token to string
+        let deviceTokenString = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
+        
+        // Print it to console
+        DLog(message: "APNs device token: \(deviceTokenString)")
+        
+        UserDefaults.standard.set(deviceTokenString, forKey: kAPI_DeviceToken)
+    }
+    
+    // Called when APNs failed to register the device for push notifications
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        // Print the error to console (you should alert the user that registration failed)
+        print("APNs registration failed: \(error)")
+    }
+    
+    // This method will be called when app received push notifications in foreground
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        completionHandler([.alert, .badge, .sound])
+    }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        
     }
 
 }

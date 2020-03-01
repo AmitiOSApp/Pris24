@@ -20,6 +20,21 @@ struct Networking {
         case getAllUserProducts([String: Any])
         case getAllBid([String: Any])
         case getUserHistoryProduct([String: Any])
+        case getUserDetail([String: Any])
+        case updateUserProfile([String: Any])
+        case getProductBidDetail([String: Any])
+        case changePassword([String: Any])
+        case updateBidStatus([String: Any])
+        case checkout([String: Any])
+        case deleteProduct([String: Any])
+        case updateProductImage([String: Any])
+        case deleteProductImage([String: Any])
+        case feedbackSeller([String: Any])
+        case updateUserLatLong([String: Any])
+        case editProduct([String: Any])
+        case getProductImage([String: Any])
+        case bidCancel([String: Any])
+        case logout([String: Any])
 
         // MARK: - Methods
         var method: Alamofire.HTTPMethod {
@@ -47,6 +62,36 @@ struct Networking {
             case .getAllBid:
                 return .post
             case .getUserHistoryProduct:
+                return .post
+            case .getUserDetail:
+                return .post
+            case .updateUserProfile:
+                return .post
+            case .getProductBidDetail:
+                return .post
+            case .changePassword:
+                return .post
+            case .updateBidStatus:
+                return .post
+            case .checkout:
+                return .post
+            case .deleteProduct:
+                return .post
+            case .updateProductImage:
+                return .post
+            case .deleteProductImage:
+                return .post
+            case .feedbackSeller:
+                return .post
+            case .updateUserLatLong:
+                return .post
+            case .editProduct:
+                return .post
+            case .getProductImage:
+                return .post
+            case .bidCancel:
+                return .post
+            case .logout:
                 return .post
             }
         }
@@ -77,6 +122,36 @@ struct Networking {
                 return "get_AllBid"
             case .getUserHistoryProduct:
                 return "getUserHistoryProducts"
+            case .getUserDetail:
+                return "get_userDetail"
+            case .updateUserProfile:
+                return "update_userProfile"
+            case .getProductBidDetail:
+                return "get_productBidDetails"
+            case .changePassword:
+                return "changepassword"
+            case .updateBidStatus:
+                return "update_status"
+            case .checkout:
+                return "checkout"
+            case .deleteProduct:
+                return "deleteProduct"
+            case .updateProductImage:
+                return "updateProductImage"
+            case .deleteProductImage:
+                return "deleteProductImage"
+            case .feedbackSeller:
+                return "feedback_seller"
+            case .updateUserLatLong:
+                return "update_user_lat_long"
+            case .editProduct:
+                return "editProduct"
+            case .getProductImage:
+                return "get_product_image"
+            case .bidCancel:
+                return "bid_cancel"
+            case .logout:
+                return "logout"
             }
         }
         
@@ -115,6 +190,36 @@ struct Networking {
             case .getAllBid(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .getUserHistoryProduct(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .getUserDetail(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .updateUserProfile(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .getProductBidDetail(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .changePassword(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .updateBidStatus(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .checkout(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .deleteProduct(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .updateProductImage(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .deleteProductImage(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .feedbackSeller(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .updateUserLatLong(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .editProduct(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .getProductImage(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .bidCancel(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .logout(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             }
             return urlRequest

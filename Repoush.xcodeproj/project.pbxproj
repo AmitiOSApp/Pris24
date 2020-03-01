@@ -58,9 +58,16 @@
 		602FEEAD24063340000CBDE1 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602FEEAC24063340000CBDE1 /* EditProfileVC.swift */; };
 		602FEEAF240634CB000CBDE1 /* ProductImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602FEEAE240634CB000CBDE1 /* ProductImageCell.swift */; };
 		602FEEB12406F06B000CBDE1 /* SizeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602FEEB02406F06B000CBDE1 /* SizeCell.swift */; };
+		6030223E240AE8FB00FFDF53 /* ChangePasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030223D240AE8FB00FFDF53 /* ChangePasswordVC.swift */; };
+		60302240240AE90D00FFDF53 /* TermsPrivacyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030223F240AE90D00FFDF53 /* TermsPrivacyVC.swift */; };
+		60302242240AE91E00FFDF53 /* ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60302241240AE91E00FFDF53 /* ReportVC.swift */; };
+		60302244240AEDF800FFDF53 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60302243240AEDF800FFDF53 /* ForgotPasswordVC.swift */; };
+		60302246240AEE0B00FFDF53 /* NewPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60302245240AEE0B00FFDF53 /* NewPasswordVC.swift */; };
 		60C2E88823EDEC61003D0D28 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2E88723EDEC61003D0D28 /* ProfileVC.swift */; };
 		60C2E88A23EDEC77003D0D28 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2E88923EDEC77003D0D28 /* SettingVC.swift */; };
 		60C2E88C23EDECDC003D0D28 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2E88B23EDECDC003D0D28 /* SettingCell.swift */; };
+		B7288D1D24096F0000470420 /* AllBidVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7288D1C24096F0000470420 /* AllBidVC.swift */; };
+		B7288D1F2409703100470420 /* AllBidCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7288D1E2409703100470420 /* AllBidCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -118,10 +125,17 @@
 		602FEEAC24063340000CBDE1 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		602FEEAE240634CB000CBDE1 /* ProductImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductImageCell.swift; sourceTree = "<group>"; };
 		602FEEB02406F06B000CBDE1 /* SizeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SizeCell.swift; sourceTree = "<group>"; };
+		6030223D240AE8FB00FFDF53 /* ChangePasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordVC.swift; sourceTree = "<group>"; };
+		6030223F240AE90D00FFDF53 /* TermsPrivacyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsPrivacyVC.swift; sourceTree = "<group>"; };
+		60302241240AE91E00FFDF53 /* ReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVC.swift; sourceTree = "<group>"; };
+		60302243240AEDF800FFDF53 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
+		60302245240AEE0B00FFDF53 /* NewPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordVC.swift; sourceTree = "<group>"; };
 		60C2E88723EDEC61003D0D28 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		60C2E88923EDEC77003D0D28 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		60C2E88B23EDECDC003D0D28 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
 		954C8BC7CD86EF169587BA73 /* Pods-Repoush.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Repoush.release.xcconfig"; path = "Target Support Files/Pods-Repoush/Pods-Repoush.release.xcconfig"; sourceTree = "<group>"; };
+		B7288D1C24096F0000470420 /* AllBidVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBidVC.swift; sourceTree = "<group>"; };
+		B7288D1E2409703100470420 /* AllBidCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllBidCell.swift; sourceTree = "<group>"; };
 		F3AA6E088EB40A76BA7E902E /* Pods-Repoush.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Repoush.debug.xcconfig"; path = "Target Support Files/Pods-Repoush/Pods-Repoush.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -239,6 +253,7 @@
 				6003176D23EDE22A00674E8C /* AuctionCell.swift */,
 				60C2E88B23EDECDC003D0D28 /* SettingCell.swift */,
 				602FEEB02406F06B000CBDE1 /* SizeCell.swift */,
+				B7288D1E2409703100470420 /* AllBidCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -256,6 +271,7 @@
 				6003175E23DC2F8000674E8C /* MyAuction */,
 				60C2E88523EDE802003D0D28 /* Profile */,
 				60C2E88623EDE802003D0D28 /* Setting */,
+				B7288D1B24096EF100470420 /* Bid */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -403,6 +419,8 @@
 			children = (
 				6003174B23D9FD2300674E8C /* SignUpVC.swift */,
 				6003174D23D9FD3700674E8C /* LoginVC.swift */,
+				60302243240AEDF800FFDF53 /* ForgotPasswordVC.swift */,
+				60302245240AEE0B00FFDF53 /* NewPasswordVC.swift */,
 			);
 			path = LoginSignUp;
 			sourceTree = "<group>";
@@ -454,6 +472,9 @@
 			isa = PBXGroup;
 			children = (
 				60C2E88923EDEC77003D0D28 /* SettingVC.swift */,
+				6030223D240AE8FB00FFDF53 /* ChangePasswordVC.swift */,
+				6030223F240AE90D00FFDF53 /* TermsPrivacyVC.swift */,
+				60302241240AE91E00FFDF53 /* ReportVC.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -464,6 +485,14 @@
 				1675C8E0B3B284620C8FED5F /* Pods_Repoush.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B7288D1B24096EF100470420 /* Bid */ = {
+			isa = PBXGroup;
+			children = (
+				B7288D1C24096F0000470420 /* AllBidVC.swift */,
+			);
+			path = Bid;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -614,6 +643,7 @@
 				6003172F23D8C18700674E8C /* ButtonDynamicText.swift in Sources */,
 				6003173423D8C18700674E8C /* Constant.swift in Sources */,
 				6003176023DC2F9300674E8C /* MyAuctionVC.swift in Sources */,
+				60302240240AE90D00FFDF53 /* TermsPrivacyVC.swift in Sources */,
 				6003174E23D9FD3700674E8C /* LoginVC.swift in Sources */,
 				602FEEAD24063340000CBDE1 /* EditProfileVC.swift in Sources */,
 				6003172723D8C18600674E8C /* AppDelegate.swift in Sources */,
@@ -623,6 +653,7 @@
 				60C2E88A23EDEC77003D0D28 /* SettingVC.swift in Sources */,
 				6003172C23D8C18700674E8C /* CustomImageView.swift in Sources */,
 				6003173123D8C18700674E8C /* DeviceType.swift in Sources */,
+				60302244240AEDF800FFDF53 /* ForgotPasswordVC.swift in Sources */,
 				6003175223DB542D00674E8C /* TabBarVC.swift in Sources */,
 				602FEEAB2406332B000CBDE1 /* SellerProfileVC.swift in Sources */,
 				6003173023D8C18700674E8C /* LabelDynamicText.swift in Sources */,
@@ -634,6 +665,7 @@
 				6003172923D8C18600674E8C /* CustomView.swift in Sources */,
 				6003175D23DC15CF00674E8C /* CategoryCell.swift in Sources */,
 				6003172B23D8C18700674E8C /* CustomTextField.swift in Sources */,
+				60302246240AEE0B00FFDF53 /* NewPasswordVC.swift in Sources */,
 				6003174C23D9FD2300674E8C /* SignUpVC.swift in Sources */,
 				60C2E88823EDEC61003D0D28 /* ProfileVC.swift in Sources */,
 				6003172D23D8C18700674E8C /* CustomTextview.swift in Sources */,
@@ -643,7 +675,11 @@
 				6003173323D8C18700674E8C /* Custom+UIView.swift in Sources */,
 				6003173623D8C18700674E8C /* STLoadingGroup.swift in Sources */,
 				6003172523D8C18600674E8C /* Networking.swift in Sources */,
+				B7288D1F2409703100470420 /* AllBidCell.swift in Sources */,
 				6003172623D8C18600674E8C /* LoggedInUser.swift in Sources */,
+				6030223E240AE8FB00FFDF53 /* ChangePasswordVC.swift in Sources */,
+				B7288D1D24096F0000470420 /* AllBidVC.swift in Sources */,
+				60302242240AE91E00FFDF53 /* ReportVC.swift in Sources */,
 				602FEEB12406F06B000CBDE1 /* SizeCell.swift in Sources */,
 				6003176E23EDE22A00674E8C /* AuctionCell.swift in Sources */,
 				6003173723D8C18700674E8C /* STLoadingable.swift in Sources */,

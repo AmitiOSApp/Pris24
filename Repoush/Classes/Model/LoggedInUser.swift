@@ -20,6 +20,8 @@ class LoggedInUser {
     var latitude    : String?
     var longitude   : String?
     var mobileNo    : String?
+    var gender      : String?
+    var dob         : String?
 
     var isUserLoggedIn  :Bool = false
     
@@ -45,6 +47,8 @@ class LoggedInUser {
         LoggedInUser.shared.latitude        = json[kAPI_Latitude].string ?? ""
         LoggedInUser.shared.longitude       = json[kAPI_Longitude].string ?? ""
         LoggedInUser.shared.mobileNo        = json[kAPI_MobileNumber].string ?? ""
+        LoggedInUser.shared.gender          = json[kAPI_Gender].string == "0" ? "Female" : "Male"
+        LoggedInUser.shared.dob             = json[kAPI_Dob].string ?? ""
 
         LoggedInUser.shared.isUserLoggedIn  = true
         UserDefaults.standard.set(true, forKey: Key_UD_IsUserLoggedIn)
@@ -64,6 +68,8 @@ class LoggedInUser {
         LoggedInUser.shared.latitude        = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Latitude))
         LoggedInUser.shared.longitude       = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Longitude))
         LoggedInUser.shared.mobileNo        = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_MobileNumber))
+        LoggedInUser.shared.gender          = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Gender))
+        LoggedInUser.shared.dob             = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Dob))
     }
     
     func saveValuesInUserDefaultFromSharedInstance() {
@@ -76,6 +82,8 @@ class LoggedInUser {
         UserDefaults.standard.set(LoggedInUser.shared.latitude, forKey: kAPI_Latitude)
         UserDefaults.standard.set(LoggedInUser.shared.longitude, forKey: kAPI_Longitude)
         UserDefaults.standard.set(LoggedInUser.shared.mobileNo, forKey: kAPI_MobileNumber)
+        UserDefaults.standard.set(LoggedInUser.shared.gender, forKey: kAPI_Gender)
+        UserDefaults.standard.set(LoggedInUser.shared.dob, forKey: kAPI_Dob)
     }
     
     func clearUserData() {

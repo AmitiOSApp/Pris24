@@ -19,9 +19,12 @@ class MyAuctionVC: UIViewController {
     @IBOutlet weak var btnActiveAuction: UIButton!
     @IBOutlet weak var btnHistory: UIButton!
     @IBOutlet weak var imgviewTab: UIImageView!
+    @IBOutlet weak var viewBG: UIView!
+    @IBOutlet weak var viewRate: UIView!
 
     // MARK: - Property initialization
     private var userType = 200
+    private var arrProduct = NSMutableArray()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -32,6 +35,7 @@ class MyAuctionVC: UIViewController {
         getUserProductAPI_Call("seller")
     }
 
+    // MARK: - Action Methods
     @IBAction func btnProfileType_Action(_ sender: UIButton) {
         
         viewSellerSeparater.backgroundColor = sender.tag == 200 ? colorAppTheme : colorLightGray
@@ -116,6 +120,15 @@ class MyAuctionVC: UIViewController {
                 return
             }
             DLog(message: "\(jsonObj)")
+            
+            if jsonObj["responseData"].arrayObject != nil {
+                let arrTemp = jsonObj["responseData"].arrayObject! as NSArray
+                self?.arrProduct = NSMutableArray(array: arrTemp.reversed())
+            }
+            
+            DispatchQueue.main.async {
+                self?.collectionViewAuction.reloadData()
+            }
         }
     }
 
@@ -142,6 +155,48 @@ class MyAuctionVC: UIViewController {
                 return
             }
             DLog(message: "\(jsonObj)")
+            
+            if jsonObj["responseData"].arrayObject != nil {
+                let arrTemp = jsonObj["responseData"].arrayObject! as NSArray
+                self?.arrProduct = NSMutableArray(array: arrTemp.reversed())
+            }
+            
+            DispatchQueue.main.async {
+                self?.collectionViewAuction.reloadData()
+            }
+        }
+    }
+
+    private func cancelBidAPI_Call(_ bidId: String) {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_BidId : bidId as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.bidCancel(postParams), callerObj: self, showHud: true) { [weak self] (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+            
+            if jsonObj["responseData"].arrayObject != nil {
+                let arrTemp = jsonObj["responseData"].arrayObject! as NSArray
+                self?.arrProduct = NSMutableArray(array: arrTemp.reversed())
+            }
+            
+            DispatchQueue.main.async {
+                self?.collectionViewAuction.reloadData()
+            }
         }
     }
 
@@ -151,13 +206,42 @@ class MyAuctionVC: UIViewController {
 extension MyAuctionVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return arrProduct.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AuctionCell", for: indexPath) as? AuctionCell
         
+        let dictProduct = arrProduct[indexPath.item] as? NSDictionary
+        
+        let isSeller = userType == 200 ? true : false
+        cell?.configureCell(dictProduct!, isSeller: isSeller)
+        
+        cell?.deleteHandler = {
+            
+        }
+        
+        cell?.editHandler = {
+            
+        }
+        
+        cell?.allBidHandler = {
+            
+            let dictProduct = self.arrProduct[indexPath.item] as? NSDictionary
+
+            if self.userType == 200 {
+                let vc = Util.loadViewController(fromStoryboard: "AllBidVC", storyboardName: "Home") as? AllBidVC
+                if let aVc = vc {
+                    aVc.hidesBottomBarWhenPushed = true
+                    aVc.productId = dictProduct!["id"] as! String
+                    self.show(aVc, sender: nil)
+                }
+            }
+            else {
+                
+            }
+        }
         return cell!
     }
     

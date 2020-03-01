@@ -681,6 +681,11 @@ class Util : NSObject {
         return username
     }
 
+    class func calculatePercentage(_ value: Double, percentageVal: Double) -> Double {
+        let val = value * percentageVal
+        return val / 100.0
+    }
+    
 }
 
 extension CALayer {

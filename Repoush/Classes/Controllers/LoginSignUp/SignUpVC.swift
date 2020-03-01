@@ -27,6 +27,8 @@ class SignUpVC: UIViewController {
     private enum ActionType: Int {
         case sendOtp = 100, verifyOtp, address, termsCondition, signUp
     }
+    private var latitude = 0.0
+    private var longitude = 0.0
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -207,8 +209,8 @@ class SignUpVC: UIViewController {
                 kAPI_DeviceType      : "ios" as AnyObject,
                 kAPI_DeviceToken     : Util.getValidString((UserDefaults.standard.object(forKey: kAPI_DeviceToken) as? String)) as AnyObject,
                 kAPI_CertificateType : appDelegate.certificateType as AnyObject,
-                kAPI_Latitude        : appDelegate.latitude as AnyObject,
-                kAPI_Longitude       : appDelegate.longitude as AnyObject,
+                kAPI_Latitude        : latitude as AnyObject,
+                kAPI_Longitude       : longitude as AnyObject,
                 kAPI_Address         : lblAddress.text as AnyObject,
         ]
         DLog(message: "\(postParams)")
@@ -270,8 +272,8 @@ extension SignUpVC: GMSAutocompleteViewControllerDelegate {
                 let location = placemark?.location
                 let coordinate = location?.coordinate
                 
-                appDelegate.latitude = coordinate!.latitude
-                appDelegate.longitude = coordinate!.longitude
+                self.latitude = coordinate!.latitude
+                self.longitude = coordinate!.longitude
             }
         })
     }

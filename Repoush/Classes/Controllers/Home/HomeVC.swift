@@ -20,11 +20,9 @@ class HomeVC: UIViewController {
     @IBOutlet weak var viewKidsSeparater: UIView!
     @IBOutlet weak var viewPlaceBid: UIView!
     @IBOutlet weak var lblTime: UILabel!
+    @IBOutlet weak var lblOfferPrice: UILabel!
     @IBOutlet weak var lblLastBidAmount: UILabel!
     @IBOutlet weak var lblTotalBid: UILabel!
-    @IBOutlet weak var btnOnePercent: UIButton!
-    @IBOutlet weak var btnFivePercent: UIButton!
-    @IBOutlet weak var btnTenPercent: UIButton!
     @IBOutlet weak var txfBidAmount: UITextField!
 
     // MARK: - Property initialization
@@ -51,6 +49,18 @@ class HomeVC: UIViewController {
         
         categoryId = sender.tag == 100 ? 1 : 2
         
+        viewWomenSeparater.backgroundColor = sender.tag == 100 ? colorAppTheme : colorLightGray
+        viewKidsSeparater.backgroundColor = sender.tag == 100 ? colorLightGray : colorAppTheme
+
+        if sender.tag == 100 {
+            btnWomen.setTitleColor(colorAppTheme, for: .normal)
+            btnKids.setTitleColor(colorLight, for: .normal)
+        }
+        else {
+            btnKids.setTitleColor(colorAppTheme, for: .normal)
+            btnWomen.setTitleColor(colorLight, for: .normal)
+        }
+
         viewBG.isHidden = true
         viewLookAt.isHidden = true
         
@@ -82,7 +92,18 @@ class HomeVC: UIViewController {
             viewPlaceBid.isHidden = true
         }
         else {
+            if !Util.isValidString(txfBidAmount.text!) {
+                Util.showAlertWithMessage("Please enter bid amount", title: ""); return
+            }
+            let lastBiAmount = Int(lblLastBidAmount.text ?? "") ?? 0
+            let bidAmount = Int(txfBidAmount.text ?? "") ?? 0
+
+            if bidAmount < lastBiAmount {
+                Util.showAlertWithMessage("Bid amount can not be less than to last bid amount", title: ""); return
+            }
             
+            // Perform Place bid API
+            placeBidAPI_Call()
         }
     }
     
@@ -104,6 +125,7 @@ class HomeVC: UIViewController {
                 kAPI_Latitude   : LoggedInUser.shared.latitude as AnyObject,
                 kAPI_Longitude  : LoggedInUser.shared.longitude as AnyObject,
                 kAPI_Language   : "en" as AnyObject,
+                "search"        : "" as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -139,7 +161,7 @@ class HomeVC: UIViewController {
         let postParams: [String: AnyObject] =
             [
                 kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
-                kAPI_ProductId  : dictProduct[""] as AnyObject,
+                kAPI_ProductId  : dictProduct["id"] as AnyObject,
                 kAPI_BidAmount  : txfBidAmount.text as AnyObject,
                 kAPI_Language   : "en" as AnyObject,
         ]
@@ -156,6 +178,47 @@ class HomeVC: UIViewController {
                 return
             }
             DLog(message: "\(jsonObj)")
+            
+            DispatchQueue.main.async {
+                self.viewBG.isHidden = true
+                self.viewPlaceBid.isHidden = true
+            }
+        }
+    }
+
+    private func getProductBidDetailAPI_Call() {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_ProductId  : dictProduct["id"] as AnyObject,
+                kAPI_Language   : "en" as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.getProductBidDetail(postParams), callerObj: self, showHud: true) { (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+            
+            DispatchQueue.main.async {
+                self.lblTime.text = jsonObj["time_left"].stringValue
+                self.lblOfferPrice.text = "$\(jsonObj["offer_price"].stringValue)"
+                self.lblLastBidAmount.text = "$\(jsonObj["last_bid_amount"].stringValue)"
+                self.lblTotalBid.text = jsonObj["total_bid"].stringValue
+                
+                self.viewBG.isHidden = false
+                self.viewPlaceBid.isHidden = false
+                self.txfBidAmount.text = ""
+            }
         }
     }
 
@@ -177,25 +240,32 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
         cell?.configureCell(dictProduct)
         
         cell?.userProfileHandler = {
-            
+            let dictProduct = self.arrProduct[indexPath.item] as! NSDictionary
+
+            let vc = Util.loadViewController(fromStoryboard: "SellerProfileVC", storyboardName: "Home") as? SellerProfileVC
+            vc?.dictProduct = dictProduct
+            if let aVc = vc {
+                aVc.hidesBottomBarWhenPushed = true
+                self.show(aVc, sender: nil)
+            }
         }
         
         cell?.placeBidHandler = {
-            
             self.dictProduct = self.arrProduct[indexPath.item] as! NSDictionary
-            
-            self.lblLastBidAmount.text = "$\(self.dictProduct["base_price"] ?? "0.0")"
-            self.lblTotalBid.text = "$\(self.dictProduct["base_price"] ?? "0.0")"
-
-            self.viewBG.isHidden = false
-            self.viewPlaceBid.isHidden = false
+            self.getProductBidDetailAPI_Call()
         }
-        
         return cell!
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dictProduct = arrProduct[indexPath.item] as! NSDictionary
         
+        let vc = Util.loadViewController(fromStoryboard: "ProductDetailVC", storyboardName: "Home") as? ProductDetailVC
+        vc?.dictProduct = dictProduct
+        if let aVc = vc {
+            aVc.hidesBottomBarWhenPushed = true
+            show(aVc, sender: nil)
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

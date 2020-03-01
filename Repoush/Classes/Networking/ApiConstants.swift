@@ -7,7 +7,8 @@ import UIKit
 //let kAPI_BaseURL                       = "http://18.222.1.10/project_klu/index.php/"
 
 //For Development
-let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush/service/"
+// let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush/service/"
+let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush_ios/service/"
 let kAPI_ImageBaseURL                   = "http://24x7webtesting.com/moodery/post/"
 
 //************************** Constant for API Keys **************************//
@@ -52,6 +53,7 @@ let kAPI_OTP                            = "otp"
 let kAPI_NewPassword                    = "new_password"
 let kAPI_MobileNumber                   = "mobile_number"
 let kAPI_Language                       = "language"
+let kAPI_OldPassword                    = "old_password"
 
 // MARK: - Api Constant for Product
 let kAPI_CategoryId                     = "category_id"
@@ -68,6 +70,7 @@ let kAPI_ProductImage                   = "product_image[]"
 let kAPI_Type                           = "type"
 let kAPI_BidAmount                      = "bid_amount"
 let kAPI_ProductId                      = "product_id"
+let kAPI_BidId                          = "bid_id"
 
 //**    Result Success |"1"| / Failure |"0"|
 let kAPI_Result_Success      = "1"
