@@ -1,8 +1,7 @@
 
+
+
 import UIKit
-import Alamofire
-import SwiftyJSON
-import Kingfisher
 
 struct Networking {
     
@@ -35,6 +34,8 @@ struct Networking {
         case getProductImage([String: Any])
         case bidCancel([String: Any])
         case logout([String: Any])
+        case accountStatus([String: Any])
+        case getNotificationList([String: Any])
 
         // MARK: - Methods
         var method: Alamofire.HTTPMethod {
@@ -92,6 +93,10 @@ struct Networking {
             case .bidCancel:
                 return .post
             case .logout:
+                return .post
+            case .accountStatus:
+                return .post
+            case .getNotificationList:
                 return .post
             }
         }
@@ -152,6 +157,10 @@ struct Networking {
                 return "bid_cancel"
             case .logout:
                 return "logout"
+            case .accountStatus:
+                return "account_status"
+            case .getNotificationList:
+                return "get_notification_list"
             }
         }
         
@@ -220,6 +229,10 @@ struct Networking {
             case .bidCancel(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .logout(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .accountStatus(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .getNotificationList(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             }
             return urlRequest

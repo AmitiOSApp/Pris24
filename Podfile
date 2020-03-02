@@ -13,5 +13,6 @@ target 'Repoush' do
   pod 'ReachabilitySwift'
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
+  pod 'AARatingBar'
 
 end

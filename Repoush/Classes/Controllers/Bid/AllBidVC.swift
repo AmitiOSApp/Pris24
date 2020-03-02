@@ -90,7 +90,7 @@ class AllBidVC: UIViewController {
 extension AllBidVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5 // arrAllBid.count
+        return arrAllBid.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

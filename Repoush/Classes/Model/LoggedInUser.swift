@@ -22,6 +22,7 @@ class LoggedInUser {
     var mobileNo    : String?
     var gender      : String?
     var dob         : String?
+    var accountStatus       : String?
 
     var isUserLoggedIn  :Bool = false
     
@@ -44,11 +45,12 @@ class LoggedInUser {
         LoggedInUser.shared.email           = json[kAPI_Email].string ?? ""
         LoggedInUser.shared.userImage       = json[kAPI_UserImage].string ?? ""
         LoggedInUser.shared.address         = json[kAPI_Address].string ?? ""
-        LoggedInUser.shared.latitude        = json[kAPI_Latitude].string ?? ""
-        LoggedInUser.shared.longitude       = json[kAPI_Longitude].string ?? ""
+        LoggedInUser.shared.latitude        = json[kAPI_PermanentLatitude].string ?? ""
+        LoggedInUser.shared.longitude       = json[kAPI_PermanentLognitude].string ?? ""
         LoggedInUser.shared.mobileNo        = json[kAPI_MobileNumber].string ?? ""
         LoggedInUser.shared.gender          = json[kAPI_Gender].string == "0" ? "Female" : "Male"
         LoggedInUser.shared.dob             = json[kAPI_Dob].string ?? ""
+        LoggedInUser.shared.accountStatus   = json[kAPI_AccountStatus].string ?? ""
 
         LoggedInUser.shared.isUserLoggedIn  = true
         UserDefaults.standard.set(true, forKey: Key_UD_IsUserLoggedIn)
@@ -65,11 +67,12 @@ class LoggedInUser {
         LoggedInUser.shared.email           = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Email))
         LoggedInUser.shared.userImage       = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_UserImage))
         LoggedInUser.shared.address         = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Address))
-        LoggedInUser.shared.latitude        = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Latitude))
-        LoggedInUser.shared.longitude       = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Longitude))
+        LoggedInUser.shared.latitude        = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_PermanentLatitude))
+        LoggedInUser.shared.longitude       = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_PermanentLognitude))
         LoggedInUser.shared.mobileNo        = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_MobileNumber))
         LoggedInUser.shared.gender          = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Gender))
         LoggedInUser.shared.dob             = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Dob))
+        LoggedInUser.shared.accountStatus   = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_AccountStatus))
     }
     
     func saveValuesInUserDefaultFromSharedInstance() {
@@ -79,11 +82,12 @@ class LoggedInUser {
         UserDefaults.standard.set(LoggedInUser.shared.email, forKey: kAPI_Email)
         UserDefaults.standard.set(LoggedInUser.shared.userImage, forKey: kAPI_UserImage)
         UserDefaults.standard.set(LoggedInUser.shared.address, forKey: kAPI_Address)
-        UserDefaults.standard.set(LoggedInUser.shared.latitude, forKey: kAPI_Latitude)
-        UserDefaults.standard.set(LoggedInUser.shared.longitude, forKey: kAPI_Longitude)
+        UserDefaults.standard.set(LoggedInUser.shared.latitude, forKey: kAPI_PermanentLatitude)
+        UserDefaults.standard.set(LoggedInUser.shared.longitude, forKey: kAPI_PermanentLognitude)
         UserDefaults.standard.set(LoggedInUser.shared.mobileNo, forKey: kAPI_MobileNumber)
         UserDefaults.standard.set(LoggedInUser.shared.gender, forKey: kAPI_Gender)
         UserDefaults.standard.set(LoggedInUser.shared.dob, forKey: kAPI_Dob)
+        UserDefaults.standard.set(LoggedInUser.shared.accountStatus, forKey: kAPI_AccountStatus)
     }
     
     func clearUserData() {

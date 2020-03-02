@@ -126,6 +126,7 @@ class HomeVC: UIViewController {
                 kAPI_Longitude  : LoggedInUser.shared.longitude as AnyObject,
                 kAPI_Language   : "en" as AnyObject,
                 "search"        : "" as AnyObject,
+                "distance"      : "" as AnyObject,
         ]
         DLog(message: "\(postParams)")
         

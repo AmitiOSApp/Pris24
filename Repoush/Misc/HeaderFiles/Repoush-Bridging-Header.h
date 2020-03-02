@@ -15,5 +15,6 @@
 @import IQKeyboardManagerSwift;
 @import Reachability;
 @import GooglePlaces;
+@import AARatingBar;
 
 #endif /* Repoush_Bridging_Header_h */

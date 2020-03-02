@@ -33,6 +33,8 @@ let kAPI_LoginType                      = "login_type"
 let kAPI_Latitude                       = "latitude"
 let kAPI_Longitude                      = "lognitude"
 let kAPI_Address                        = "address"
+let kAPI_PermanentLatitude              = "permanent_latitude"
+let kAPI_PermanentLognitude             = "permanent_lognitude"
 
 let kAPI_ServerNotificationDateFormat   = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSS"
 let kAPI_24HourTimeFormat               = "HH:mm:ss"
@@ -54,6 +56,7 @@ let kAPI_NewPassword                    = "new_password"
 let kAPI_MobileNumber                   = "mobile_number"
 let kAPI_Language                       = "language"
 let kAPI_OldPassword                    = "old_password"
+let kAPI_AccountStatus                 = "account_status"
 
 // MARK: - Api Constant for Product
 let kAPI_CategoryId                     = "category_id"

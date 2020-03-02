@@ -391,9 +391,8 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                         self?.present(uiAlert, animated: true, completion: nil)
                         
                         uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-                            
                             DispatchQueue.main.async { [weak self] in
-
+                                self?.tabBarController?.selectedIndex = 0
                             }
                         }))
                     }

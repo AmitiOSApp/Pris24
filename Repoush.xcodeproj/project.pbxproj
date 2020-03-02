@@ -63,6 +63,9 @@
 		60302242240AE91E00FFDF53 /* ReportVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60302241240AE91E00FFDF53 /* ReportVC.swift */; };
 		60302244240AEDF800FFDF53 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60302243240AEDF800FFDF53 /* ForgotPasswordVC.swift */; };
 		60302246240AEE0B00FFDF53 /* NewPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60302245240AEE0B00FFDF53 /* NewPasswordVC.swift */; };
+		60302248240BB49100FFDF53 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60302247240BB49100FFDF53 /* NotificationVC.swift */; };
+		6030224A240BB7B500FFDF53 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60302249240BB7B500FFDF53 /* NotificationCell.swift */; };
+		6030224C240C3BB100FFDF53 /* ReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6030224B240C3BB100FFDF53 /* ReviewCell.swift */; };
 		60C2E88823EDEC61003D0D28 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2E88723EDEC61003D0D28 /* ProfileVC.swift */; };
 		60C2E88A23EDEC77003D0D28 /* SettingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2E88923EDEC77003D0D28 /* SettingVC.swift */; };
 		60C2E88C23EDECDC003D0D28 /* SettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60C2E88B23EDECDC003D0D28 /* SettingCell.swift */; };
@@ -130,6 +133,9 @@
 		60302241240AE91E00FFDF53 /* ReportVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportVC.swift; sourceTree = "<group>"; };
 		60302243240AEDF800FFDF53 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		60302245240AEE0B00FFDF53 /* NewPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewPasswordVC.swift; sourceTree = "<group>"; };
+		60302247240BB49100FFDF53 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		60302249240BB7B500FFDF53 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		6030224B240C3BB100FFDF53 /* ReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewCell.swift; sourceTree = "<group>"; };
 		60C2E88723EDEC61003D0D28 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		60C2E88923EDEC77003D0D28 /* SettingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingVC.swift; sourceTree = "<group>"; };
 		60C2E88B23EDECDC003D0D28 /* SettingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCell.swift; sourceTree = "<group>"; };
@@ -254,6 +260,8 @@
 				60C2E88B23EDECDC003D0D28 /* SettingCell.swift */,
 				602FEEB02406F06B000CBDE1 /* SizeCell.swift */,
 				B7288D1E2409703100470420 /* AllBidCell.swift */,
+				60302249240BB7B500FFDF53 /* NotificationCell.swift */,
+				6030224B240C3BB100FFDF53 /* ReviewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -475,6 +483,7 @@
 				6030223D240AE8FB00FFDF53 /* ChangePasswordVC.swift */,
 				6030223F240AE90D00FFDF53 /* TermsPrivacyVC.swift */,
 				60302241240AE91E00FFDF53 /* ReportVC.swift */,
+				60302247240BB49100FFDF53 /* NotificationVC.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -641,6 +650,7 @@
 			files = (
 				60C2E88C23EDECDC003D0D28 /* SettingCell.swift in Sources */,
 				6003172F23D8C18700674E8C /* ButtonDynamicText.swift in Sources */,
+				60302248240BB49100FFDF53 /* NotificationVC.swift in Sources */,
 				6003173423D8C18700674E8C /* Constant.swift in Sources */,
 				6003176023DC2F9300674E8C /* MyAuctionVC.swift in Sources */,
 				60302240240AE90D00FFDF53 /* TermsPrivacyVC.swift in Sources */,
@@ -651,6 +661,7 @@
 				6003173523D8C18700674E8C /* STSubmitLoading.swift in Sources */,
 				6003175823DB67AB00674E8C /* PostCell.swift in Sources */,
 				60C2E88A23EDEC77003D0D28 /* SettingVC.swift in Sources */,
+				6030224C240C3BB100FFDF53 /* ReviewCell.swift in Sources */,
 				6003172C23D8C18700674E8C /* CustomImageView.swift in Sources */,
 				6003173123D8C18700674E8C /* DeviceType.swift in Sources */,
 				60302244240AEDF800FFDF53 /* ForgotPasswordVC.swift in Sources */,
@@ -678,6 +689,7 @@
 				B7288D1F2409703100470420 /* AllBidCell.swift in Sources */,
 				6003172623D8C18600674E8C /* LoggedInUser.swift in Sources */,
 				6030223E240AE8FB00FFDF53 /* ChangePasswordVC.swift in Sources */,
+				6030224A240BB7B500FFDF53 /* NotificationCell.swift in Sources */,
 				B7288D1D24096F0000470420 /* AllBidVC.swift in Sources */,
 				60302242240AE91E00FFDF53 /* ReportVC.swift in Sources */,
 				602FEEB12406F06B000CBDE1 /* SizeCell.swift in Sources */,

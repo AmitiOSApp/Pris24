@@ -13,6 +13,9 @@ class SettingCell: UITableViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var imgviewSetting: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var switchStatus: UISwitch!
+    
+    var statusHandler: (() -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,4 +27,10 @@ class SettingCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    @IBAction func switchStatus_Action(_ sender: UISwitch) {
+        if statusHandler != nil {
+            statusHandler!()
+        }
+    }
+    
 }

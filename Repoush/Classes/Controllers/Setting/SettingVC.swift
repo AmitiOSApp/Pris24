@@ -14,7 +14,7 @@ class SettingVC: UIViewController {
     @IBOutlet weak var tblSetting: UITableView!
     
     // MARK: - Property initialization
-    private var arrTitle = ["Notification", "Privacy", "Change Password", "Terms of use", "Report a problem", "Logout"]
+    private var arrTitle = ["Notification", "Privacy", "Change Password", "Change Language", "Terms of use", "Report a problem", "Online / Offline", "Logout"]
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -47,6 +47,31 @@ class SettingVC: UIViewController {
         }
     }
 
+    private func accountStatusAPI_Call(_ accountStatus: Bool) {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_UserId        : LoggedInUser.shared.id as AnyObject,
+                kAPI_AccountStatus : accountStatus as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.accountStatus(postParams), callerObj: self, showHud: true) { (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+        }
+    }
+
 }
 
 // MARK: UITableViewDataSource, UITableViewDelegate
@@ -64,6 +89,19 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         cell?.lblTitle.text = arrTitle[indexPath.row]
         
         cell?.imgviewSetting.image = UIImage(named: "setting_icon\(indexPath.row + 1)")
+        
+        if indexPath.row == 6 {
+            cell?.switchStatus.isHidden = false
+            cell?.switchStatus.isOn = LoggedInUser.shared.accountStatus == "1" ? true : false
+        }
+        else {
+            cell?.switchStatus.isHidden = true
+        }
+        
+        cell?.statusHandler = {
+            // Perform Account status API
+            self.accountStatusAPI_Call((cell?.switchStatus.isOn)!)
+        }
 
         return cell!
     }
@@ -71,7 +109,11 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.row == 0 {
-
+            let vc = Util.loadViewController(fromStoryboard: "NotificationVC", storyboardName: "Home") as? NotificationVC
+            if let aVc = vc {
+                aVc.hidesBottomBarWhenPushed = true
+                show(aVc, sender: nil)
+            }
         }
         else if indexPath.row == 1 {
             let vc = Util.loadViewController(fromStoryboard: "TermsPrivacyVC", storyboardName: "Home") as? TermsPrivacyVC
@@ -87,7 +129,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
                 show(aVc, sender: nil)
             }
         }
-        else if indexPath.row == 3 {
+        else if indexPath.row == 4 {
             let vc = Util.loadViewController(fromStoryboard: "TermsPrivacyVC", storyboardName: "Home") as? TermsPrivacyVC
             vc?.isPrivacy = false
             if let aVc = vc {
@@ -95,13 +137,13 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
                 show(aVc, sender: nil)
             }
         }
-        else if indexPath.row == 4 {
+        else if indexPath.row == 5 {
 //            let vc = Util.loadViewController(fromStoryboard: "ReportVC", storyboardName: "Home") as? ReportVC
 //            if let aVc = vc {
 //                show(aVc, sender: nil)
 //            }
         }
-        else if indexPath.row == 5 {
+        else if indexPath.row == 7 {
             let uiAlert = UIAlertController(title: "", message: "Are you sure you want to log out?", preferredStyle:UIAlertController.Style.alert)
             present(uiAlert, animated: true, completion: nil)
             
@@ -112,7 +154,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
                 LoggedInUser.shared.clearUserData()
                 
                 // Perform Logout API
-                // self?.logoutAPI_Call()
+                self?.logoutAPI_Call()
                 
                 let vc = Util.loadViewController(fromStoryboard: "LoginVC", storyboardName: "Main") as? LoginVC
                 if let aVc = vc {
