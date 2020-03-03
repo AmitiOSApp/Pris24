@@ -32,26 +32,30 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var pickerViewGender: UIPickerView!
     @IBOutlet weak var lblNewAddress: UILabel!
     @IBOutlet weak var viewBG: UIView!
+    @IBOutlet weak var btnAge: UIButton!
 
     @IBOutlet weak var imgviewBgHgtConst: NSLayoutConstraint!
     @IBOutlet weak var viewCollectionHgtConst: NSLayoutConstraint!
     @IBOutlet weak var viewSizeHgtConst: NSLayoutConstraint!
+    @IBOutlet weak var viewAgeHgtConst: NSLayoutConstraint!
     @IBOutlet weak var viewGenderHgtConst: NSLayoutConstraint!
     @IBOutlet weak var tblSizeHgtConst: NSLayoutConstraint!
 
     // MARK: - Property initialization
     private enum ActionType: Int {
-        case women = 100, kids, size, gender, registeredAddress, newAddress, postNow
+        case women = 100, kids, size, gender, registeredAddress, newAddress, postNow, age
     }
     private var categoryId = 1
     private var subcategoryId = ""
     private var arrSubcategory = NSMutableArray()
     private var selectedIndex = 0
     private var arrSize = [String]()
+    private var arrAge = [String]()
     private var arrProductImage = [UIImage]()
     private var discountPercent = ""
     private var latitude = 0.0
     private var longitude = 0.0
+    private var isSize = false
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -97,6 +101,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         else if sender.tag == ActionType.size.rawValue {
             if arrSize.count > 0 {
+                isSize = true
                 viewBG.isHidden = false
                 viewSize.isHidden = false
                 tblSize.reloadData()
@@ -121,6 +126,14 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             let acController = GMSAutocompleteViewController()
             acController.delegate = self
             present(acController, animated: true, completion: nil)
+        }
+        else if sender.tag == ActionType.age.rawValue {
+            if arrAge.count > 0 {
+                isSize = false
+                viewBG.isHidden = false
+                viewSize.isHidden = false
+                tblSize.reloadData()
+            }
         }
         else if sender.tag == ActionType.postNow.rawValue {
             // Check required field validation
@@ -192,12 +205,19 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         let dictSubcategory = arrSubcategory[index] as? NSDictionary
         let strSize = dictSubcategory!["size"] as? String
         
+        let strAge = dictSubcategory!["age"] as? String
+
         subcategoryId = (dictSubcategory!["id"] as? String)!
         
         arrSize.removeAll()
+        arrAge.removeAll()
 
         if Util.isValidString(strSize ?? "") {
             arrSize = (strSize?.components(separatedBy: ","))!
+        }
+        
+        if Util.isValidString(strAge ?? "") {
+            arrAge = (strAge?.components(separatedBy: ","))!
         }
         
         if arrSize.count == 0 {
@@ -206,6 +226,14 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         else {
             viewSizeHgtConst.constant = 48.0
             tblSizeHgtConst.constant = CGFloat(arrSize.count * 35)
+        }
+        
+        if arrAge.count == 0 {
+            viewAgeHgtConst.constant = 0.0
+        }
+        else {
+            viewAgeHgtConst.constant = 48.0
+            tblSizeHgtConst.constant = CGFloat(arrAge.count * 35)
         }
         tblSize.reloadData()
     }
@@ -241,6 +269,11 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         else if viewSizeHgtConst.constant != 0 {
             if btnSize.titleLabel?.text == "Choose" {
                 Util.showAlertWithMessage("Please select size", title: Key_Alert); return false
+            }
+        }
+        else if viewAgeHgtConst.constant != 0 {
+            if btnAge.titleLabel?.text == "Choose" {
+                Util.showAlertWithMessage("Please select age", title: Key_Alert); return false
             }
         }
         else if !Util.isValidString(txfCondition.text!) {
@@ -337,6 +370,11 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             gender = btnGender.titleLabel!.text!
         }
         
+        var age = ""
+        if btnAge.titleLabel?.text != "Choose" {
+            age = btnAge.titleLabel!.text!
+        }
+        
         var address = LoggedInUser.shared.address
         var latitude = LoggedInUser.shared.latitude
         var longitude = LoggedInUser.shared.longitude
@@ -355,6 +393,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 kAPI_Selling          : txfSelling.text as AnyObject,
                 kAPI_Size             : size as AnyObject,
                 kAPI_Gender           : gender as AnyObject,
+                kAPI_Age              : age as AnyObject,
                 kAPI_Condition        : txfCondition.text as AnyObject,
                 kAPI_BasePrice        : txfOriginalPrice.text as AnyObject,
                 kAPI_OfferPrice       : txfOfferPrice.text as AnyObject,
@@ -530,7 +569,12 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
 extension AddPostVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return arrSize.count
+        if isSize {
+            return arrSize.count
+        }
+        else {
+            return arrAge.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -538,15 +582,24 @@ extension AddPostVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SizeCell", for: indexPath) as? SizeCell
         cell?.selectionStyle = .none
         
-        cell?.lblSize.text = arrSize[indexPath.row]
-        
+        if isSize {
+            cell?.lblSize.text = arrSize[indexPath.row]
+        }
+        else {
+            cell?.lblSize.text = arrAge[indexPath.row]
+        }
         return cell!
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        btnSize.setTitle(arrSize[indexPath.row], for: .normal)
-        btnSize.setTitleColor(.black, for: .normal)
-        
+        if isSize {
+            btnSize.setTitle(arrSize[indexPath.row], for: .normal)
+            btnSize.setTitleColor(.black, for: .normal)
+        }
+        else {
+            btnAge.setTitle(arrAge[indexPath.row], for: .normal)
+            btnAge.setTitleColor(.black, for: .normal)
+        }
         viewBG.isHidden = true
         viewSize.isHidden = true
     }

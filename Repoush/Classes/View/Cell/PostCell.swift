@@ -23,6 +23,15 @@ class PostCell: UICollectionViewCell {
     @IBOutlet weak var lblTimeLeft: UILabel!
     @IBOutlet weak var btnPlaceBid: UIButton!
 
+    private var timer: Timer?
+    private var timeCounter: Int = 0
+    
+    var timeIntervalInSecond: TimeInterval? {
+        didSet {
+            startTimer()
+        }
+    }
+    
     var userProfileHandler: (() -> Void)?
     var placeBidHandler: (() -> Void)?
 
@@ -57,21 +66,9 @@ class PostCell: UICollectionViewCell {
         
         let timeInSecond = dictProduct["time_left_in_second"] as? Int
         
-        if timeInSecond == 0 {
-            
-        }
-        else {
-            
-            if timeInSecond != nil {
-                let hours = timeInSecond! / 3600
-                let minutes = timeInSecond! / 60 % 60
-                let seconds = timeInSecond! % 60
-                let temp = String(format:"%02i:%02i:%02i", hours, minutes, seconds)
-                
-                lblTimeLeft.text = "\(temp)"
-                
-                // var helloWorldTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.setTimeLeft), userInfo: nil, repeats: true)
-            }
+        if timeInSecond != 0 {
+            timer?.invalidate()
+            timeIntervalInSecond = TimeInterval(timeInSecond!)
         }
         
         var arrProductImage = NSMutableArray()
@@ -110,7 +107,53 @@ class PostCell: UICollectionViewCell {
         }
     }
     
-    @objc func setTimeLeft() {
+    private func startTimer() {
+        if let interval = timeIntervalInSecond {
+            timeCounter = Int(interval)
 
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+
+//            timer = Timer(timeInterval: 1.0, repeats: true, block: { [weak self] _ in
+//                guard let strongSelf = self else {
+//                    return
+//                }
+//                strongSelf.onComplete()
+//            })
+        }
     }
+    
+    @objc func updateCounter() {
+        guard timeCounter >= 0 else {
+            timer?.invalidate()
+            timer = nil
+            return
+        }
+        
+        let hours = timeCounter / 3600
+        let minutes = timeCounter / 60 % 60
+        let seconds = timeCounter % 60
+        let temp = String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+        
+        lblTimeLeft.text = "\(temp)"
+        
+        timeCounter -= 1
+    }
+    
+//    @objc func onComplete() {
+//        guard timeCounter >= 0 else {
+//            timer?.invalidate()
+//            timer = nil
+//            return
+//        }
+//
+//        let hours = timeCounter / 3600
+//        let minutes = timeCounter / 60 % 60
+//        let seconds = timeCounter % 60
+//        let temp = String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+//
+//        lblTimeLeft.text = "\(temp)"
+//
+//        timeCounter -= 1
+//    }
+    
 }

@@ -79,14 +79,14 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         if sender.tag == 100 {
             pickerAction = sender.tag
             viewDatePicker.isHidden = false
-            datePicker.isHidden = false
-            pickerViewGender.isHidden = true
+            datePicker.isHidden = true
+            pickerViewGender.isHidden = false
         }
         else if sender.tag == 101 {
             pickerAction = sender.tag
             viewDatePicker.isHidden = false
-            datePicker.isHidden = true
-            pickerViewGender.isHidden = false
+            datePicker.isHidden = false
+            pickerViewGender.isHidden = true
         }
     }
     
@@ -94,16 +94,16 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         
         if sender.titleLabel?.text == "Done" {
             if pickerAction == 100 {
+                let selectedIndex = pickerViewGender.selectedRow(inComponent: 0)
+                let strGender = selectedIndex == 0 ? "Male" : "Female"
+                lblGender.text = strGender
+            }
+            else {
                 let formatter = DateFormatter()
                 formatter.dateFormat = "yyyy-MM-dd"
                 let selectedDate = formatter.string(from: datePicker.date)
                 
                 lblAge.text = selectedDate
-            }
-            else {
-                let selectedIndex = pickerViewGender.selectedRow(inComponent: 0)
-                let strGender = selectedIndex == 0 ? "Male" : "Female"
-                lblGender.text = strGender
             }
         }
         viewDatePicker.isHidden = true

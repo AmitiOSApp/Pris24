@@ -28,6 +28,13 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var lblPickupLocation: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
 
+    @IBOutlet weak var viewBG: UIView!
+    @IBOutlet weak var viewRateReview: UIView!
+    @IBOutlet weak var imgviewUserReview: UIImageView!
+    @IBOutlet weak var lblReviewUsername: UILabel!
+    @IBOutlet weak var lblRatingCount: UILabel!
+    @IBOutlet weak var tblReview: UITableView!
+
     // MARK: - Property initialization
     var dictProduct = NSDictionary()
     var arrProductImage = NSMutableArray()
@@ -43,6 +50,16 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
     // MARK: - Action Methods
     @IBAction func btnBack_Action(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func btnRateReview_Action(_ sender: UIButton) {
+        viewBG.isHidden = false
+        viewRateReview.isHidden = false
+    }
+    
+    @IBAction func btnCross_Action(_ sender: UIButton) {
+        viewBG.isHidden = true
+        viewRateReview.isHidden = true
     }
 
     // MARK: - Private Methods
@@ -215,6 +232,27 @@ extension ProductDetailVC: UICollectionViewDataSource, UICollectionViewDelegate,
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
+    }
+    
+}
+
+// MARK: UITableViewDataSource, UITableViewDelegate
+extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as? ReviewCell
+        cell?.selectionStyle = .none
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
     }
     
 }

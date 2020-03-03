@@ -80,7 +80,7 @@ extension NotificationVC: UITableViewDataSource, UITableViewDelegate {
         
         let dictPost = arrNotification[indexPath.row] as! NSDictionary
 
-        cell?.lblNotificationStatus.text = dictPost["title"] as? String
+        cell?.lblNotificationStatus.text = (dictPost["title"] as? String)?.capitalizingFirstLetter()
         cell?.lblNotificationMsg.text = dictPost["notification_msg"] as? String
 
         var createdDate = ""

@@ -32,7 +32,7 @@ class MyAuctionVC: UIViewController {
         // Do any additional setup after loading the view.
         
         // Perform Get user product API
-        getUserProductAPI_Call("seller")
+        getUserProductAPI_Call("1")
     }
 
     // MARK: - Action Methods
@@ -48,14 +48,14 @@ class MyAuctionVC: UIViewController {
             btnBuyer.setTitleColor(colorLight, for: .normal)
             
             // Perform Get user product API
-            getUserProductAPI_Call("seller")
+            getUserProductAPI_Call("1")
         }
         else {
             btnBuyer.setTitleColor(colorAppTheme, for: .normal)
             btnSeller.setTitleColor(colorLight, for: .normal)
             
             // Perform Get user product API
-            getUserProductAPI_Call("buyer")
+            getUserProductAPI_Call("2")
         }
         
         imgviewTab.image = UIImage(named: "tab")
@@ -72,11 +72,11 @@ class MyAuctionVC: UIViewController {
 
             if userType == 200 {
                 // Perform Get user product API
-                getUserProductAPI_Call("seller")
+                getUserProductAPI_Call("1")
             }
             else {
                 // Perform Get user product API
-                getUserProductAPI_Call("buyer")
+                getUserProductAPI_Call("2")
             }
         }
         else {
@@ -87,11 +87,11 @@ class MyAuctionVC: UIViewController {
 
             if userType == 200 {
                 // Perform Get user product history API
-                getProductHistoryAPI_Call("seller")
+                getProductHistoryAPI_Call("1")
             }
             else {
                 // Perform Get user product history API
-                getProductHistoryAPI_Call("buyer")
+                getProductHistoryAPI_Call("2")
             }
         }
     }
@@ -162,6 +162,35 @@ class MyAuctionVC: UIViewController {
             }
             
             DispatchQueue.main.async {
+                self?.collectionViewAuction.reloadData()
+            }
+        }
+    }
+
+    private func deleteProductAPI_Call(_ productId: String, selectedIndex: Int) {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_ProductId : productId as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.deleteProduct(postParams), callerObj: self, showHud: true) { [weak self] (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+            
+            DispatchQueue.main.async {
+                self?.arrProduct.removeObject(at: selectedIndex)
                 self?.collectionViewAuction.reloadData()
             }
         }

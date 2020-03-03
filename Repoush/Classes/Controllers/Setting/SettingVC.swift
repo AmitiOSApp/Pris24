@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import MessageUI
 
-class SettingVC: UIViewController {
+class SettingVC: UIViewController, MFMailComposeViewControllerDelegate {
 
     // MARK: - IBOutlets
     @IBOutlet weak var tblSetting: UITableView!
@@ -70,6 +71,15 @@ class SettingVC: UIViewController {
             }
             DLog(message: "\(jsonObj)")
         }
+    }
+    
+    // MARK: MFMailComposeViewControllerDelegate
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        // Check the result or perform other tasks.
+        
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
     }
 
 }
@@ -138,10 +148,28 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
             }
         }
         else if indexPath.row == 5 {
-//            let vc = Util.loadViewController(fromStoryboard: "ReportVC", storyboardName: "Home") as? ReportVC
-//            if let aVc = vc {
-//                show(aVc, sender: nil)
-//            }
+            let uiAlert = UIAlertController(title: "Report a problem to admin", message: "Please send email to the admin from below button to report your problem.", preferredStyle:UIAlertController.Style.alert)
+            present(uiAlert, animated: true, completion: nil)
+            
+            uiAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in }))
+            
+            uiAlert.addAction(UIAlertAction(title: "Send email", style: .default, handler: { [weak self] action in
+                
+                if !MFMailComposeViewController.canSendMail() {
+                    Util.showAlertWithMessage("Mail services are not available", title: "")
+                    return
+                }
+                let composeVC = MFMailComposeViewController()
+                composeVC.mailComposeDelegate = self
+                
+                // Configure the fields of the interface.
+                composeVC.setToRecipients(["repoush@email.com"])
+                composeVC.setSubject("Message Subject")
+                composeVC.setMessageBody("Message content.", isHTML: false)
+                
+                // Present the view controller modally.
+                self?.present(composeVC, animated: true, completion: nil)
+            }))
         }
         else if indexPath.row == 7 {
             let uiAlert = UIAlertController(title: "", message: "Are you sure you want to log out?", preferredStyle:UIAlertController.Style.alert)

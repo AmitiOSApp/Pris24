@@ -12,6 +12,7 @@ import WebKit
 class TermsPrivacyVC: UIViewController {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var lblTitle: UILabel!
     
     // MARK: - Property initialization
     private let webView = WKWebView(frame: .zero)
@@ -26,6 +27,7 @@ class TermsPrivacyVC: UIViewController {
         view.addSubview(webView)
         var strUrl = "http://24x7webtesting.com/repoush/home/privacy_policy_en"
         if !isPrivacy {
+            lblTitle.text = "Terms of use"
             strUrl = "http://24x7webtesting.com/repoush/home/terms_conditions_en"
         }
         let request = URLRequest(url: URL(string: strUrl)!)
