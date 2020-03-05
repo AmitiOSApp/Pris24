@@ -229,6 +229,36 @@ class MyAuctionVC: UIViewController {
         }
     }
 
+    private func checkoutAPI_Call() {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
+                kAPI_ProductId  : LoggedInUser.shared.id as AnyObject,
+                kAPI_BasePrice  : LoggedInUser.shared.id as AnyObject,
+                kAPI_OfferPrice : LoggedInUser.shared.id as AnyObject,
+                kAPI_Discount   : LoggedInUser.shared.id as AnyObject,
+                kAPI_DeviceType : "ios" as AnyObject,
+                kAPI_SellerId   : LoggedInUser.shared.id as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.checkout(postParams), callerObj: self, showHud: true) { (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+        }
+    }
+
 }
 
 // MARK: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
@@ -248,7 +278,10 @@ extension MyAuctionVC: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         cell?.configureCell(dictProduct!, isSeller: isSeller)
         
         cell?.deleteHandler = {
-            
+            let dictProduct = self.arrProduct[indexPath.item] as? NSDictionary
+
+            // Perform Delete product API
+            self.deleteProductAPI_Call(dictProduct!["id"] as! String, selectedIndex: indexPath.item)
         }
         
         cell?.editHandler = {

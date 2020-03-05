@@ -36,6 +36,9 @@ struct Networking {
         case logout([String: Any])
         case accountStatus([String: Any])
         case getNotificationList([String: Any])
+        case forgotPassword([String: Any])
+        case verifyForgotOTP([String: Any])
+        case setNewPassword([String: Any])
 
         // MARK: - Methods
         var method: Alamofire.HTTPMethod {
@@ -97,6 +100,12 @@ struct Networking {
             case .accountStatus:
                 return .post
             case .getNotificationList:
+                return .post
+            case .forgotPassword:
+                return .post
+            case .verifyForgotOTP:
+                return .post
+            case .setNewPassword:
                 return .post
             }
         }
@@ -161,6 +170,12 @@ struct Networking {
                 return "account_status"
             case .getNotificationList:
                 return "get_notification_list"
+            case .forgotPassword:
+                return "forgotPassword"
+            case .verifyForgotOTP:
+                return "verify_forgot_otp"
+            case .setNewPassword:
+                return "setNewpassword"
             }
         }
         
@@ -233,6 +248,12 @@ struct Networking {
             case .accountStatus(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .getNotificationList(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .forgotPassword(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .verifyForgotOTP(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .setNewPassword(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             }
             return urlRequest

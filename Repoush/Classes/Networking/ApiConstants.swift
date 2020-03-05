@@ -75,6 +75,7 @@ let kAPI_BidAmount                      = "bid_amount"
 let kAPI_ProductId                      = "product_id"
 let kAPI_BidId                          = "bid_id"
 let kAPI_Age                            = "age"
+let kAPI_SellerId                       = "seller_id"
 
 //**    Result Success |"1"| / Failure |"0"|
 let kAPI_Result_Success      = "1"

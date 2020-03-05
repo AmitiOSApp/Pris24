@@ -15,7 +15,7 @@ class NewPasswordVC: UIViewController {
     @IBOutlet weak var txfConfirmNewPassword: CustomTextField!
     
     // MARK: - Property initialization
-    var email = ""
+    var mobileNumber = ""
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -73,7 +73,7 @@ class NewPasswordVC: UIViewController {
         
         let postParams: [String: AnyObject] =
             [
-                kAPI_Email          : email as AnyObject,
+                kAPI_MobileNumber   : mobileNumber as AnyObject,
                 kAPI_NewPassword    : txfNewPassword.text as AnyObject
         ]
         DLog(message: "\(postParams)")

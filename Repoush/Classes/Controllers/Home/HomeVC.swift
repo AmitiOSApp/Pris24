@@ -85,6 +85,10 @@ class HomeVC: UIViewController {
         getProductAPI_Call()
     }
     
+    @IBAction func btnFilter_Action(_ sender: UIButton) {
+        
+    }
+    
     @IBAction func btnPlaceBid_Action(_ sender: UIButton) {
         
         if sender.titleLabel?.text == "CANCEL" {

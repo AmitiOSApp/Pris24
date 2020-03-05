@@ -11,13 +11,13 @@ import UIKit
 class ForgotPasswordVC: UIViewController {
     
     // MARK: - IBOutlets
-    @IBOutlet weak var txfEmail: CustomTextField!
+    @IBOutlet weak var txfMobileNumber: CustomTextField!
     @IBOutlet weak var txfOTP: CustomTextField!
     @IBOutlet weak var viewOTP: UIView!
     @IBOutlet weak var btnNext: UIButton!
     
     // MARK: - Property initialization
-    private var emailAddress = ""
+    private var mobileNumber = ""
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -36,11 +36,8 @@ class ForgotPasswordVC: UIViewController {
         resignAllActiveResponder()
         
         if sender.titleLabel?.text == "SEND OTP" {
-            if !Util.isValidString(txfEmail.text!) {
-                Util.showAlertWithMessage("Please enter email address", title: Key_Alert); return
-            }
-            else if !Util.isValidEmail(txfEmail.text!) {
-                Util.showAlertWithMessage("Please enter valid email address", title: Key_Alert); return
+            if !Util.isValidString(txfMobileNumber.text!) {
+                Util.showAlertWithMessage("Please enter mobile number", title: Key_Alert); return
             }
             // Perform Send OTP API
             sendOTPAPI_Call()
@@ -56,8 +53,8 @@ class ForgotPasswordVC: UIViewController {
     
     // MARK: - Private Methods
     private func resignAllActiveResponder() {
-        if txfEmail.isFirstResponder {
-            txfEmail.resignFirstResponder()
+        if txfMobileNumber.isFirstResponder {
+            txfMobileNumber.resignFirstResponder()
         }
         if txfOTP.isFirstResponder {
             txfOTP.resignFirstResponder()
@@ -71,11 +68,11 @@ class ForgotPasswordVC: UIViewController {
         
         let postParams: [String: AnyObject] =
             [
-                kAPI_Email : txfEmail.text as AnyObject,
+                kAPI_MobileNumber : txfMobileNumber.text as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.sendOTP(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.forgotPassword(postParams), callerObj: self, showHud: true) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -91,7 +88,7 @@ class ForgotPasswordVC: UIViewController {
             Util.showAlertWithMessage("OTP sent successfully on your registered email id", title: "")
             
             DispatchQueue.main.async { [weak self] in
-                self?.emailAddress = (self?.txfEmail.text)!
+                self?.mobileNumber = (self?.txfMobileNumber.text)!
                 self?.viewOTP.isHidden = false
                 self?.btnNext.setTitle("VERIFY OTP", for: .normal)
             }
@@ -104,8 +101,8 @@ class ForgotPasswordVC: UIViewController {
         
         let postParams: [String: AnyObject] =
             [
-                kAPI_Email : txfEmail.text as AnyObject,
-                kAPI_OTP   : txfOTP.text as AnyObject,
+                kAPI_MobileNumber : txfMobileNumber.text as AnyObject,
+                kAPI_OTP          : txfOTP.text as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -124,7 +121,7 @@ class ForgotPasswordVC: UIViewController {
             
             DispatchQueue.main.async { [weak self] in
                 let vc = Util.loadViewController(fromStoryboard: "NewPasswordVC", storyboardName: "Main") as? NewPasswordVC
-                vc?.email = self!.emailAddress
+                vc?.mobileNumber = self!.mobileNumber
                 if let aVc = vc {
                     self?.navigationController?.show(aVc, sender: nil)
                 }
