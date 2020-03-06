@@ -7,8 +7,8 @@ import UIKit
 //let kAPI_BaseURL                       = "http://18.222.1.10/project_klu/index.php/"
 
 //For Development
-// let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush/service/"
-let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush_ios/service/"
+let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush/service/"
+// let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush_ios/service/"
 let kAPI_ImageBaseURL                   = "http://24x7webtesting.com/moodery/post/"
 
 //************************** Constant for API Keys **************************//
@@ -76,6 +76,7 @@ let kAPI_ProductId                      = "product_id"
 let kAPI_BidId                          = "bid_id"
 let kAPI_Age                            = "age"
 let kAPI_SellerId                       = "seller_id"
+let kAPI_BidStatus                      = "bid_status"
 
 //**    Result Success |"1"| / Failure |"0"|
 let kAPI_Result_Success      = "1"

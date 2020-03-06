@@ -53,12 +53,12 @@ class AuctionCell: UICollectionViewCell {
     // MARK: Public Methods
     func configureCell(_ dictProduct: NSDictionary, isSeller: Bool) {
 
-        lblProductName.text = dictProduct["product_name"] as? String
         lblOriginalPrice.text = "$\(dictProduct["base_price"] ?? "0.0")"
         lblOfferPrice.text = "$\(dictProduct["offer_price"] ?? "0.0")"
-        lblLastBidAmount.text = "$\(dictProduct["bid_amount"] ?? "0.0")"
+        lblLastBidAmount.text = "$\(dictProduct["last_bid"] ?? "0.0")"
 
         if isSeller {
+            lblProductName.text = dictProduct["selling"] as? String
             lblUsername.text = ""
             lblBitType.text = "Last bid"
             btnShowAllBid.setTitle("SHOW ALL BID", for: .normal)
@@ -66,6 +66,8 @@ class AuctionCell: UICollectionViewCell {
             btnDeleteWidthConst.constant = 30.0
         }
         else {
+            lblLastBidAmount.text = "$\(dictProduct["bid_amount"] ?? "0.0")"
+            lblProductName.text = dictProduct["product_name"] as? String
             lblBitType.text = "My bid"
             lblUsername.text = "By : \(Util.createUsername(dictProduct))"
             btnShowAllBid.setTitle("CANCEL BID", for: .normal)
@@ -117,13 +119,13 @@ class AuctionCell: UICollectionViewCell {
                     case .success(let value):
                         self.imgviewProduct.image = value.image
                     case .failure( _):
-                        self.imgviewProduct.image = UIImage(named: "dummy_user")
+                        self.imgviewProduct.image = UIImage(named: "dummy_post")
                     }
                     self.imgviewProduct.kf.indicator?.stopAnimatingView()
                 }
             }
             else {
-                imgviewProduct.image = UIImage(named: "dummy_user")
+                imgviewProduct.image = UIImage(named: "dummy_post")
             }
         }
     }

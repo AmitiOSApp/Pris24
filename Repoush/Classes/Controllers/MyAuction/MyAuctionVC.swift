@@ -196,7 +196,7 @@ class MyAuctionVC: UIViewController {
         }
     }
 
-    private func cancelBidAPI_Call(_ bidId: String) {
+    private func cancelBidAPI_Call(_ selectedIndex: Int, bidId: String) {
         
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
@@ -206,7 +206,7 @@ class MyAuctionVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.bidCancel(postParams), callerObj: self, showHud: true) { [weak self] (response) -> () in
+        Networking.performApiCall(Networking.Router.bidCancel(postParams), callerObj: self, showHud: true) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -218,13 +218,9 @@ class MyAuctionVC: UIViewController {
             }
             DLog(message: "\(jsonObj)")
             
-            if jsonObj["responseData"].arrayObject != nil {
-                let arrTemp = jsonObj["responseData"].arrayObject! as NSArray
-                self?.arrProduct = NSMutableArray(array: arrTemp.reversed())
-            }
-            
             DispatchQueue.main.async {
-                self?.collectionViewAuction.reloadData()
+                self.arrProduct.removeObject(at: selectedIndex)
+                self.collectionViewAuction.reloadData()
             }
         }
     }
@@ -292,16 +288,19 @@ extension MyAuctionVC: UICollectionViewDataSource, UICollectionViewDelegate, UIC
             
             let dictProduct = self.arrProduct[indexPath.item] as? NSDictionary
 
-            if self.userType == 200 {
+            if cell?.btnShowAllBid.titleLabel?.text == "SHOW ALL BID" {
                 let vc = Util.loadViewController(fromStoryboard: "AllBidVC", storyboardName: "Home") as? AllBidVC
                 if let aVc = vc {
                     aVc.hidesBottomBarWhenPushed = true
-                    aVc.productId = dictProduct!["id"] as! String
+                    aVc.dictProduct = dictProduct!
                     self.show(aVc, sender: nil)
                 }
             }
-            else {
-                
+            else if cell?.btnShowAllBid.titleLabel?.text == "CANCEL BID" {
+                self.cancelBidAPI_Call(indexPath.row, bidId: dictProduct!["id"] as! String)
+            }
+            else if cell?.btnShowAllBid.titleLabel?.text == "MAKE PAYMENT" {
+                self.checkoutAPI_Call()
             }
         }
         return cell!

@@ -19,6 +19,9 @@ class AllBidCell: UITableViewCell {
     @IBOutlet weak var btnAccept: UIButton!
     @IBOutlet weak var btnReject: UIButton!
 
+    var acceptHandler: (() -> Void)?
+    var rejectHandler: (() -> Void)?
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -27,6 +30,18 @@ class AllBidCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         // Configure the view for the selected state
+    }
+    
+    @IBAction func btnAccept_Action(_ sender: UIButton) {
+        if (acceptHandler != nil) {
+            acceptHandler!()
+        }
+    }
+
+    @IBAction func btnReject_Action(_ sender: UIButton) {
+        if (rejectHandler != nil) {
+            rejectHandler!()
+        }
     }
 
 }

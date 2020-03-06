@@ -29,7 +29,8 @@ class HomeVC: UIViewController {
     private var categoryId = 0
     private var arrProduct = NSMutableArray()
     private var dictProduct = NSDictionary()
-    
+    private var locManager = CLLocationManager()
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +39,15 @@ class HomeVC: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        
+        // For use in foreground
+        locManager.requestWhenInUseAuthorization()
+        
+        if CLLocationManager.locationServicesEnabled() {
+            locManager.delegate = self
+            locManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locManager.startUpdatingLocation()
+        }
         
         if categoryId != 0 {
             getProductAPI_Call()
@@ -86,7 +96,11 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func btnFilter_Action(_ sender: UIButton) {
-        
+        let vc = Util.loadViewController(fromStoryboard: "FilterVC", storyboardName: "Home") as? FilterVC
+        if let aVc = vc {
+            aVc.hidesBottomBarWhenPushed = true
+            show(aVc, sender: nil)
+        }
     }
     
     @IBAction func btnPlaceBid_Action(_ sender: UIButton) {
@@ -122,12 +136,20 @@ class HomeVC: UIViewController {
         
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
+        var latitude = LoggedInUser.shared.latitude
+        var longitude = LoggedInUser.shared.longitude
+        
+        if appDelegate.currentLocation != nil {
+            // latitude = "\(appDelegate.currentLocation?.coordinate.latitude ?? 0.0)"
+            // longitude = "\(appDelegate.currentLocation?.coordinate.longitude ?? 0.0)"
+        }
+
         let postParams: [String: AnyObject] =
             [
                 kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
                 kAPI_CategoryId : categoryId as AnyObject,
-                kAPI_Latitude   : LoggedInUser.shared.latitude as AnyObject,
-                kAPI_Longitude  : LoggedInUser.shared.longitude as AnyObject,
+                kAPI_Latitude   : latitude as AnyObject,
+                kAPI_Longitude  : longitude as AnyObject,
                 kAPI_Language   : "en" as AnyObject,
                 "search"        : "" as AnyObject,
                 "distance"      : "" as AnyObject,
@@ -284,6 +306,16 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 6
+    }
+    
+}
+
+// MARK: CLLocationManagerDelegate
+extension HomeVC: CLLocationManagerDelegate {
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        appDelegate.currentLocation = locations.last! as CLLocation
+        locManager.stopUpdatingLocation()
     }
     
 }
