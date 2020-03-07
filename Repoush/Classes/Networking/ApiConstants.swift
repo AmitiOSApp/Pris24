@@ -78,6 +78,10 @@ let kAPI_Age                            = "age"
 let kAPI_SellerId                       = "seller_id"
 let kAPI_BidStatus                      = "bid_status"
 let kAPI_AddressType                    = "address_type"
+let kAPI_ImageId                        = "image_id"
+let kAPI_FeedbackMessage                = "feedback_message"
+let kAPI_CustomerId                     = "customer_id"
+let kAPI_Rating                         = "rating"
 
 //**    Result Success |"1"| / Failure |"0"|
 let kAPI_Result_Success      = "1"

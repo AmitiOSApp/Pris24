@@ -11,6 +11,7 @@ import UIKit
 class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
 
     // MARK: - IBOutlets
+    @IBOutlet weak var lblPostProduct: UILabel!
     @IBOutlet weak var collectionViewPostImage: UICollectionView!
     @IBOutlet weak var collectionViewCategory: UICollectionView!
     @IBOutlet weak var btnWomen: UIButton!
@@ -34,6 +35,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var viewBG: UIView!
     @IBOutlet weak var btnAge: UIButton!
 
+    @IBOutlet weak var btnBackWidthConst: NSLayoutConstraint!
     @IBOutlet weak var imgviewBgHgtConst: NSLayoutConstraint!
     @IBOutlet weak var viewCollectionHgtConst: NSLayoutConstraint!
     @IBOutlet weak var viewSizeHgtConst: NSLayoutConstraint!
@@ -54,6 +56,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     private var arrSize = [String]()
     private var arrAge = [String]()
     private var arrProductImage = [UIImage]()
+    private var arrOldImage = NSMutableArray()
     private var discountPercent = ""
     private var latitude = 0.0
     private var longitude = 0.0
@@ -66,6 +69,14 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         tabBarController?.delegate = self
 
+        if isEdit {
+            lblPostProduct.text = "Edit Product"
+            setProductDetail()
+        }
+        else {
+            btnBackWidthConst.constant = 0.0
+        }
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         tap.numberOfTapsRequired = 1
         viewBG.addGestureRecognizer(tap)
@@ -75,6 +86,10 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     // MARK: - Action Methods
+    @IBAction func btnBack_Action(_ sender: UIButton) {
+        navigationController?.popViewController(animated: true)
+    }
+    
     @IBAction func btnUser_Action(_ sender: UIButton) {
         
         resignAllActiveResponder()
@@ -152,7 +167,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     @IBAction func btnSelectImage_Action(_ sender: UIButton) {
         
-        if arrProductImage.count >= 3 {
+        if (arrProductImage.count + arrOldImage.count) >= 3 {
             Util.showAlertWithMessage("You can select maximum 3 image", title: ""); return
         }
         
@@ -225,12 +240,13 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         txfSelling.text = dictProduct["selling"] as? String
         txfOriginalPrice.text = dictProduct["base_price"] as? String
-        txfOfferPrice.text = dictProduct["base_price"] as? String
-        btnDiscountPercent.setTitle("\(dictProduct["base_price"] ?? 0) %", for: .normal)
+        txfOfferPrice.text = dictProduct["offer_price"] as? String
+        btnDiscountPercent.setTitle("\(dictProduct["discount"] ?? 0) %", for: .normal)
         txfBrand.text = dictProduct["brand"] as? String
         txfCondition.text = dictProduct["product_condition"] as? String
         txvDescription.text = dictProduct["description"] as? String
-        
+        btnDiscountPercent.setTitleColor(.black, for: .normal)
+
         if dictProduct["address_type"] as? String == "0" {
             lblNewAddress.text = ""
             btnRegisteredAddress.isSelected = true
@@ -247,6 +263,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             viewSizeHgtConst.constant = 0.0
         }
         else {
+            btnSize.setTitleColor(.black, for: .normal)
             viewSizeHgtConst.constant = 48.0
             tblSizeHgtConst.constant = CGFloat(arrSize.count * 35)
             btnSize.setTitle(strSize, for: .normal)
@@ -257,6 +274,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             viewAgeHgtConst.constant = 0.0
         }
         else {
+            btnAge.setTitleColor(.black, for: .normal)
             viewAgeHgtConst.constant = 48.0
             tblSizeHgtConst.constant = CGFloat(arrAge.count * 35)
             btnAge.setTitle(strAge, for: .normal)
@@ -267,15 +285,18 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             viewGenderHgtConst.constant = 0.0
         }
         else {
+            btnGender.setTitleColor(.black, for: .normal)
             viewGenderHgtConst.constant = 48.0
             btnGender.setTitle(strGender, for: .normal)
         }
         tblSize.reloadData()
         
         if let arrTemp = dictProduct["product_image"] as? NSArray {
-            // arrProductImage = NSMutableArray(array: arrTemp)
+            arrOldImage = NSMutableArray(array: arrTemp)
             collectionViewPostImage.reloadData()
         }
+        viewCollectionHgtConst.constant = 90.0
+        imgviewBgHgtConst.constant = 310.0
     }
 
     private func manageSize(_ index: Int) {
@@ -379,7 +400,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     private func isRequiredFieldValid() -> Bool {
-        if arrProductImage.count == 0 {
+        if (arrProductImage.count + arrOldImage.count) == 0 {
             Util.showAlertWithMessage("Please select product image", title: Key_Alert); return false
         }
         else if !Util.isValidString(txfSelling.text!) {
@@ -563,6 +584,150 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             }
         }
     }
+    
+    private func editProductAPI_Call() {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        var size = ""
+        if btnSize.titleLabel?.text != "Choose" {
+            size = btnSize.titleLabel!.text!
+        }
+        
+        var gender = ""
+        if btnGender.titleLabel?.text != "Choose" {
+            gender = btnGender.titleLabel!.text!
+        }
+        
+        var age = ""
+        if btnAge.titleLabel?.text != "Choose" {
+            age = btnAge.titleLabel!.text!
+        }
+        
+        var addressType = "0"
+        var address = LoggedInUser.shared.address
+        var latitude = LoggedInUser.shared.latitude
+        var longitude = LoggedInUser.shared.longitude
+        
+        if btnNewAddress.isSelected {
+            addressType = "1"
+            address = lblNewAddress.text
+            latitude = "\(self.latitude)"
+            longitude = "\(self.longitude)"
+        }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_UserId           : LoggedInUser.shared.id as AnyObject,
+                kAPI_ProductId        : dictProduct["id"] as AnyObject,
+                kAPI_CategoryId       : categoryId as AnyObject,
+                kAPI_SubcategoryId    : subcategoryId as AnyObject,
+                kAPI_Selling          : txfSelling.text as AnyObject,
+                kAPI_Size             : size as AnyObject,
+                kAPI_Gender           : gender as AnyObject,
+                kAPI_Age              : age as AnyObject,
+                kAPI_Condition        : txfCondition.text as AnyObject,
+                kAPI_BasePrice        : txfOriginalPrice.text as AnyObject,
+                kAPI_OfferPrice       : txfOfferPrice.text as AnyObject,
+                kAPI_Discount         : discountPercent as AnyObject,
+                kAPI_Brand            : txfBrand.text as AnyObject,
+                kAPI_Description      : txvDescription.text as AnyObject,
+                kAPI_Address          : address as AnyObject,
+                kAPI_AddressType      : addressType as AnyObject,
+                "latitude"            : latitude as AnyObject,
+                "lognitute"           : longitude as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.uploadImagesWithParams(Networking.Router.editProduct(postParams), imageArray: arrProductImage, strImageKey: kAPI_ProductImage, dictParams: postParams, callerObj: self, showHud: true) { (encodingResult) -> Void in
+            
+            switch encodingResult {
+                
+            case .success(let upload, _, _):
+                
+                upload.responseJSON { response in
+                    
+                    guard let result = response.result.value else {
+                        return
+                    }
+                    let jsonObj = JSON(result)
+                    
+                    if jsonObj[Key_ResponseCode].intValue == 500 {
+                        Util.showAlertWithMessage(jsonObj[Key_Message].stringValue, title: Key_Alert)
+                        return
+                    }
+                    DLog(message: "\(result)")
+                    
+                    DispatchQueue.main.async { [weak self] in
+                        let uiAlert = UIAlertController(title: "Repoush", message: "Product added successfully", preferredStyle:UIAlertController.Style.alert)
+                        self?.present(uiAlert, animated: true, completion: nil)
+                        
+                        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                            DispatchQueue.main.async { [weak self] in
+                                self?.clearFormData()
+                                self?.tabBarController?.selectedIndex = 0
+                            }
+                        }))
+                    }
+                }
+            case .failure(let encodingError):
+                
+                let alertController = UIAlertController(title: kAPI_Alert, message: encodingError as? String, preferredStyle: UIAlertController.Style.alert
+                )
+                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+                )
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    private func deleteProductImageAPI_Call(_ imageId: String) {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_ImageId : imageId as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.deleteProductImage(postParams), callerObj: self, showHud: true) { (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+        }
+    }
+
+    private func updateProductImageAPI_Call() {
+        
+        if !isNetworkAvailable { return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_ProductId : dictProduct["id"] as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.updateProductImage(postParams), callerObj: self, showHud: true) { (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+        }
+    }
 
     // MARK: - Gesture Handler
     @objc func handleTap(_ sender: UITapGestureRecognizer) {
@@ -580,7 +745,7 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
             return arrSubcategory.count
         }
         else {
-            return arrProductImage.count
+            return (arrOldImage.count + arrProductImage.count)
         }
     }
     
@@ -631,16 +796,65 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductImageCell", for: indexPath) as? ProductImageCell
             
-            cell?.imgviewProduct.image = arrProductImage[indexPath.item]
+            if indexPath.item <= arrOldImage.count {
+                
+                let dictProductImage = arrOldImage[indexPath.item] as? NSDictionary
+                
+                if Util.isValidString(dictProductImage!["product_image"] as! String) {
+                    
+                    let imageUrl = dictProductImage!["product_image"] as! String
+                    
+                    let url = URL.init(string: imageUrl)
+                    
+                    cell?.imgviewProduct.kf.indicatorType = .activity
+                    cell?.imgviewProduct.kf.indicator?.startAnimatingView()
+                    
+                    let resource = ImageResource(downloadURL: url!)
+                    
+                    KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+                        switch result {
+                        case .success(let value):
+                            cell?.imgviewProduct.image = value.image
+                        case .failure( _):
+                            cell?.imgviewProduct.image = UIImage(named: "dummy_post")
+                        }
+                        cell?.imgviewProduct.kf.indicator?.stopAnimatingView()
+                    }
+                }
+                else {
+                    cell?.imgviewProduct.image = UIImage(named: "dummy_post")
+                }
+            }
+            else {
+                cell?.imgviewProduct.image = arrProductImage[indexPath.item]
+            }
             
             cell?.crossHandler = {
-                DispatchQueue.main.async {
-                    self.arrProductImage.remove(at: indexPath.item)
-                    self.collectionViewPostImage.reloadData()
+                if indexPath.item <= self.arrOldImage.count {
                     
-                    if self.arrProductImage.count == 0 {
-                        self.viewCollectionHgtConst.constant = 0.0
-                        self.imgviewBgHgtConst.constant = 220.0
+                    let dictProductImage = self.arrOldImage[indexPath.item] as? NSDictionary
+                    self.deleteProductImageAPI_Call(dictProductImage!["id"] as! String)
+                    
+                    self.arrProductImage.remove(at: indexPath.item)
+
+                    DispatchQueue.main.async {
+                        self.collectionViewPostImage.reloadData()
+                        
+                        if self.arrProductImage.count == 0 {
+                            self.viewCollectionHgtConst.constant = 0.0
+                            self.imgviewBgHgtConst.constant = 220.0
+                        }
+                    }
+                }
+                else {
+                    DispatchQueue.main.async {
+                        self.arrProductImage.remove(at: indexPath.item)
+                        self.collectionViewPostImage.reloadData()
+                        
+                        if self.arrProductImage.count == 0 {
+                            self.viewCollectionHgtConst.constant = 0.0
+                            self.imgviewBgHgtConst.constant = 220.0
+                        }
                     }
                 }
             }

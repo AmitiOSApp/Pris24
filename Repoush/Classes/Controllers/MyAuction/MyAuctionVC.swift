@@ -20,7 +20,12 @@ class MyAuctionVC: UIViewController {
     @IBOutlet weak var btnHistory: UIButton!
     @IBOutlet weak var imgviewTab: UIImageView!
     @IBOutlet weak var viewBG: UIView!
-    @IBOutlet weak var viewRate: UIView!
+    @IBOutlet weak var viewRateReview: UIView!
+    @IBOutlet weak var imgviewUserReview: UIImageView!
+    @IBOutlet weak var lblReviewUsername: UILabel!
+    @IBOutlet weak var lblRatingCount: UILabel!
+    @IBOutlet weak var ratingBar: AARatingBar!
+    @IBOutlet weak var txvReview: CustomTextview!
 
     // MARK: - Property initialization
     private var userType = 200
@@ -64,6 +69,7 @@ class MyAuctionVC: UIViewController {
     }
     
     @IBAction func productType_Action(_ sender: UIButton) {
+
         if sender.tag == 300 {
             imgviewTab.image = UIImage(named: "tab")
 
@@ -94,6 +100,15 @@ class MyAuctionVC: UIViewController {
                 getProductHistoryAPI_Call("2")
             }
         }
+    }
+    
+    @IBAction func btnCross_Action(_ sender: UIButton) {
+        viewBG.isHidden = true
+        viewRateReview.isHidden = true
+    }
+    
+    @IBAction func btnSubmitReview_Action(_ sender: UIButton) {
+        
     }
 
     // MARK: - API Methods
@@ -255,6 +270,34 @@ class MyAuctionVC: UIViewController {
         }
     }
 
+    private func submitFeedbackAPI_Call() {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_Rating           : 2 as AnyObject,
+                kAPI_ProductId        : LoggedInUser.shared.id as AnyObject,
+                kAPI_FeedbackMessage  : txvReview.text as AnyObject,
+                kAPI_SellerId         : LoggedInUser.shared.id as AnyObject,
+                kAPI_CustomerId       : LoggedInUser.shared.id as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.feedbackSeller(postParams), callerObj: self, showHud: true) { (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+        }
+    }
+
 }
 
 // MARK: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout
@@ -282,6 +325,15 @@ extension MyAuctionVC: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         
         cell?.editHandler = {
             
+            let dictProduct = self.arrProduct[indexPath.item] as? NSDictionary
+
+            let vc = Util.loadViewController(fromStoryboard: "AddPostVC", storyboardName: "Home") as? AddPostVC
+            if let aVc = vc {
+                aVc.isEdit = true
+                aVc.hidesBottomBarWhenPushed = true
+                aVc.dictProduct = dictProduct!
+                self.show(aVc, sender: nil)
+            }
         }
         
         cell?.allBidHandler = {
