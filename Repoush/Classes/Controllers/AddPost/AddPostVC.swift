@@ -45,6 +45,8 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     private enum ActionType: Int {
         case women = 100, kids, size, gender, registeredAddress, newAddress, postNow, age
     }
+    var dictProduct = NSDictionary()
+    var isEdit = false
     private var categoryId = 1
     private var subcategoryId = ""
     private var arrSubcategory = NSMutableArray()
@@ -62,6 +64,8 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        tabBarController?.delegate = self
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.handleTap(_:)))
         tap.numberOfTapsRequired = 1
         viewBG.addGestureRecognizer(tap)
@@ -72,6 +76,8 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     // MARK: - Action Methods
     @IBAction func btnUser_Action(_ sender: UIButton) {
+        
+        resignAllActiveResponder()
         
         if sender.tag == ActionType.women.rawValue {
             btnWomen.isSelected = true
@@ -200,6 +206,78 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     // MARK: - Private Methods
+    private func setProductDetail() {
+        
+        if dictProduct["category_id"] as? String == "1" {
+            btnWomen.isSelected = true
+            btnKids.isSelected = false
+            
+            categoryId = 1
+            selectedIndex = 0
+        }
+        else {
+            btnWomen.isSelected = false
+            btnKids.isSelected = true
+            
+            categoryId = 2
+            selectedIndex = 0
+        }
+        
+        txfSelling.text = dictProduct["selling"] as? String
+        txfOriginalPrice.text = dictProduct["base_price"] as? String
+        txfOfferPrice.text = dictProduct["base_price"] as? String
+        btnDiscountPercent.setTitle("\(dictProduct["base_price"] ?? 0) %", for: .normal)
+        txfBrand.text = dictProduct["brand"] as? String
+        txfCondition.text = dictProduct["product_condition"] as? String
+        txvDescription.text = dictProduct["description"] as? String
+        
+        if dictProduct["address_type"] as? String == "0" {
+            lblNewAddress.text = ""
+            btnRegisteredAddress.isSelected = true
+            btnNewAddress.isSelected = false
+        }
+        else {
+            btnRegisteredAddress.isSelected = false
+            btnNewAddress.isSelected = true
+            lblNewAddress.text = dictProduct["address"] as? String
+        }
+
+        let strSize = dictProduct["size"] as? String
+        if !Util.isValidString(strSize ?? "") {
+            viewSizeHgtConst.constant = 0.0
+        }
+        else {
+            viewSizeHgtConst.constant = 48.0
+            tblSizeHgtConst.constant = CGFloat(arrSize.count * 35)
+            btnSize.setTitle(strSize, for: .normal)
+        }
+        
+        let strAge = dictProduct["age"] as? String
+        if !Util.isValidString(strAge ?? "") {
+            viewAgeHgtConst.constant = 0.0
+        }
+        else {
+            viewAgeHgtConst.constant = 48.0
+            tblSizeHgtConst.constant = CGFloat(arrAge.count * 35)
+            btnAge.setTitle(strAge, for: .normal)
+        }
+        
+        let strGender = dictProduct["gender"] as? String
+        if !Util.isValidString(strGender ?? "") {
+            viewGenderHgtConst.constant = 0.0
+        }
+        else {
+            viewGenderHgtConst.constant = 48.0
+            btnGender.setTitle(strGender, for: .normal)
+        }
+        tblSize.reloadData()
+        
+        if let arrTemp = dictProduct["product_image"] as? NSArray {
+            // arrProductImage = NSMutableArray(array: arrTemp)
+            collectionViewPostImage.reloadData()
+        }
+    }
+
     private func manageSize(_ index: Int) {
 
         let dictSubcategory = arrSubcategory[index] as? NSDictionary
@@ -259,6 +337,47 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
     }
     
+    private func clearFormData() {
+        
+        arrProductImage.removeAll()
+        collectionViewPostImage.reloadData()
+        viewCollectionHgtConst.constant = 0.0
+        imgviewBgHgtConst.constant = 220.0
+
+        btnWomen.isSelected = true
+        btnKids.isSelected = false
+
+        categoryId = 1
+        selectedIndex = 0
+
+        collectionViewCategory.reloadData()
+        
+        manageSize(selectedIndex)
+        
+        txfSelling.text = ""
+        txfCondition.text = ""
+        txfOriginalPrice.text = ""
+        txfOfferPrice.text = ""
+        txfBrand.text = ""
+        txvDescription.text = ""
+
+        btnSize.setTitle("Choose", for: .normal)
+        viewSizeHgtConst.constant = 0.0
+        
+        btnSize.setTitle("Choose", for: .normal)
+        viewGenderHgtConst.constant = 0.0
+        
+        btnAge.setTitle("Choose", for: .normal)
+        viewAgeHgtConst.constant = 0.0
+
+        btnDiscountPercent.setTitle("Calculated discount %", for: .normal)
+        btnDiscountPercent.setTitleColor(.lightGray, for: .normal)
+
+        btnRegisteredAddress.isSelected = true
+        btnNewAddress.isSelected = false
+        lblNewAddress.text = ""
+    }
+    
     private func isRequiredFieldValid() -> Bool {
         if arrProductImage.count == 0 {
             Util.showAlertWithMessage("Please select product image", title: Key_Alert); return false
@@ -266,23 +385,17 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         else if !Util.isValidString(txfSelling.text!) {
             Util.showAlertWithMessage("Please enter what are you selling", title: Key_Alert); return false
         }
-        else if viewSizeHgtConst.constant != 0 {
-            if btnSize.titleLabel?.text == "Choose" {
-                Util.showAlertWithMessage("Please select size", title: Key_Alert); return false
-            }
+        else if viewSizeHgtConst.constant != 0 && btnSize.titleLabel?.text == "Choose" {
+            Util.showAlertWithMessage("Please select size", title: Key_Alert); return false
         }
-        else if viewAgeHgtConst.constant != 0 {
-            if btnAge.titleLabel?.text == "Choose" {
-                Util.showAlertWithMessage("Please select age", title: Key_Alert); return false
-            }
+        else if viewAgeHgtConst.constant != 0 && btnAge.titleLabel?.text == "Choose" {
+            Util.showAlertWithMessage("Please select age", title: Key_Alert); return false
         }
         else if !Util.isValidString(txfCondition.text!) {
             Util.showAlertWithMessage("Please enter condition of product", title: Key_Alert); return false
         }
-        else if viewGenderHgtConst.constant != 0 {
-            if btnGender.titleLabel?.text == "Choose" {
-                Util.showAlertWithMessage("Please select gender", title: Key_Alert); return false
-            }
+        else if viewGenderHgtConst.constant != 0 && btnGender.titleLabel?.text == "Choose" {
+            Util.showAlertWithMessage("Please select gender", title: Key_Alert); return false
         }
         else if !Util.isValidString(txfOriginalPrice.text!) {
             Util.showAlertWithMessage("Please enter original price", title: Key_Alert); return false
@@ -290,7 +403,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         else if !Util.isValidString(txfOfferPrice.text!) {
             Util.showAlertWithMessage("Please enter offer price", title: Key_Alert); return false
         }
-        else if btnNewAddress.isSelected {
+        else if btnNewAddress.isSelected && !Util.isValidString(lblNewAddress.text!) {
             Util.showAlertWithMessage("Please select address", title: Key_Alert); return false
         }
         return true
@@ -375,11 +488,13 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             age = btnAge.titleLabel!.text!
         }
         
+        var addressType = "0"
         var address = LoggedInUser.shared.address
         var latitude = LoggedInUser.shared.latitude
         var longitude = LoggedInUser.shared.longitude
         
         if btnNewAddress.isSelected {
+            addressType = "1"
             address = lblNewAddress.text
             latitude = "\(self.latitude)"
             longitude = "\(self.longitude)"
@@ -401,6 +516,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 kAPI_Brand            : txfBrand.text as AnyObject,
                 kAPI_Description      : txvDescription.text as AnyObject,
                 kAPI_Address          : address as AnyObject,
+                kAPI_AddressType      : addressType as AnyObject,
                 "latitude"            : latitude as AnyObject,
                 "lognitute"           : longitude as AnyObject,
         ]
@@ -431,6 +547,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                         
                         uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
                             DispatchQueue.main.async { [weak self] in
+                                self?.clearFormData()
                                 self?.tabBarController?.selectedIndex = 0
                             }
                         }))
@@ -477,7 +594,7 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
             cell?.lblSubcategoryName.text = dictSubcategory!["subcategory_name"] as? String
             
             if indexPath.item == selectedIndex {
-                cell?.imgviewSubcategory.layer.borderColor = UIColor.green.cgColor
+                cell?.imgviewSubcategory.layer.borderColor = colorGreen.cgColor
                 cell?.imgviewSubcategory.layer.borderWidth = 2.0
             }
             else {
@@ -698,4 +815,16 @@ extension AddPostVC: GMSAutocompleteViewControllerDelegate {
         dismiss(animated: true, completion: nil)
     }
     
+}
+
+// MARK: - UITabBarControllerDelegate
+extension AddPostVC: UITabBarControllerDelegate {
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+        
+        let tabBarIndex = tabBarController.selectedIndex
+        
+        if tabBarIndex != 1 {
+            clearFormData()
+        }
+    }
 }

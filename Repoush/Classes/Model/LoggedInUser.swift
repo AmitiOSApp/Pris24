@@ -48,7 +48,12 @@ class LoggedInUser {
         LoggedInUser.shared.latitude        = json[kAPI_PermanentLatitude].string ?? ""
         LoggedInUser.shared.longitude       = json[kAPI_PermanentLognitude].string ?? ""
         LoggedInUser.shared.mobileNo        = json[kAPI_MobileNumber].string ?? ""
-        LoggedInUser.shared.gender          = json[kAPI_Gender].string == "0" ? "Female" : "Male"
+        if json[kAPI_Gender].string == "0" {
+            LoggedInUser.shared.gender      = ""
+        }
+        else {
+            LoggedInUser.shared.gender      = json[kAPI_Gender].string == "1" ? "Male" : "Female"
+        }
         LoggedInUser.shared.dob             = json[kAPI_Dob].string ?? ""
         LoggedInUser.shared.accountStatus   = json[kAPI_AccountStatus].string ?? ""
 

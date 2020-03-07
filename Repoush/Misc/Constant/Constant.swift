@@ -66,6 +66,7 @@ let colorGroupBG        = UIColor(red: 239/255, green: 239/255, blue: 244/255, a
 let colorDarkGray       = UIColor(red: 85/255, green: 85/255, blue: 85/255, alpha: 1.0)
 let colorAppTheme       = UIColor(red: 246/255, green: 114/255, blue: 128/255, alpha: 1.0)
 let colorLight          = UIColor(red: 228/255, green: 228/255, blue: 228/255, alpha: 1.0)
+let colorGreen          = UIColor(red: 0/255, green: 178/255, blue: 89/255, alpha: 1.0)
 
 let colorClear          = UIColor.clear
 let colorWhite          = UIColor.white

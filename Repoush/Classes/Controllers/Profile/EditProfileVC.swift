@@ -97,13 +97,15 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 let selectedIndex = pickerViewGender.selectedRow(inComponent: 0)
                 let strGender = selectedIndex == 0 ? "Male" : "Female"
                 lblGender.text = strGender
+                lblGender.textColor = .black
             }
             else {
                 let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd"
+                formatter.dateFormat = "dd-MM-yyyy"
                 let selectedDate = formatter.string(from: datePicker.date)
                 
                 lblAge.text = selectedDate
+                lblAge.textColor = .black
             }
         }
         viewDatePicker.isHidden = true
@@ -127,11 +129,18 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     private func setUserData() {
         txfFirstName.text = LoggedInUser.shared.firstName
         txfLastName.text = LoggedInUser.shared.lastName
-        lblGender.text = LoggedInUser.shared.gender
+        lblGender.text = LoggedInUser.shared.gender == "" ? "Select gender" : LoggedInUser.shared.gender
         lblAge.text = LoggedInUser.shared.dob == "" ? "Select dob" : LoggedInUser.shared.dob
         txfMobileNumber.text = LoggedInUser.shared.mobileNo
         txfEmailAddress.text = LoggedInUser.shared.email
         lblAddress.text = LoggedInUser.shared.address
+        
+        if lblGender.text != "Select gender" {
+            lblGender.textColor = .black
+        }
+        if lblAge.text != "Select dob" {
+            lblAge.textColor = .black
+        }
         
         if Util.isValidString(LoggedInUser.shared.userImage!) {
             
@@ -167,11 +176,11 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         else if !Util.isValidString(txfLastName.text!) {
             Util.showAlertWithMessage("Please enter last name", title: Key_Alert); return false
         }
-        else if lblAge.text == "Date of birth" {
-            Util.showAlertWithMessage("Please select date of birth", title: Key_Alert); return false
-        }
-        else if lblGender.text == "Gender" {
+        else if lblGender.text == "Select gender" {
             Util.showAlertWithMessage("Please select gender", title: Key_Alert); return false
+        }
+        else if lblAge.text == "Select dob" {
+            Util.showAlertWithMessage("Please select date of birth", title: Key_Alert); return false
         }
         else if !Util.isValidString(txfMobileNumber.text!) {
             Util.showAlertWithMessage("Please enter mobile number", title: Key_Alert); return false
@@ -213,6 +222,8 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             latitudePass = "\(latitude)"
             longitudePass = "\(longitude)"
         }
+        
+        let gender = lblGender.text == "Male" ? "1" : "2"
 
         let postParams: [String: AnyObject] =
             [
@@ -223,8 +234,10 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 kAPI_Latitude    : latitudePass as AnyObject,
                 kAPI_Longitude   : longitudePass as AnyObject,
                 kAPI_Email       : txfEmailAddress.text as AnyObject,
+                kAPI_Gender      : gender as AnyObject,
+                kAPI_Dob         : lblAge.text as AnyObject,
                 kAPI_MobileNumber : txfMobileNumber.text as AnyObject,
-                 kAPI_DeviceType  : "ios" as AnyObject,
+                kAPI_DeviceType  : "ios" as AnyObject,
                 kAPI_DeviceToken  : Util.getValidString((UserDefaults.standard.object(forKey: kAPI_DeviceToken) as? String)) as AnyObject,
                 kAPI_CertificateType : appDelegate.certificateType as AnyObject,
                 kAPI_Language        : "en" as AnyObject,

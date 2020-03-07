@@ -33,8 +33,8 @@ class SplashVC: UIViewController {
         }
         else {
             DispatchQueue.main.asyncAfter(deadline: .now() + 3.0, execute: { [weak self] in
-                let objLogin = self?.storyboard?.instantiateViewController(withIdentifier: "LoginVC")
-                self?.navigationController?.show(objLogin!, sender: nil)
+                let objWelcome = self?.storyboard?.instantiateViewController(withIdentifier: "WelcomeVC")
+                self?.navigationController?.show(objWelcome!, sender: nil)
             })
         }
     }

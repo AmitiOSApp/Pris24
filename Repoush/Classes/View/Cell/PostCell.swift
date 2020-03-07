@@ -15,6 +15,7 @@ class PostCell: UICollectionViewCell {
     @IBOutlet weak var imgviewUser: UIImageView!
     @IBOutlet weak var btnUserProfile: UIButton!
     @IBOutlet weak var lblUsername: UILabel!
+    @IBOutlet weak var btnOnline: UIButton!
     @IBOutlet weak var lblProductName: UILabel!
     @IBOutlet weak var btnDistance: UIButton!
     @IBOutlet weak var lblDiscount: UILabel!
@@ -52,17 +53,27 @@ class PostCell: UICollectionViewCell {
     func configureCell(_ dictProduct: NSDictionary) {
         lblUsername.text = "By : \(Util.createUsername(dictProduct))"
         lblProductName.text = dictProduct["selling"] as? String
-        btnDistance.setTitle("\(dictProduct["distance"] ?? "0.0") km", for: .normal)
         lblOriginalPrice.text = "$\(dictProduct["base_price"] ?? "0.0")"
         lblOfferPrice.text = "$\(dictProduct["offer_price"] ?? "0.0")"
         lblDiscount.text = "\(dictProduct["discount"] ?? "0.0")% off"
         
+        let accountStatus = dictProduct["account_status"] as? String
+        
+        btnOnline.isSelected = accountStatus == "1" ? false : true
+
         if dictProduct["user_id"] as? String == LoggedInUser.shared.id {
             btnPlaceBid.isHidden = true
         }
         else {
             btnPlaceBid.isHidden = false
         }
+        
+        var distance = 0.0
+        if let temp = Double("\(dictProduct["distance"] ?? 0.0)") {
+            distance = temp
+        }
+        distance = Double(distance).rounded(2)
+        btnDistance.setTitle("\(distance) km", for: .normal)
         
         let timeInSecond = dictProduct["time_left_in_second"] as? Int
         
@@ -105,6 +116,32 @@ class PostCell: UICollectionViewCell {
                 imgviewProduct.image = UIImage(named: "dummy_post")
             }
         }
+        
+        if Util.isValidString(dictProduct["user_image"] as! String) {
+            
+            let imageUrl = dictProduct["user_image"] as! String
+            
+            let url = URL.init(string: imageUrl)
+            
+            imgviewUser.kf.indicatorType = .activity
+            imgviewUser.kf.indicator?.startAnimatingView()
+            
+            let resource = ImageResource(downloadURL: url!)
+            
+            KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+                switch result {
+                case .success(let value):
+                    self.imgviewUser.image = value.image
+                case .failure( _):
+                    self.imgviewUser.image = UIImage(named: "dummy_user")
+                }
+                self.imgviewUser.kf.indicator?.stopAnimatingView()
+            }
+        }
+        else {
+            imgviewUser.image = UIImage(named: "dummy_user")
+        }
+
     }
     
     private func startTimer() {

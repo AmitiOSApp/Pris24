@@ -18,15 +18,21 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var btnDistance: UIButton!
     @IBOutlet weak var lblOriginalPrice: UILabel!
     @IBOutlet weak var lblOfferPrice: UILabel!
-    @IBOutlet weak var btnTimeLeft: UIButton!
+    @IBOutlet weak var lblTimer: UILabel!
     @IBOutlet weak var lblSelling: UILabel!
     @IBOutlet weak var lblBrand: UILabel!
     @IBOutlet weak var lblSize: UILabel!
     @IBOutlet weak var lblGender: UILabel!
     @IBOutlet weak var lblCondition: UILabel!
+    @IBOutlet weak var lblDiescount: UILabel!
+    @IBOutlet weak var lblAge: UILabel!
     @IBOutlet weak var lblProductDetails: UILabel!
     @IBOutlet weak var lblPickupLocation: UILabel!
     @IBOutlet weak var pageControl: UIPageControl!
+    @IBOutlet weak var lblRatingValue: UILabel!
+    @IBOutlet weak var lblReviewCount: UILabel!
+    @IBOutlet weak var viewSize: UIView!
+    @IBOutlet weak var viewGender: UIView!
 
     @IBOutlet weak var viewBG: UIView!
     @IBOutlet weak var viewRateReview: UIView!
@@ -34,11 +40,22 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var lblReviewUsername: UILabel!
     @IBOutlet weak var lblRatingCount: UILabel!
     @IBOutlet weak var tblReview: UITableView!
+    
+    @IBOutlet weak var viewAgeHgtConst: NSLayoutConstraint!
+    @IBOutlet weak var viewProductDetailHgtConst: NSLayoutConstraint!
 
     // MARK: - Property initialization
     var dictProduct = NSDictionary()
     var arrProductImage = NSMutableArray()
- 
+    private var timer: Timer?
+    private var timeCounter: Int = 0
+    
+    var timeIntervalInSecond: TimeInterval? {
+        didSet {
+            startTimer()
+        }
+    }
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -67,16 +84,64 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
         
         lblProductName.text = dictProduct["selling"] as? String
         lblSelling.text = dictProduct["selling"] as? String
-        lblUsername.text = Util.createUsername(dictProduct)
-        btnDistance.setTitle("\(dictProduct["distance"] ?? "0.0")", for: .normal)
+        lblUsername.text = "By :- \(Util.createUsername(dictProduct))"
+        lblReviewUsername.text = Util.createUsername(dictProduct)
         lblOriginalPrice.text = "$\(dictProduct["base_price"] ?? "0.0")"
         lblOfferPrice.text = "$\(dictProduct["offer_price"] ?? "0.0")"
+        lblDiescount.text = "\(dictProduct["discount"] ?? "0.0")% off"
         lblBrand.text = dictProduct["brand"] as? String
-        lblSize.text = dictProduct["size"] as? String
-        lblGender.text = dictProduct["gender"] as? String
         lblCondition.text = dictProduct["product_condition"] as? String
         lblProductDetails.text = dictProduct["description"] as? String
         lblPickupLocation.text = dictProduct["address"] as? String
+        lblReviewCount.text = "\(dictProduct["review"] ?? "0.0") REVIEWS"
+        lblRatingValue.text = "\(dictProduct["rating"] ?? "0")"
+        lblRatingCount.text = "\(dictProduct["rating"] ?? "0")"
+
+        let strSize = dictProduct["size"] as? String
+        if !Util.isValidString(strSize ?? "") {
+            viewSize.isHidden = true
+        }
+        else {
+            lblSize.text = strSize
+        }
+
+        let strAge = dictProduct["age"] as? String
+        if !Util.isValidString(strAge ?? "") {
+            viewAgeHgtConst.constant = 0.0
+        }
+        else {
+            lblAge.text = "\(strAge ?? "") Y"
+        }
+        
+        let strGender = dictProduct["gender"] as? String
+        if !Util.isValidString(strGender ?? "") {
+            viewGender.isHidden = true
+        }
+        else {
+            lblGender.text = strGender
+        }
+        
+        let strDescription = dictProduct["description"] as? String
+        if !Util.isValidString(strAge ?? "") {
+            viewProductDetailHgtConst.constant = 0.0
+        }
+        else {
+            lblProductDetails.text = strDescription
+        }
+
+        var distance = 0.0
+        if let temp = Double("\(dictProduct["distance"] ?? 0.0)") {
+            distance = temp
+        }
+        distance = Double(distance).rounded(2)
+        btnDistance.setTitle("\(distance) km", for: .normal)
+
+        let timeInSecond = dictProduct["time_left_in_second"] as? Int
+        
+        if timeInSecond != 0 {
+            timer?.invalidate()
+            timeIntervalInSecond = TimeInterval(timeInSecond!)
+        }
 
         if Util.isValidString(dictProduct["user_image"] as! String) {
             
@@ -93,14 +158,17 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
                 switch result {
                 case .success(let value):
                     self.imgviewUser.image = value.image
+                    self.imgviewUserReview.image = value.image
                 case .failure( _):
                     self.imgviewUser.image = UIImage(named: "dummy_user")
+                    self.imgviewUserReview.image = UIImage(named: "dummy_user")
                 }
                 self.imgviewUser.kf.indicator?.stopAnimatingView()
             }
         }
         else {
             self.imgviewUser.image = UIImage(named: "dummy_user")
+            self.imgviewUserReview.image = UIImage(named: "dummy_user")
         }
         
         if let arrTemp = dictProduct["product_image"] as? NSArray {
@@ -108,6 +176,31 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
             collectionViewProductImage.reloadData()
         }
         pageControl.numberOfPages = arrProductImage.count
+    }
+    
+    private func startTimer() {
+        if let interval = timeIntervalInSecond {
+            timeCounter = Int(interval)
+            
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        }
+    }
+
+    @objc func updateCounter() {
+        guard timeCounter >= 0 else {
+            timer?.invalidate()
+            timer = nil
+            return
+        }
+        
+        let hours = timeCounter / 3600
+        let minutes = timeCounter / 60 % 60
+        let seconds = timeCounter % 60
+        let temp = String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+        
+        lblTimer.text = "\(temp)"
+        
+        timeCounter -= 1
     }
 
     private func swipeCellToRight(_ index: NSInteger) {

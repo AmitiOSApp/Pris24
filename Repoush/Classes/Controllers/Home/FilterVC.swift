@@ -18,7 +18,7 @@ class FilterVC: UIViewController {
     @IBOutlet weak var collectionviewFilterRange: UICollectionView!
 
     // MARK: - Property initialization
-    private var arrDistanceRange = ["km 5", "km 10", "km 25", "km 50", "km 100", "All"]
+    private var arrDistanceRange = ["5 km", "10 km", "25 km", "50 km", "100 km", "All"]
     private var locManager = CLLocationManager()
     private var latitude = 0.0
     private var longitude = 0.0
@@ -28,6 +28,15 @@ class FilterVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        if arrDistanceRange.contains(appDelegate.distance) {
+            for i in 0..<arrDistanceRange.count {
+                if arrDistanceRange[i] == appDelegate.distance {
+                    selectedIndex = i
+                    break
+                }
+            }
+        }
         
         // For use in foreground
         locManager.requestWhenInUseAuthorization()
@@ -51,7 +60,7 @@ class FilterVC: UIViewController {
     }
     
     @IBAction func btnShowItems_Action(_ sender: UIButton) {
-        
+        navigationController?.popViewController(animated: true)
     }
 
 }
@@ -62,8 +71,19 @@ extension FilterVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         if let location = locations.last {
             let center = CLLocationCoordinate2D(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
-            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 13, longitudeDelta: 13))
+            let region = MKCoordinateRegion(center: center, span: MKCoordinateSpan(latitudeDelta: 15, longitudeDelta: 15))
             self.mapviewLocation.setRegion(region, animated: true)
+            
+            ReverseGeocoding.geocode(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude, completion: { (placeMark, completeAddress, error) in
+                
+                if let placeMark = placeMark, let completeAddress = completeAddress {
+                    print(placeMark)
+                    self.lblCurrentAddress.text = completeAddress
+                }
+                else {
+                    // do something with the error
+                }
+            })
         }
         locManager.stopUpdatingLocation()
     }
@@ -149,12 +169,13 @@ extension FilterVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
             
             if indexPath.item == 5 {
                 self.lblFilterType.text = "All auction"
+                appDelegate.distance = ""
             }
             else {
                 self.lblFilterType.text = self.arrDistanceRange[indexPath.item]
+                appDelegate.distance = self.arrDistanceRange[indexPath.item]
             }
         }
-        
         return cell!
     }
     
@@ -175,4 +196,52 @@ extension FilterVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         return 0
     }
     
+}
+
+class ReverseGeocoding {
+    
+    static func geocode(latitude: Double, longitude: Double, completion: @escaping (CLPlacemark?, _ completeAddress: String?, Error?) -> ())  {
+        CLGeocoder().reverseGeocodeLocation(CLLocation(latitude: latitude, longitude: longitude)) { placemarks, error in
+            guard let placemark = placemarks?.first, error == nil else {
+                completion(nil, nil, error)
+                return
+            }
+            
+            let completeAddress = getCompleteAddress(placemarks)
+            
+            completion(placemark, completeAddress, nil)
+        }
+    }
+    
+    static private func getCompleteAddress(_ placemarks: [CLPlacemark]?) -> String {
+        guard let placemarks = placemarks else {
+            return ""
+        }
+        
+        let place = placemarks as [CLPlacemark]
+        if place.count > 0 {
+            let place = placemarks[0]
+            var addressString : String = ""
+            if place.thoroughfare != nil {
+                addressString = addressString + place.thoroughfare! + ", "
+            }
+            if place.subThoroughfare != nil {
+                addressString = addressString + place.subThoroughfare! + ", "
+            }
+            if place.locality != nil {
+                addressString = addressString + place.locality! + ", "
+            }
+            if place.postalCode != nil {
+                addressString = addressString + place.postalCode! + ", "
+            }
+            if place.subAdministrativeArea != nil {
+                addressString = addressString + place.subAdministrativeArea! + ", "
+            }
+            if place.country != nil {
+                addressString = addressString + place.country!
+            }
+            return addressString
+        }
+        return ""
+    }
 }

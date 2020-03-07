@@ -136,12 +136,18 @@ class HomeVC: UIViewController {
         
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
+        var distance = ""
+        
+        if !appDelegate.distance.isEmpty {
+            distance = appDelegate.distance.replacingOccurrences(of: " km", with: "")
+        }
+        
         var latitude = LoggedInUser.shared.latitude
         var longitude = LoggedInUser.shared.longitude
         
         if appDelegate.currentLocation != nil {
-            // latitude = "\(appDelegate.currentLocation?.coordinate.latitude ?? 0.0)"
-            // longitude = "\(appDelegate.currentLocation?.coordinate.longitude ?? 0.0)"
+            latitude = "\(appDelegate.currentLocation?.coordinate.latitude ?? 0.0)"
+            longitude = "\(appDelegate.currentLocation?.coordinate.longitude ?? 0.0)"
         }
 
         let postParams: [String: AnyObject] =
@@ -152,7 +158,7 @@ class HomeVC: UIViewController {
                 kAPI_Longitude  : longitude as AnyObject,
                 kAPI_Language   : "en" as AnyObject,
                 "search"        : "" as AnyObject,
-                "distance"      : "" as AnyObject,
+                "distance"      : distance as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -312,7 +318,6 @@ extension HomeVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollec
 
 // MARK: CLLocationManagerDelegate
 extension HomeVC: CLLocationManagerDelegate {
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         appDelegate.currentLocation = locations.last! as CLLocation
         locManager.stopUpdatingLocation()
