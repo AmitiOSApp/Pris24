@@ -112,6 +112,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="DB5-aJ-ufG" id="osh-mQ-mQr"/>
+                                                </connections>
                                             </textField>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search_icon" translatesAutoresizingMaskIntoConstraints="NO" id="CBa-B0-DT8">
                                                 <rect key="frame" x="246" y="14.5" width="11" height="11"/>
@@ -885,6 +888,7 @@
                         <outlet property="lblTime" destination="JAU-Ul-lhQ" id="Yfw-NN-3vc"/>
                         <outlet property="lblTotalBid" destination="fea-ul-r1j" id="ZQS-ia-qLX"/>
                         <outlet property="txfBidAmount" destination="ufv-mt-h1L" id="63M-iD-eWw"/>
+                        <outlet property="txfSearch" destination="Sc1-Td-PDc" id="MBT-Gi-xvq"/>
                         <outlet property="viewBG" destination="YLg-vW-JhN" id="k75-Qi-fst"/>
                         <outlet property="viewKidsSeparater" destination="c62-k1-aEG" id="gsm-Ab-0AX"/>
                         <outlet property="viewLookAt" destination="dCe-jF-win" id="Uj1-m7-hEM"/>
@@ -1069,6 +1073,14 @@
                                                                 </userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </imageView>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fPs-LW-4Qq" customClass="CustomImageView" customModule="Repoush" customModuleProvider="target">
+                                                            <rect key="frame" x="20" y="10" width="30" height="30"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="0dp-yS-Ui9"/>
+                                                                <constraint firstAttribute="width" constant="30" id="Ss9-lW-EWi"/>
+                                                            </constraints>
+                                                        </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CLOTHES" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4js-mb-VgK" customClass="CustomLabel" customModule="Repoush" customModuleProvider="target">
                                                             <rect key="frame" x="8.5" y="56" width="53.5" height="13"/>
                                                             <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="11"/>
@@ -1078,6 +1090,8 @@
                                                     </subviews>
                                                 </view>
                                                 <constraints>
+                                                    <constraint firstItem="fPs-LW-4Qq" firstAttribute="centerX" secondItem="UV7-Er-9bR" secondAttribute="centerX" id="1xb-3w-3yM"/>
+                                                    <constraint firstItem="fPs-LW-4Qq" firstAttribute="centerY" secondItem="UV7-Er-9bR" secondAttribute="centerY" id="HL0-CU-pfS"/>
                                                     <constraint firstItem="UV7-Er-9bR" firstAttribute="leading" secondItem="UVr-a1-yA1" secondAttribute="leading" constant="10" id="U5O-ts-OCS"/>
                                                     <constraint firstItem="UV7-Er-9bR" firstAttribute="top" secondItem="UVr-a1-yA1" secondAttribute="top" id="e4W-kW-bXS"/>
                                                     <constraint firstItem="4js-mb-VgK" firstAttribute="top" secondItem="UV7-Er-9bR" secondAttribute="bottom" constant="6" id="fWB-fL-TRF"/>
@@ -1085,7 +1099,8 @@
                                                     <constraint firstAttribute="trailing" secondItem="UV7-Er-9bR" secondAttribute="trailing" constant="10" id="pcV-mM-Rpb"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="imgviewSubcategory" destination="UV7-Er-9bR" id="uIU-w5-nd8"/>
+                                                    <outlet property="imgviewBorder" destination="UV7-Er-9bR" id="9Ca-ha-q5K"/>
+                                                    <outlet property="imgviewSubcategory" destination="fPs-LW-4Qq" id="xcP-nJ-lxv"/>
                                                     <outlet property="lblSubcategoryName" destination="4js-mb-VgK" id="pea-h3-Uhf"/>
                                                 </connections>
                                             </collectionViewCell>
@@ -1369,7 +1384,7 @@
                                                 <rect key="frame" x="126" y="0.0" width="166" height="40"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="3v5-ar-elZ" id="XeS-oi-6Qq"/>
                                                 </connections>
@@ -1882,6 +1897,7 @@
             <objects>
                 <navigationController navigationBarHidden="YES" id="UgU-RH-ejx" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="MY AUCTIONS" image="auctions" selectedImage="auctions_active" id="VVr-BV-Bmg">
+                        <inset key="largeContentSizeImageInsets" minX="0.0" minY="-1" maxX="0.0" maxY="0.0"/>
                         <color key="badgeColor" red="0.96470588239999999" green="0.44705882349999998" blue="0.50196078430000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBarItem>
                     <nil key="simulatedTopBarMetrics"/>
@@ -2495,7 +2511,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7AW-dc-nnl">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7AW-dc-nnl">
                                         <rect key="frame" x="261.5" y="143" width="15.5" height="31.5"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="27"/>
                                         <nil key="textColor"/>
@@ -2635,6 +2651,7 @@
                         <outlet property="collectionViewAuction" destination="7nk-Ei-vz5" id="B61-3P-dok"/>
                         <outlet property="imgviewTab" destination="U2d-Im-FWT" id="4gq-iV-g7A"/>
                         <outlet property="imgviewUserReview" destination="hGd-Lw-V9y" id="7Yf-Yw-I1H"/>
+                        <outlet property="lblRate" destination="7AW-dc-nnl" id="Wg6-df-fUT"/>
                         <outlet property="lblRatingCount" destination="Mnk-gM-9pj" id="I1V-UZ-M6n"/>
                         <outlet property="lblReviewUsername" destination="ylU-mp-Omc" id="nkr-qt-II1"/>
                         <outlet property="ratingBar" destination="RdH-mS-r9B" id="qdJ-Ny-1Wj"/>
@@ -5921,8 +5938,8 @@
                                             <action selector="btnSelectAddress_Action:" destination="dMk-N0-110" eventType="touchUpInside" id="heE-X1-QEh"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMf-Nx-5Fi">
-                                        <rect key="frame" x="40" y="19.5" width="250" height="16"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KMf-Nx-5Fi">
+                                        <rect key="frame" x="40" y="27.5" width="250" height="0.0"/>
                                         <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="13"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -5956,7 +5973,14 @@
                                     <constraint firstAttribute="height" constant="40" id="Y3B-TI-njh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Montserrat-Medium" family="Montserrat" pointSize="13"/>
-                                <state key="normal" title="Show Items   &gt;"/>
+                                <inset key="titleEdgeInsets" minX="-20" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <inset key="imageEdgeInsets" minX="100" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Show Items" image="next_arrow"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="btnShowItems_Action:" destination="dMk-N0-110" eventType="touchUpInside" id="LLm-UU-63E"/>
                                 </connections>
@@ -6147,6 +6171,7 @@
         <image name="login_btn" width="125" height="59.5"/>
         <image name="logo" width="512" height="512"/>
         <image name="model_bg" width="285" height="168"/>
+        <image name="next_arrow" width="10" height="10"/>
         <image name="offline" width="6" height="6"/>
         <image name="online" width="6" height="6"/>
         <image name="password" width="19" height="18.5"/>

@@ -11,6 +11,7 @@ import UIKit
 class CategoryCell: UICollectionViewCell {
     
     // MARK: - IBOutlets
+    @IBOutlet weak var imgviewBorder: UIImageView!
     @IBOutlet weak var imgviewSubcategory: UIImageView!
     @IBOutlet weak var lblSubcategoryName: UILabel!
 

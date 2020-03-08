@@ -39,6 +39,7 @@ struct Networking {
         case forgotPassword([String: Any])
         case verifyForgotOTP([String: Any])
         case setNewPassword([String: Any])
+        case repostProduct([String: Any])
 
         // MARK: - Methods
         var method: Alamofire.HTTPMethod {
@@ -106,6 +107,8 @@ struct Networking {
             case .verifyForgotOTP:
                 return .post
             case .setNewPassword:
+                return .post
+            case .repostProduct:
                 return .post
             }
         }
@@ -176,6 +179,8 @@ struct Networking {
                 return "verify_forgot_otp"
             case .setNewPassword:
                 return "setNewpassword"
+            case .repostProduct:
+                return "repost_product"
             }
         }
         
@@ -254,6 +259,8 @@ struct Networking {
             case .verifyForgotOTP(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .setNewPassword(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .repostProduct(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             }
             return urlRequest

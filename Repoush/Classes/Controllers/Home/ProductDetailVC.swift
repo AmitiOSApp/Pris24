@@ -91,7 +91,6 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
         lblDiescount.text = "\(dictProduct["discount"] ?? "0.0")% off"
         lblBrand.text = dictProduct["brand"] as? String
         lblCondition.text = dictProduct["product_condition"] as? String
-        lblProductDetails.text = dictProduct["description"] as? String
         lblPickupLocation.text = dictProduct["address"] as? String
         lblReviewCount.text = "\(dictProduct["review"] ?? "0.0") REVIEWS"
         lblRatingValue.text = "\(dictProduct["rating"] ?? "0")"

@@ -26,6 +26,7 @@ class MyAuctionVC: UIViewController {
     @IBOutlet weak var lblRatingCount: UILabel!
     @IBOutlet weak var ratingBar: AARatingBar!
     @IBOutlet weak var txvReview: CustomTextview!
+    @IBOutlet weak var lblRate: UILabel!
 
     // MARK: - Property initialization
     private var userType = 200
@@ -35,6 +36,10 @@ class MyAuctionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        ratingBar.ratingDidChange = { ratingValue in
+            self.lblRate.text = "\(ratingValue)"
+        }
         
         // Perform Get user product API
         getUserProductAPI_Call("1")
@@ -108,7 +113,11 @@ class MyAuctionVC: UIViewController {
     }
     
     @IBAction func btnSubmitReview_Action(_ sender: UIButton) {
-        
+        if !Util.isValidString(txvReview.text) {
+            Util.showAlertWithMessage("Please enter your feedback", title: ""); return
+        }
+        // Perform Submit Feedback API
+        submitFeedbackAPI_Call()
     }
 
     // MARK: - API Methods
@@ -132,6 +141,8 @@ class MyAuctionVC: UIViewController {
             let jsonObj = JSON(result)
             
             if jsonObj[Key_ResponseCode].intValue == 500 {
+                self?.arrProduct.removeAllObjects()
+                self?.collectionViewAuction.reloadData()
                 return
             }
             DLog(message: "\(jsonObj)")
@@ -167,6 +178,8 @@ class MyAuctionVC: UIViewController {
             let jsonObj = JSON(result)
             
             if jsonObj[Key_ResponseCode].intValue == 500 {
+                self?.arrProduct.removeAllObjects()
+                self?.collectionViewAuction.reloadData()
                 return
             }
             DLog(message: "\(jsonObj)")
@@ -276,7 +289,7 @@ class MyAuctionVC: UIViewController {
         
         let postParams: [String: AnyObject] =
             [
-                kAPI_Rating           : 2 as AnyObject,
+                kAPI_Rating           : lblRate.text as AnyObject,
                 kAPI_ProductId        : LoggedInUser.shared.id as AnyObject,
                 kAPI_FeedbackMessage  : txvReview.text as AnyObject,
                 kAPI_SellerId         : LoggedInUser.shared.id as AnyObject,
@@ -285,6 +298,31 @@ class MyAuctionVC: UIViewController {
         DLog(message: "\(postParams)")
         
         Networking.performApiCall(Networking.Router.feedbackSeller(postParams), callerObj: self, showHud: true) { (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+        }
+    }
+
+    private func repostProductAPI_Call(_ productId: String) {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_UserId    : LoggedInUser.shared.id as AnyObject,
+                kAPI_ProductId : productId as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.repostProduct(postParams), callerObj: self, showHud: true) { (response) -> () in
             
             guard let result = response.result.value else {
                 return

@@ -11,6 +11,7 @@ import UIKit
 class HomeVC: UIViewController {
 
     // MARK: - IBOutlets
+    @IBOutlet weak var txfSearch: UITextField!
     @IBOutlet weak var collectionViewPost: UICollectionView!
     @IBOutlet weak var viewBG: UIView!
     @IBOutlet weak var viewLookAt: UIView!
@@ -30,6 +31,7 @@ class HomeVC: UIViewController {
     private var arrProduct = NSMutableArray()
     private var dictProduct = NSDictionary()
     private var locManager = CLLocationManager()
+    private var search: String = ""
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -78,6 +80,8 @@ class HomeVC: UIViewController {
     }
     
     @IBAction func btnPostType_Action(_ sender: UIButton) {
+        
+        txfSearch.resignFirstResponder()
         
         viewWomenSeparater.backgroundColor = sender.tag == 200 ? colorAppTheme : colorLightGray
         viewKidsSeparater.backgroundColor = sender.tag == 200 ? colorLightGray : colorAppTheme
@@ -157,7 +161,7 @@ class HomeVC: UIViewController {
                 kAPI_Latitude   : latitude as AnyObject,
                 kAPI_Longitude  : longitude as AnyObject,
                 kAPI_Language   : "en" as AnyObject,
-                "search"        : "" as AnyObject,
+                "search"        : search as AnyObject,
                 "distance"      : distance as AnyObject,
         ]
         DLog(message: "\(postParams)")
@@ -321,6 +325,25 @@ extension HomeVC: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         appDelegate.currentLocation = locations.last! as CLLocation
         locManager.stopUpdatingLocation()
+    }
+    
+}
+
+// MARK: UITextFieldDelegate
+extension HomeVC: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if textField == txfSearch {
+            if string.isEmpty {
+                search = String(search.dropLast())
+            }
+            else {
+                search = textField.text! + string
+            }
+            // Perform Search Product API
+            getProductAPI_Call()
+        }
+        return true
     }
     
 }

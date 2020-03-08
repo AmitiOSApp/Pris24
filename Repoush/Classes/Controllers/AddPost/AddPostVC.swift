@@ -659,13 +659,19 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     DLog(message: "\(result)")
                     
                     DispatchQueue.main.async { [weak self] in
-                        let uiAlert = UIAlertController(title: "Repoush", message: "Product added successfully", preferredStyle:UIAlertController.Style.alert)
+                        let uiAlert = UIAlertController(title: "Repoush", message: "Product added successfully", preferredStyle: UIAlertController.Style.alert)
                         self?.present(uiAlert, animated: true, completion: nil)
                         
                         uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
                             DispatchQueue.main.async { [weak self] in
-                                self?.clearFormData()
-                                self?.tabBarController?.selectedIndex = 0
+                                
+                                if self!.isEdit {
+                                    self?.navigationController?.popViewController(animated: true)
+                                }
+                                else {
+                                    self?.clearFormData()
+                                    self?.tabBarController?.selectedIndex = 0
+                                }
                             }
                         }))
                     }
@@ -759,12 +765,12 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
             cell?.lblSubcategoryName.text = dictSubcategory!["subcategory_name"] as? String
             
             if indexPath.item == selectedIndex {
-                cell?.imgviewSubcategory.layer.borderColor = colorGreen.cgColor
-                cell?.imgviewSubcategory.layer.borderWidth = 2.0
+                cell?.imgviewBorder.layer.borderColor = colorGreen.cgColor
+                cell?.imgviewBorder.layer.borderWidth = 2.0
             }
             else {
-                cell?.imgviewSubcategory.layer.borderColor = UIColor.clear.cgColor
-                cell?.imgviewSubcategory.layer.borderWidth = 0.0
+                cell?.imgviewBorder.layer.borderColor = UIColor.clear.cgColor
+                cell?.imgviewBorder.layer.borderWidth = 0.0
             }
             
             if Util.isValidString(dictSubcategory!["subcategory_image"] as! String) {
@@ -796,7 +802,7 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductImageCell", for: indexPath) as? ProductImageCell
             
-            if indexPath.item <= arrOldImage.count {
+            if indexPath.item < arrOldImage.count {
                 
                 let dictProductImage = arrOldImage[indexPath.item] as? NSDictionary
                 
@@ -826,21 +832,21 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
                 }
             }
             else {
-                cell?.imgviewProduct.image = arrProductImage[indexPath.item]
+                cell?.imgviewProduct.image = arrProductImage[arrOldImage.count - indexPath.item]
             }
             
             cell?.crossHandler = {
-                if indexPath.item <= self.arrOldImage.count {
+                if indexPath.item < self.arrOldImage.count {
                     
                     let dictProductImage = self.arrOldImage[indexPath.item] as? NSDictionary
                     self.deleteProductImageAPI_Call(dictProductImage!["id"] as! String)
                     
-                    self.arrProductImage.remove(at: indexPath.item)
+                    self.arrOldImage.remove(indexPath.item)
 
                     DispatchQueue.main.async {
                         self.collectionViewPostImage.reloadData()
                         
-                        if self.arrProductImage.count == 0 {
+                        if (self.arrProductImage.count + self.arrOldImage.count) == 0 {
                             self.viewCollectionHgtConst.constant = 0.0
                             self.imgviewBgHgtConst.constant = 220.0
                         }
@@ -848,10 +854,10 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
                 }
                 else {
                     DispatchQueue.main.async {
-                        self.arrProductImage.remove(at: indexPath.item)
+                        self.arrProductImage.remove(at: self.arrOldImage.count - indexPath.item)
                         self.collectionViewPostImage.reloadData()
                         
-                        if self.arrProductImage.count == 0 {
+                        if (self.arrProductImage.count + self.arrOldImage.count) == 0 {
                             self.viewCollectionHgtConst.constant = 0.0
                             self.imgviewBgHgtConst.constant = 220.0
                         }

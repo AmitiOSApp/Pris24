@@ -62,6 +62,10 @@ class SellerProfileVC: UIViewController {
         lblReviewCount.text = "\(dictProduct["review"] ?? "0.0") REVIEWS"
         lblRatingValue.text = "\(dictProduct["rating"] ?? "0")"
         lblRatingCount.text = "\(dictProduct["rating"] ?? "0")"
+        
+        if let temp = dictProduct["rating"] as? Int {
+            ratingBar.value = CGFloat(temp)
+        }
 
         let mobileNumber = dictProduct["user_phone"] as? String
 
