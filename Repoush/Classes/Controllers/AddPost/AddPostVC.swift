@@ -400,6 +400,10 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     private func isRequiredFieldValid() -> Bool {
+        
+        let originalPrice = Int(txfOriginalPrice.text ?? "") ?? 0
+        let offerPrice = Int(txfOfferPrice.text ?? "") ?? 0
+
         if (arrProductImage.count + arrOldImage.count) == 0 {
             Util.showAlertWithMessage("Please select product image", title: Key_Alert); return false
         }
@@ -423,6 +427,9 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         else if !Util.isValidString(txfOfferPrice.text!) {
             Util.showAlertWithMessage("Please enter offer price", title: Key_Alert); return false
+        }
+        else if offerPrice >= originalPrice {
+            Util.showAlertWithMessage("Offer price should not be greater than or equal to original price", title: ""); return false
         }
         else if btnNewAddress.isSelected && !Util.isValidString(lblNewAddress.text!) {
             Util.showAlertWithMessage("Please select address", title: Key_Alert); return false

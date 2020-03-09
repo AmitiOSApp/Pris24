@@ -13,7 +13,9 @@ class SettingVC: UIViewController, MFMailComposeViewControllerDelegate {
 
     // MARK: - IBOutlets
     @IBOutlet weak var tblSetting: UITableView!
-    
+    @IBOutlet weak var viewBG: UIView!
+    @IBOutlet weak var viewChangeLanguage: UIView!
+
     // MARK: - Property initialization
     private var arrTitle = ["Notification", "Privacy", "Change Password", "Change Language", "Terms of use", "Report a problem", "Online / Offline", "Logout"]
     
@@ -21,6 +23,16 @@ class SettingVC: UIViewController, MFMailComposeViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+    }
+    
+    // MARK: - Action Methods
+    @IBAction func btnChangeLanguage_Action(_ sender: UIButton) {
+        
+    }
+    
+    @IBAction func btnCross_Action(_ sender: UIButton) {
+        viewBG.isHidden = true
+        viewChangeLanguage.isHidden = true
     }
 
     // MARK: - API Methods
@@ -100,6 +112,13 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         
         cell?.imgviewSetting.image = UIImage(named: "setting_icon\(indexPath.row + 1)")
         
+        if indexPath.row == 3 {
+            cell?.imgviewLanguage.isHidden = false
+        }
+        else {
+            cell?.imgviewLanguage.isHidden = true
+        }
+        
         if indexPath.row == 6 {
             cell?.switchStatus.isHidden = false
             cell?.switchStatus.isOn = LoggedInUser.shared.accountStatus == "1" ? true : false
@@ -138,6 +157,10 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
                 aVc.hidesBottomBarWhenPushed = true
                 show(aVc, sender: nil)
             }
+        }
+        else if indexPath.row == 3 {
+            viewBG.isHidden = false
+            viewChangeLanguage.isHidden = false
         }
         else if indexPath.row == 4 {
             let vc = Util.loadViewController(fromStoryboard: "TermsPrivacyVC", storyboardName: "Home") as? TermsPrivacyVC

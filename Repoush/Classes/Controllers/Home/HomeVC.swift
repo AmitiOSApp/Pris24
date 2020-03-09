@@ -32,6 +32,16 @@ class HomeVC: UIViewController {
     private var dictProduct = NSDictionary()
     private var locManager = CLLocationManager()
     private var search: String = ""
+    private var offerPrice = 0
+    private var lastBidAmount = 0
+    private var timer: Timer?
+    private var timeCounter: Int = 0
+    
+    var timeIntervalInSecond: TimeInterval? {
+        didSet {
+            startTimer()
+        }
+    }
 
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -114,13 +124,18 @@ class HomeVC: UIViewController {
             viewPlaceBid.isHidden = true
         }
         else {
+            txfBidAmount.resignFirstResponder()
+            
             if !Util.isValidString(txfBidAmount.text!) {
                 Util.showAlertWithMessage("Please enter bid amount", title: ""); return
             }
-            let lastBiAmount = Int(lblLastBidAmount.text ?? "") ?? 0
             let bidAmount = Int(txfBidAmount.text ?? "") ?? 0
 
-            if bidAmount < lastBiAmount {
+            if bidAmount == 0 || bidAmount <= offerPrice {
+                Util.showAlertWithMessage("Bid amount should be greater than offer price", title: ""); return
+            }
+
+            if bidAmount < lastBidAmount {
                 Util.showAlertWithMessage("Bid amount can not be less than to last bid amount", title: ""); return
             }
             
@@ -135,6 +150,31 @@ class HomeVC: UIViewController {
         getProductAPI_Call()
     }
     
+    private func startTimer() {
+        if let interval = timeIntervalInSecond {
+            timeCounter = Int(interval)
+            
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func updateCounter() {
+        guard timeCounter >= 0 else {
+            timer?.invalidate()
+            timer = nil
+            return
+        }
+        
+        let hours = timeCounter / 3600
+        let minutes = timeCounter / 60 % 60
+        let seconds = timeCounter % 60
+        let temp = String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+        
+        lblTime.text = "\(temp)"
+        
+        timeCounter -= 1
+    }
+
     // MARK: - API Methods
     private func getProductAPI_Call() {
         
@@ -247,11 +287,20 @@ class HomeVC: UIViewController {
             DLog(message: "\(jsonObj)")
             
             DispatchQueue.main.async {
-                self.lblTime.text = jsonObj["time_left"].stringValue
+                
+                let timeInSecond = jsonObj["time_left_in_second"].int
+                
+                if timeInSecond != 0 {
+                    self.timer?.invalidate()
+                    self.timeIntervalInSecond = TimeInterval(timeInSecond!)
+                }
                 self.lblOfferPrice.text = "$\(jsonObj["offer_price"].stringValue)"
                 self.lblLastBidAmount.text = "$\(jsonObj["last_bid_amount"].stringValue)"
                 self.lblTotalBid.text = jsonObj["total_bid"].stringValue
-                
+
+                self.offerPrice = jsonObj["offer_price"].intValue
+                self.lastBidAmount = jsonObj["last_bid_amount"].intValue
+
                 self.viewBG.isHidden = false
                 self.viewPlaceBid.isHidden = false
                 self.txfBidAmount.text = ""

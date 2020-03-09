@@ -14,7 +14,8 @@ class SettingCell: UITableViewCell {
     @IBOutlet weak var imgviewSetting: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var switchStatus: UISwitch!
-    
+    @IBOutlet weak var imgviewLanguage: UIImageView!
+
     var statusHandler: (() -> Void)?
 
     override func awakeFromNib() {

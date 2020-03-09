@@ -121,7 +121,7 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
         }
         
         let strDescription = dictProduct["description"] as? String
-        if !Util.isValidString(strAge ?? "") {
+        if !Util.isValidString(strDescription ?? "") {
             viewProductDetailHgtConst.constant = 0.0
         }
         else {

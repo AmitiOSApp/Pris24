@@ -149,13 +149,6 @@ class PostCell: UICollectionViewCell {
             timeCounter = Int(interval)
 
             timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
-
-//            timer = Timer(timeInterval: 1.0, repeats: true, block: { [weak self] _ in
-//                guard let strongSelf = self else {
-//                    return
-//                }
-//                strongSelf.onComplete()
-//            })
         }
     }
     
