@@ -85,7 +85,7 @@ class ForgotPasswordVC: UIViewController {
             }
             DLog(message: "\(result)")
             
-            Util.showAlertWithMessage("OTP sent successfully on your registered email id", title: "")
+            Util.showAlertWithMessage("OTP sent successfully on your registered mobile number", title: "")
             
             DispatchQueue.main.async { [weak self] in
                 self?.mobileNumber = (self?.txfMobileNumber.text)!

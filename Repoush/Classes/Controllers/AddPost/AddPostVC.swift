@@ -296,7 +296,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             collectionViewPostImage.reloadData()
         }
         viewCollectionHgtConst.constant = 90.0
-        imgviewBgHgtConst.constant = 310.0
+        imgviewBgHgtConst.constant = 330.0
     }
 
     private func manageSize(_ index: Int) {
@@ -363,7 +363,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         arrProductImage.removeAll()
         collectionViewPostImage.reloadData()
         viewCollectionHgtConst.constant = 0.0
-        imgviewBgHgtConst.constant = 220.0
+        imgviewBgHgtConst.constant = 240.0
 
         btnWomen.isSelected = true
         btnKids.isSelected = false
@@ -758,7 +758,12 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
             return arrSubcategory.count
         }
         else {
-            return (arrOldImage.count + arrProductImage.count)
+            if isEdit {
+                return (arrOldImage.count + arrProductImage.count)
+            }
+            else {
+                return arrProductImage.count
+            }
         }
     }
     
@@ -809,37 +814,42 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
         else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ProductImageCell", for: indexPath) as? ProductImageCell
             
-            if indexPath.item < arrOldImage.count {
-                
-                let dictProductImage = arrOldImage[indexPath.item] as? NSDictionary
-                
-                if Util.isValidString(dictProductImage!["product_image"] as! String) {
+            if isEdit {
+                if indexPath.item < arrOldImage.count {
                     
-                    let imageUrl = dictProductImage!["product_image"] as! String
+                    let dictProductImage = arrOldImage[indexPath.item] as? NSDictionary
                     
-                    let url = URL.init(string: imageUrl)
-                    
-                    cell?.imgviewProduct.kf.indicatorType = .activity
-                    cell?.imgviewProduct.kf.indicator?.startAnimatingView()
-                    
-                    let resource = ImageResource(downloadURL: url!)
-                    
-                    KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
-                        switch result {
-                        case .success(let value):
-                            cell?.imgviewProduct.image = value.image
-                        case .failure( _):
-                            cell?.imgviewProduct.image = UIImage(named: "dummy_post")
+                    if Util.isValidString(dictProductImage!["product_image"] as! String) {
+                        
+                        let imageUrl = dictProductImage!["product_image"] as! String
+                        
+                        let url = URL.init(string: imageUrl)
+                        
+                        cell?.imgviewProduct.kf.indicatorType = .activity
+                        cell?.imgviewProduct.kf.indicator?.startAnimatingView()
+                        
+                        let resource = ImageResource(downloadURL: url!)
+                        
+                        KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+                            switch result {
+                            case .success(let value):
+                                cell?.imgviewProduct.image = value.image
+                            case .failure( _):
+                                cell?.imgviewProduct.image = UIImage(named: "dummy_post")
+                            }
+                            cell?.imgviewProduct.kf.indicator?.stopAnimatingView()
                         }
-                        cell?.imgviewProduct.kf.indicator?.stopAnimatingView()
+                    }
+                    else {
+                        cell?.imgviewProduct.image = UIImage(named: "dummy_post")
                     }
                 }
                 else {
-                    cell?.imgviewProduct.image = UIImage(named: "dummy_post")
+                    cell?.imgviewProduct.image = arrProductImage[arrOldImage.count - indexPath.item]
                 }
             }
             else {
-                cell?.imgviewProduct.image = arrProductImage[arrOldImage.count - indexPath.item]
+                cell?.imgviewProduct.image = arrProductImage[indexPath.item]
             }
             
             cell?.crossHandler = {
@@ -855,7 +865,7 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
                         
                         if (self.arrProductImage.count + self.arrOldImage.count) == 0 {
                             self.viewCollectionHgtConst.constant = 0.0
-                            self.imgviewBgHgtConst.constant = 220.0
+                            self.imgviewBgHgtConst.constant = 240.0
                         }
                     }
                 }
@@ -866,7 +876,7 @@ extension AddPostVC: UICollectionViewDataSource, UICollectionViewDelegate, UICol
                         
                         if (self.arrProductImage.count + self.arrOldImage.count) == 0 {
                             self.viewCollectionHgtConst.constant = 0.0
-                            self.imgviewBgHgtConst.constant = 220.0
+                            self.imgviewBgHgtConst.constant = 240.0
                         }
                     }
                 }
@@ -983,7 +993,7 @@ extension AddPostVC {
             arrProductImage.append(pickedImage)
             
             viewCollectionHgtConst.constant = 90.0
-            imgviewBgHgtConst.constant = 310.0
+            imgviewBgHgtConst.constant = 330.0
             
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
                 self.collectionViewPostImage.reloadData()

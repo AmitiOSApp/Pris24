@@ -30,7 +30,11 @@ class MyAuctionVC: UIViewController {
 
     // MARK: - Property initialization
     private var userType = 200
+    private var type = "1"
+    private var productType = "1"
+    private var isActiveAuction = true
     private var arrProduct = NSMutableArray()
+    private var dictProduct = NSDictionary()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -40,9 +44,19 @@ class MyAuctionVC: UIViewController {
         ratingBar.ratingDidChange = { ratingValue in
             self.lblRate.text = "\(ratingValue)"
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         
-        // Perform Get user product API
-        getUserProductAPI_Call("1")
+        if isActiveAuction {
+            // Perform Get user product API
+            getUserProductAPI_Call(type)
+        }
+        else {
+            // Perform Get user product history API
+            getProductHistoryAPI_Call(productType)
+        }
     }
 
     // MARK: - Action Methods
@@ -52,20 +66,25 @@ class MyAuctionVC: UIViewController {
         viewBuyerSeparater.backgroundColor = sender.tag == 200 ? colorLightGray : colorAppTheme
         
         userType = sender.tag
+        isActiveAuction = true
         
         if sender.tag == 200 {
             btnSeller.setTitleColor(colorAppTheme, for: .normal)
             btnBuyer.setTitleColor(colorLight, for: .normal)
             
+            type = "1"
+            
             // Perform Get user product API
-            getUserProductAPI_Call("1")
+            getUserProductAPI_Call(type)
         }
         else {
             btnBuyer.setTitleColor(colorAppTheme, for: .normal)
             btnSeller.setTitleColor(colorLight, for: .normal)
             
+            type = "2"
+
             // Perform Get user product API
-            getUserProductAPI_Call("2")
+            getUserProductAPI_Call(type)
         }
         
         imgviewTab.image = UIImage(named: "tab")
@@ -75,6 +94,8 @@ class MyAuctionVC: UIViewController {
     
     @IBAction func productType_Action(_ sender: UIButton) {
 
+        isActiveAuction = sender.tag == 300 ? true : false
+        
         if sender.tag == 300 {
             imgviewTab.image = UIImage(named: "tab")
 
@@ -82,12 +103,18 @@ class MyAuctionVC: UIViewController {
             btnHistory.setTitleColor(.black, for: .normal)
 
             if userType == 200 {
+                
+                type = "1"
+
                 // Perform Get user product API
-                getUserProductAPI_Call("1")
+                getUserProductAPI_Call(type)
             }
             else {
+                
+                type = "2"
+
                 // Perform Get user product API
-                getUserProductAPI_Call("2")
+                getUserProductAPI_Call(type)
             }
         }
         else {
@@ -97,12 +124,18 @@ class MyAuctionVC: UIViewController {
             btnHistory.setTitleColor(.white, for: .normal)
 
             if userType == 200 {
+                
+                productType = "1"
+
                 // Perform Get user product history API
-                getProductHistoryAPI_Call("1")
+                getProductHistoryAPI_Call(productType)
             }
             else {
+                
+                productType = "2"
+
                 // Perform Get user product history API
-                getProductHistoryAPI_Call("2")
+                getProductHistoryAPI_Call(productType)
             }
         }
     }
@@ -118,6 +151,44 @@ class MyAuctionVC: UIViewController {
         }
         // Perform Submit Feedback API
         submitFeedbackAPI_Call()
+    }
+    
+    // MARK: - Private Methods
+    private func showFeedbackDetail() {
+        
+        if userType == 200 {
+            lblReviewUsername.text = dictProduct["buyer_name"] as? String
+        }
+        else {
+            lblReviewUsername.text = Util.createUsername(dictProduct)
+        }
+        
+        lblRatingCount.text = "\(dictProduct["rating"] ?? "0")"
+
+        if Util.isValidString(dictProduct["user_image"] as? String ?? "") {
+            
+            let imageUrl = dictProduct["user_image"] as! String
+            
+            let url = URL.init(string: imageUrl)
+            
+            imgviewUserReview.kf.indicatorType = .activity
+            imgviewUserReview.kf.indicator?.startAnimatingView()
+            
+            let resource = ImageResource(downloadURL: url!)
+            
+            KingfisherManager.shared.retrieveImage(with: resource, options: nil, progressBlock: nil) { result in
+                switch result {
+                case .success(let value):
+                    self.imgviewUserReview.image = value.image
+                case .failure( _):
+                    self.imgviewUserReview.image = UIImage(named: "dummy_user")
+                }
+                self.imgviewUserReview.kf.indicator?.stopAnimatingView()
+            }
+        }
+        else {
+            imgviewUserReview.image = UIImage(named: "dummy_user")
+        }
     }
 
     // MARK: - API Methods
@@ -260,12 +331,13 @@ class MyAuctionVC: UIViewController {
         let postParams: [String: AnyObject] =
             [
                 kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
-                kAPI_ProductId  : LoggedInUser.shared.id as AnyObject,
-                kAPI_BasePrice  : LoggedInUser.shared.id as AnyObject,
-                kAPI_OfferPrice : LoggedInUser.shared.id as AnyObject,
-                kAPI_Discount   : LoggedInUser.shared.id as AnyObject,
+                kAPI_ProductId  : dictProduct["product_id"] as AnyObject,
+                kAPI_BasePrice  : dictProduct["base_price"] as AnyObject,
+                kAPI_OfferPrice : dictProduct["offer_price"] as AnyObject,
+                kAPI_Discount   : dictProduct["discount"] as AnyObject,
                 kAPI_DeviceType : "ios" as AnyObject,
-                kAPI_SellerId   : LoggedInUser.shared.id as AnyObject,
+                kAPI_SellerId   : dictProduct["seller_id"] as AnyObject,
+                kAPI_DealPrice  : dictProduct["bid_amount"] as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -287,12 +359,15 @@ class MyAuctionVC: UIViewController {
         
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
+        let rating = lblRate.text?.replacingOccurrences(of: ".0", with: "")
+        
         let postParams: [String: AnyObject] =
             [
-                kAPI_Rating           : lblRate.text as AnyObject,
-                kAPI_ProductId        : LoggedInUser.shared.id as AnyObject,
+                kAPI_UserId           : LoggedInUser.shared.id as AnyObject,
+                kAPI_Rating           : rating as AnyObject,
+                kAPI_ProductId        : dictProduct["product_id"] as AnyObject,
                 kAPI_FeedbackMessage  : txvReview.text as AnyObject,
-                kAPI_SellerId         : LoggedInUser.shared.id as AnyObject,
+                kAPI_SellerId         : dictProduct["seller_id"] as AnyObject,
                 kAPI_CustomerId       : LoggedInUser.shared.id as AnyObject,
         ]
         DLog(message: "\(postParams)")
@@ -308,6 +383,11 @@ class MyAuctionVC: UIViewController {
                 return
             }
             DLog(message: "\(jsonObj)")
+            
+            DispatchQueue.main.async {
+                self.viewBG.isHidden = true
+                self.viewRateReview.isHidden = true
+            }
         }
     }
 
@@ -323,6 +403,33 @@ class MyAuctionVC: UIViewController {
         DLog(message: "\(postParams)")
         
         Networking.performApiCall(Networking.Router.repostProduct(postParams), callerObj: self, showHud: true) { (response) -> () in
+            
+            guard let result = response.result.value else {
+                return
+            }
+            let jsonObj = JSON(result)
+            
+            if jsonObj[Key_ResponseCode].intValue == 500 {
+                return
+            }
+            DLog(message: "\(jsonObj)")
+        }
+    }
+
+    private func updateBidStatusAPI_Call(_ productId: String, userId: String, bidId: String) {
+        
+        if !isNetworkAvailable { Util.showNetWorkAlert(); return }
+        
+        let postParams: [String: AnyObject] =
+            [
+                kAPI_UserId     : userId as AnyObject,
+                kAPI_ProductId  : productId as AnyObject,
+                kAPI_BidStatus  : "3" as AnyObject,
+                kAPI_BidId      : bidId as AnyObject,
+        ]
+        DLog(message: "\(postParams)")
+        
+        Networking.performApiCall(Networking.Router.updateBidStatus(postParams), callerObj: self, showHud: true) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -352,7 +459,7 @@ extension MyAuctionVC: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         let dictProduct = arrProduct[indexPath.item] as? NSDictionary
         
         let isSeller = userType == 200 ? true : false
-        cell?.configureCell(dictProduct!, isSeller: isSeller)
+        cell?.configureCell(dictProduct!, isSeller: isSeller, isActiveAuction: isActiveAuction)
         
         cell?.deleteHandler = {
             let dictProduct = self.arrProduct[indexPath.item] as? NSDictionary
@@ -376,21 +483,41 @@ extension MyAuctionVC: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         
         cell?.allBidHandler = {
             
-            let dictProduct = self.arrProduct[indexPath.item] as? NSDictionary
-
             if cell?.btnShowAllBid.titleLabel?.text == "SHOW ALL BID" {
+                let dictTemp = self.arrProduct[indexPath.item] as? NSDictionary
+
                 let vc = Util.loadViewController(fromStoryboard: "AllBidVC", storyboardName: "Home") as? AllBidVC
                 if let aVc = vc {
                     aVc.hidesBottomBarWhenPushed = true
-                    aVc.dictProduct = dictProduct!
+                    aVc.dictProduct = dictTemp!
                     self.show(aVc, sender: nil)
                 }
             }
             else if cell?.btnShowAllBid.titleLabel?.text == "CANCEL BID" {
-                self.cancelBidAPI_Call(indexPath.row, bidId: dictProduct!["id"] as! String)
+                let dictTemp = self.arrProduct[indexPath.item] as? NSDictionary
+                self.cancelBidAPI_Call(indexPath.row, bidId: dictTemp!["id"] as! String)
+            }
+            else if cell?.btnShowAllBid.titleLabel?.text == "REVOKE" {
+                let dictTemp = self.arrProduct[indexPath.item] as? NSDictionary
+                self.updateBidStatusAPI_Call(dictTemp!["id"] as! String, userId: dictTemp!["user_id"] as! String, bidId: dictTemp!["id"] as! String)
             }
             else if cell?.btnShowAllBid.titleLabel?.text == "MAKE PAYMENT" {
+                self.dictProduct = (self.arrProduct[indexPath.item] as? NSDictionary)!
                 self.checkoutAPI_Call()
+            }
+            else if cell?.btnShowAllBid.titleLabel?.text == "RATE BUYER" {
+                self.dictProduct = (self.arrProduct[indexPath.item] as? NSDictionary)!
+                self.showFeedbackDetail()
+                
+                self.viewBG.isHidden = false
+                self.viewRateReview.isHidden = false
+            }
+            else if cell?.btnShowAllBid.titleLabel?.text == "RATE SELLER" {
+                self.dictProduct = (self.arrProduct[indexPath.item] as? NSDictionary)!
+                self.showFeedbackDetail()
+                
+                self.viewBG.isHidden = false
+                self.viewRateReview.isHidden = false
             }
         }
         return cell!

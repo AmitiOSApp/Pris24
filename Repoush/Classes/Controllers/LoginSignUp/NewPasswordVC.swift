@@ -78,7 +78,7 @@ class NewPasswordVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.logout(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.setNewPassword(postParams), callerObj: self, showHud: true) { (response) -> () in
             
             guard let result = response.result.value else {
                 return

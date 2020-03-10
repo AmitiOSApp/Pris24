@@ -23,6 +23,7 @@ class AuctionCell: UICollectionViewCell {
     @IBOutlet weak var btnEdit: UIButton!
     @IBOutlet weak var btnDelete: UIButton!
     @IBOutlet weak var btnShowAllBid: UIButton!
+    @IBOutlet weak var viewTimer: UIView!
 
     @IBOutlet weak var btnDeleteWidthConst: NSLayoutConstraint!
     @IBOutlet weak var btnEditWidthConst: NSLayoutConstraint!
@@ -30,6 +31,15 @@ class AuctionCell: UICollectionViewCell {
     var editHandler: (() -> Void)?
     var deleteHandler: (() -> Void)?
     var allBidHandler: (() -> Void)?
+
+    private var timer: Timer?
+    private var timeCounter: Int = 0
+    
+    var timeIntervalInSecond: TimeInterval? {
+        didSet {
+            startTimer()
+        }
+    }
 
     // MARK: Action Methods
     @IBAction func btnEdit_Action(_ sender: UIButton) {
@@ -51,47 +61,73 @@ class AuctionCell: UICollectionViewCell {
     }
     
     // MARK: Public Methods
-    func configureCell(_ dictProduct: NSDictionary, isSeller: Bool) {
+    func configureCell(_ dictProduct: NSDictionary, isSeller: Bool, isActiveAuction: Bool) {
 
         lblOriginalPrice.text = "$\(dictProduct["base_price"] ?? "0.0")"
         lblOfferPrice.text = "$\(dictProduct["offer_price"] ?? "0.0")"
         lblLastBidAmount.text = "$\(dictProduct["last_bid"] ?? "0.0")"
+        lblDiscount.text = "\(dictProduct["discount"] ?? "0.0")% off"
 
+        if isActiveAuction {
+            viewTimer.isHidden = false
+
+            let timeInSecond = dictProduct["time_left_in_second"] as? Int
+            
+            if timeInSecond != 0 {
+                timer?.invalidate()
+                timeIntervalInSecond = TimeInterval(timeInSecond!)
+            }
+        }
+        else {
+            viewTimer.isHidden = true
+        }
+        
         if isSeller {
-            lblProductName.text = dictProduct["selling"] as? String
             lblUsername.text = ""
             lblBitType.text = "Last bid"
-            btnShowAllBid.setTitle("SHOW ALL BID", for: .normal)
-            btnEditWidthConst.constant = 30.0
-            btnDeleteWidthConst.constant = 30.0
+            
+            if isActiveAuction {
+                lblProductName.text = dictProduct["selling"] as? String
+
+                if dictProduct["is_accepted_bid"] as? Bool == true {
+                    btnShowAllBid.setTitle("REVOKE", for: .normal)
+                }
+                else {
+                    btnShowAllBid.setTitle("SHOW ALL BID", for: .normal)
+                }
+            }
+            else {
+                lblProductName.text = dictProduct["product_name"] as? String
+                btnShowAllBid.setTitle("RATE BUYER", for: .normal)
+            }
+            if isActiveAuction {
+                btnEditWidthConst.constant = 30.0
+                btnDeleteWidthConst.constant = 30.0
+            }
+            else {
+                btnEditWidthConst.constant = 0.0
+                btnDeleteWidthConst.constant = 0.0
+            }
         }
         else {
             lblLastBidAmount.text = "$\(dictProduct["bid_amount"] ?? "0.0")"
             lblProductName.text = dictProduct["product_name"] as? String
             lblBitType.text = "My bid"
             lblUsername.text = "By : \(Util.createUsername(dictProduct))"
-            btnShowAllBid.setTitle("CANCEL BID", for: .normal)
+            
+            if isActiveAuction {
+                if dictProduct["bid_status"] as? String == "2" {
+                    btnShowAllBid.setTitle("MAKE PAYMENT", for: .normal)
+                }
+                else {
+                    btnShowAllBid.setTitle("CANCEL BID", for: .normal)
+                }
+            }
+            else {
+                btnShowAllBid.setTitle("RATE SELLER", for: .normal)
+            }
             btnEditWidthConst.constant = 0.0
             btnDeleteWidthConst.constant = 0.0
-        }
-        
-        let timeInSecond = dictProduct["time_left_in_second"] as? Int
-        
-        if timeInSecond == 0 {
-            
-        }
-        else {
-            
-            if timeInSecond != nil {
-                let hours = timeInSecond! / 3600
-                let minutes = timeInSecond! / 60 % 60
-                let seconds = timeInSecond! % 60
-                let temp = String(format:"%02i:%02i:%02i", hours, minutes, seconds)
-                
-                lblTimeLeft.text = "\(temp)"
-                
-                // var helloWorldTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.setTimeLeft), userInfo: nil, repeats: true)
-            }
         }
         
         var arrProductImage = NSMutableArray()
@@ -130,8 +166,29 @@ class AuctionCell: UICollectionViewCell {
         }
     }
     
-    @objc func setTimeLeft() {
+    private func startTimer() {
+        if let interval = timeIntervalInSecond {
+            timeCounter = Int(interval)
+            
+            timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCounter), userInfo: nil, repeats: true)
+        }
+    }
+    
+    @objc func updateCounter() {
+        guard timeCounter >= 0 else {
+            timer?.invalidate()
+            timer = nil
+            return
+        }
         
+        let hours = timeCounter / 3600
+        let minutes = timeCounter / 60 % 60
+        let seconds = timeCounter % 60
+        let temp = String(format:"%02i:%02i:%02i", hours, minutes, seconds)
+        
+        lblTimeLeft.text = "\(temp)"
+        
+        timeCounter -= 1
     }
 
 }

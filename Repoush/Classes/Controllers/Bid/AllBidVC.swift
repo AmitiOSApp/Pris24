@@ -110,13 +110,13 @@ class AllBidVC: UIViewController {
         }
     }
 
-    private func updateBidStatusAPI_Call(_ selectedIndex: Int, bidStatus: String, bidId: String) {
+    private func updateBidStatusAPI_Call(_ selectedIndex: Int, bidStatus: String, userId: String, bidId: String) {
         
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
             [
-                kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
+                kAPI_UserId     : userId as AnyObject,
                 kAPI_ProductId  : dictProduct["id"] as AnyObject,
                 kAPI_BidStatus  : bidStatus as AnyObject,
                 kAPI_BidId      : bidId as AnyObject,
@@ -173,12 +173,12 @@ extension AllBidVC: UITableViewDataSource, UITableViewDelegate {
         
         cell?.acceptHandler = {
             let dictBid = self.arrAllBid[indexPath.row] as? NSDictionary
-            self.updateBidStatusAPI_Call(indexPath.row, bidStatus: "2", bidId: dictBid!["id"] as! String)
+            self.updateBidStatusAPI_Call(indexPath.row, bidStatus: "2", userId: dictBid!["user_id"] as! String, bidId: dictBid!["id"] as! String)
         }
         
         cell?.rejectHandler = {
             let dictBid = self.arrAllBid[indexPath.row] as? NSDictionary
-            self.updateBidStatusAPI_Call(indexPath.row, bidStatus: "3", bidId: dictBid!["id"] as! String)
+            self.updateBidStatusAPI_Call(indexPath.row, bidStatus: "3", userId: dictBid!["user_id"] as! String, bidId: dictBid!["id"] as! String)
         }
         
         let bidStatus = dictBid!["bid_status"] as! String
@@ -195,6 +195,15 @@ extension AllBidVC: UITableViewDataSource, UITableViewDelegate {
         cell?.lblUsername.text = dictBid!["full_name"] as? String
         cell?.lblPrice.text = "$\(dictBid!["bid_amount"] ?? "0.0")"
         cell?.btnDistance.setTitle("\(dictBid!["distance"] ?? "0.0") km", for: .normal)
+        
+        var createdDate = ""
+        
+        if let temp = dictBid!["last_login"] as? String {
+            let tempDate = Util.getDateFromString(temp, sourceFormat: "yyyy-MM-dd HH:mm:ss", destinationFormat: "MMM dd, yyyy HH:mm:ss.SSS")
+            
+            createdDate = Util.relativeDateStringForDate(tempDate)
+        }
+        cell?.lblLastActiveOn.text = "Last active on: \(createdDate)"
 
         if Util.isValidString(dictBid!["user_img"] as! String) {
             
