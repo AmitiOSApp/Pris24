@@ -352,6 +352,15 @@ class MyAuctionVC: UIViewController {
                 return
             }
             DLog(message: "\(jsonObj)")
+            
+            if self.isActiveAuction {
+                // Perform Get user product API
+                self.getUserProductAPI_Call(self.type)
+            }
+            else {
+                // Perform Get user product history API
+                self.getProductHistoryAPI_Call(self.productType)
+            }
         }
     }
 
@@ -440,6 +449,15 @@ class MyAuctionVC: UIViewController {
                 return
             }
             DLog(message: "\(jsonObj)")
+            
+            if self.isActiveAuction {
+                // Perform Get user product API
+                self.getUserProductAPI_Call(self.type)
+            }
+            else {
+                // Perform Get user product history API
+                self.getProductHistoryAPI_Call(self.productType)
+            }
         }
     }
 

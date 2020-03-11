@@ -99,53 +99,5 @@
             </Locations>
          </BreakpointContent>
       </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Repoush/Classes/Controllers/MyAuction/MyAuctionVC.swift"
-            timestampString = "605558902.093945"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "375"
-            endingLineNumber = "375"
-            landmarkName = "submitFeedbackAPI_Call()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Repoush.MyAuctionVC.(submitFeedbackAPI_Call in _D35BC33C7046873BBA4F55DF18740DAB)() -&gt; ()"
-                  moduleName = "Repoush"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/MyAuction/MyAuctionVC.swift"
-                  timestampString = "605558902.484552"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "375"
-                  endingLineNumber = "375"
-                  offsetFromSymbolStart = "4238">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.DataResponse&lt;Any&gt;) -&gt; () in Repoush.MyAuctionVC.(submitFeedbackAPI_Call in _D35BC33C7046873BBA4F55DF18740DAB)() -&gt; ()"
-                  moduleName = "Repoush"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/MyAuction/MyAuctionVC.swift"
-                  timestampString = "605558902.490468"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "377"
-                  endingLineNumber = "377"
-                  offsetFromSymbolStart = "210">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
