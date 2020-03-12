@@ -130,6 +130,13 @@ class AuctionCell: UICollectionViewCell {
             btnDeleteWidthConst.constant = 0.0
         }
         
+        if dictProduct["is_rated"] as? Bool == true {
+            btnShowAllBid.isHidden = true
+        }
+        else {
+            btnShowAllBid.isHidden = false
+        }
+        
         var arrProductImage = NSMutableArray()
         
         if let arrTemp = dictProduct["product_image"] as? NSArray {

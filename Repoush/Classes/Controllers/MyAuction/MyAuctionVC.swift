@@ -369,6 +369,14 @@ class MyAuctionVC: UIViewController {
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let rating = lblRate.text?.replacingOccurrences(of: ".0", with: "")
+        var ratingFor = ""
+        
+        if productType == "1" {
+            ratingFor = (dictProduct["buyer_id"] as? String)!
+        }
+        else {
+            ratingFor = (dictProduct["seller_id"] as? String)!
+        }
         
         let postParams: [String: AnyObject] =
             [
@@ -376,8 +384,7 @@ class MyAuctionVC: UIViewController {
                 kAPI_Rating           : rating as AnyObject,
                 kAPI_ProductId        : dictProduct["product_id"] as AnyObject,
                 kAPI_FeedbackMessage  : txvReview.text as AnyObject,
-                kAPI_SellerId         : dictProduct["seller_id"] as AnyObject,
-                kAPI_CustomerId       : LoggedInUser.shared.id as AnyObject,
+                kAPI_RatingFor        : ratingFor as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -396,6 +403,18 @@ class MyAuctionVC: UIViewController {
             DispatchQueue.main.async {
                 self.viewBG.isHidden = true
                 self.viewRateReview.isHidden = true
+                
+                self.txvReview.text = ""
+                self.ratingBar.value = 1.0
+            }
+            
+            if self.isActiveAuction {
+                // Perform Get user product API
+                self.getUserProductAPI_Call(self.type)
+            }
+            else {
+                // Perform Get user product history API
+                self.getProductHistoryAPI_Call(self.productType)
             }
         }
     }

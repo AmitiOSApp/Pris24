@@ -27,13 +27,19 @@ class SellerProfileVC: UIViewController {
     @IBOutlet weak var lblRatingCount: UILabel!
     @IBOutlet weak var tblReview: UITableView!
 
+    @IBOutlet weak var viewReviewHgtConst: NSLayoutConstraint!
+    
     // MARK: - Property initialization
     var dictProduct = NSDictionary()
+    private var arrRatingList = NSMutableArray()
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        tblReview.rowHeight = UITableView.automaticDimension
+        tblReview.estimatedRowHeight = 80
         
         setSellerDetail()
     }
@@ -75,7 +81,6 @@ class SellerProfileVC: UIViewController {
             lblAddress.text = dictProduct["address"] as? String
         }
         else {
-            
             if mobileNumber!.count > 2 {
                 let last2 = mobileNumber!.suffix(2)
                 lblMobileNumber.text = "********\(last2)"
@@ -111,6 +116,28 @@ class SellerProfileVC: UIViewController {
             imgviewUser.image = UIImage(named: "dummy_user")
             imgviewUserReview.image = UIImage(named: "dummy_user")
         }
+        
+        ratingBar.value = 0.0
+        if let temp = dictProduct["rating"] as? String {
+            if Util.isValidString(temp) {
+                ratingBar.value = CGFloat(Double(temp)!)
+            }
+        }
+        
+        lblRatingCount.text = dictProduct["rating"] as? String
+        
+        if let temp = dictProduct["rating_list"] as? NSArray {
+            arrRatingList = NSMutableArray(array: temp)
+        }
+        
+        var count = arrRatingList.count
+        
+        if arrRatingList.count > 4 {
+            count = 4
+        }
+        viewReviewHgtConst.constant = CGFloat((count * 80) + 75)
+        
+        tblReview.reloadData()
     }
  
 }
@@ -119,7 +146,7 @@ class SellerProfileVC: UIViewController {
 extension SellerProfileVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return arrRatingList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,6 +154,31 @@ extension SellerProfileVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as? ReviewCell
         cell?.selectionStyle = .none
         
+        let dictReview = arrRatingList[indexPath.row] as? NSDictionary
+        
+        cell?.lblUsername.text = Util.createUsername(dictReview!)
+        cell?.lblReview.text = dictReview!["feedback_message"] as? String
+        
+        cell?.ratingBar.value = 0.0
+        if let temp = dictReview!["rating"] as? String {
+            if Util.isValidString(temp) {
+                cell?.ratingBar.value = CGFloat(Double(temp)!)
+            }
+        }
+
+        var feedbackDate = ""
+        
+        if let temp = dictReview!["feedback_date"] as? String {
+            let tempDate = Util.getDateFromString(temp, sourceFormat: "yyyy-MM-dd HH:mm:ss", destinationFormat: "yyyy-MM-dd HH:mm:ss.SSS")
+            
+            feedbackDate = Util.relativeDateStringForDate(tempDate)
+            
+            if feedbackDate != "Just now" {
+                feedbackDate = "\(feedbackDate) ago"
+            }
+        }
+        cell?.lblDate.text = feedbackDate
+
         return cell!
     }
     

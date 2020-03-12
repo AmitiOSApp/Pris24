@@ -83,6 +83,7 @@ let kAPI_FeedbackMessage                = "feedback_message"
 let kAPI_CustomerId                     = "customer_id"
 let kAPI_Rating                         = "rating"
 let kAPI_DealPrice                      = "deal_price"
+let kAPI_RatingFor                      = "rating_for"
 
 //**    Result Success |"1"| / Failure |"0"|
 let kAPI_Result_Success      = "1"

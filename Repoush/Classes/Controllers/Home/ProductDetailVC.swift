@@ -41,6 +41,7 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var lblRatingCount: UILabel!
     @IBOutlet weak var tblReview: UITableView!
     
+    @IBOutlet weak var viewReviewHgtConst: NSLayoutConstraint!
     @IBOutlet weak var viewAgeHgtConst: NSLayoutConstraint!
     @IBOutlet weak var viewProductDetailHgtConst: NSLayoutConstraint!
 
@@ -49,7 +50,8 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
     var arrProductImage = NSMutableArray()
     private var timer: Timer?
     private var timeCounter: Int = 0
-    
+    private var arrRatingList = NSMutableArray()
+
     var timeIntervalInSecond: TimeInterval? {
         didSet {
             startTimer()
@@ -61,6 +63,9 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        tblReview.rowHeight = UITableView.automaticDimension
+        tblReview.estimatedRowHeight = 80
+
         setProductDetail()
     }
     
@@ -175,6 +180,20 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
             collectionViewProductImage.reloadData()
         }
         pageControl.numberOfPages = arrProductImage.count
+                
+        if let temp = dictProduct["rating_list"] as? NSArray {
+            arrRatingList = NSMutableArray(array: temp)
+        }
+        
+        var count = arrRatingList.count
+        
+        if arrRatingList.count > 4 {
+            count = 4
+        }
+        viewReviewHgtConst.constant = CGFloat((count * 80) + 75)
+        
+        tblReview.reloadData()
+
     }
     
     private func startTimer() {
@@ -332,13 +351,38 @@ extension ProductDetailVC: UICollectionViewDataSource, UICollectionViewDelegate,
 extension ProductDetailVC: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return arrRatingList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as? ReviewCell
         cell?.selectionStyle = .none
+        
+        let dictReview = arrRatingList[indexPath.row] as? NSDictionary
+        
+        cell?.lblUsername.text = Util.createUsername(dictReview!)
+        cell?.lblReview.text = dictReview!["feedback_message"] as? String
+        
+        cell?.ratingBar.value = 0.0
+        if let temp = dictReview!["rating"] as? String {
+            if Util.isValidString(temp) {
+                cell?.ratingBar.value = CGFloat(Double(temp)!)
+            }
+        }
+
+        var feedbackDate = ""
+        
+        if let temp = dictReview!["feedback_date"] as? String {
+            let tempDate = Util.getDateFromString(temp, sourceFormat: "yyyy-MM-dd HH:mm:ss", destinationFormat: "yyyy-MM-dd HH:mm:ss.SSS")
+            
+            feedbackDate = Util.relativeDateStringForDate(tempDate)
+            
+            if feedbackDate != "Just now" {
+                feedbackDate = "\(feedbackDate) ago"
+            }
+        }
+        cell?.lblDate.text = feedbackDate
         
         return cell!
     }
