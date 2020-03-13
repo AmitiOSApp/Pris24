@@ -89,17 +89,24 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
         
         lblProductName.text = dictProduct["selling"] as? String
         lblSelling.text = dictProduct["selling"] as? String
-        lblUsername.text = "By :- \(Util.createUsername(dictProduct))"
+        lblUsername.text = "\("By".localiz()) :- \(Util.createUsername(dictProduct))"
         lblReviewUsername.text = Util.createUsername(dictProduct)
         lblOriginalPrice.text = "$\(dictProduct["base_price"] ?? "0.0")"
         lblOfferPrice.text = "$\(dictProduct["offer_price"] ?? "0.0")"
-        lblDiescount.text = "\(dictProduct["discount"] ?? "0.0")% off"
+        lblDiescount.text = "\(dictProduct["discount"] ?? "0.0")% \("off".localiz())"
         lblBrand.text = dictProduct["brand"] as? String
         lblCondition.text = dictProduct["product_condition"] as? String
         lblPickupLocation.text = dictProduct["address"] as? String
-        lblReviewCount.text = "\(dictProduct["review"] ?? "0.0") REVIEWS"
-        lblRatingValue.text = "\(dictProduct["rating"] ?? "0")"
-        lblRatingCount.text = "\(dictProduct["rating"] ?? "0")"
+        lblReviewCount.text = "\(dictProduct["review"] ?? "0.0") \("REVIEWS".localiz())"
+
+        var rating = 0.0
+        if let temp = Double("\(dictProduct["rating"] ?? 0.0)") {
+            rating = temp
+        }
+        rating = Double(rating).rounded(1)
+        
+        lblRatingValue.text = "\(rating)"
+        lblRatingCount.text = "\(rating)"
 
         let strSize = dictProduct["size"] as? String
         if !Util.isValidString(strSize ?? "") {
@@ -138,7 +145,7 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
             distance = temp
         }
         distance = Double(distance).rounded(2)
-        btnDistance.setTitle("\(distance) km", for: .normal)
+        btnDistance.setTitle("\(distance) \("km".localiz())", for: .normal)
 
         let timeInSecond = dictProduct["time_left_in_second"] as? Int
         

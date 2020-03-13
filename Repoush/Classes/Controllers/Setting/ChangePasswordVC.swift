@@ -48,13 +48,13 @@ class ChangePasswordVC: UIViewController {
             Util.showAlertWithMessage("Please enter new password", title: Key_Alert); return false
         }
         else if !Util.isValidString(txfConfirmNewPassword.text!) {
-            Util.showAlertWithMessage("Please enter confirm new password", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter confirm password", title: Key_Alert); return false
         }
         else if Util.isPwdLenth(password: txfNewPassword.text!, confirmPassword: txfConfirmNewPassword.text!) {
-            Util.showAlertWithMessage("New password or confirm new password length should be greater than or equal to 6 digits", title: Key_Alert); return false
+            Util.showAlertWithMessage("New password and confirm password length should be greater than or equal to 6 digits", title: Key_Alert); return false
         }
         else if !Util.isPasswordSame(password: txfNewPassword.text!, confirmPassword: txfConfirmNewPassword.text!) {
-            Util.showAlertWithMessage("New password and confirm new password should be same", title: Key_Alert); return false
+            Util.showAlertWithMessage("New password and confirm password should be same", title: Key_Alert); return false
         }
         else if txfOldPassword.text == txfNewPassword.text {
             Util.showAlertWithMessage("Old password and new password should not be same", title: Key_Alert); return false

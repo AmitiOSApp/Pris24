@@ -51,11 +51,11 @@ class PostCell: UICollectionViewCell {
     
     // MARK: Public Methods
     func configureCell(_ dictProduct: NSDictionary) {
-        lblUsername.text = "By : \(Util.createUsername(dictProduct))"
+        lblUsername.text = "\("By".localiz()) : \(Util.createUsername(dictProduct))"
         lblProductName.text = dictProduct["selling"] as? String
         lblOriginalPrice.text = "$\(dictProduct["base_price"] ?? "0.0")"
         lblOfferPrice.text = "$\(dictProduct["offer_price"] ?? "0.0")"
-        lblDiscount.text = "\(dictProduct["discount"] ?? "0.0")% off"
+        lblDiscount.text = "\(dictProduct["discount"] ?? "0.0")% \("off".localiz())"
         
         let accountStatus = dictProduct["account_status"] as? String
         
@@ -73,7 +73,7 @@ class PostCell: UICollectionViewCell {
             distance = temp
         }
         distance = Double(distance).rounded(2)
-        btnDistance.setTitle("\(distance) km", for: .normal)
+        btnDistance.setTitle("\(distance) \("km".localiz())", for: .normal)
         
         let timeInSecond = dictProduct["time_left_in_second"] as? Int
         

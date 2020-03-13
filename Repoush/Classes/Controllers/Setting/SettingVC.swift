@@ -17,7 +17,7 @@ class SettingVC: UIViewController, MFMailComposeViewControllerDelegate {
     @IBOutlet weak var viewChangeLanguage: UIView!
 
     // MARK: - Property initialization
-    private var arrTitle = ["Notification", "Privacy", "Change Password", "Change Language", "Terms of use", "Report a problem", "Online / Offline", "Logout"]
+    private var arrTitle = ["Notification", "Privacy", "Change Password", "Change Language", "Terms of use", "Report a problem...", "Online / Offline", "Logout"]
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
@@ -28,6 +28,20 @@ class SettingVC: UIViewController, MFMailComposeViewControllerDelegate {
     // MARK: - Action Methods
     @IBAction func btnChangeLanguage_Action(_ sender: UIButton) {
         
+        let selectedLanguage: Languages = sender.tag == 100 ? .en : .fa
+        
+        let languageCode = sender.tag == 100 ? "en" : "fa"
+         
+        LanguageManger.shared.currentLanguage = selectedLanguage
+        LanguageManger.shared.defaultLanguage = selectedLanguage
+        LanguageManger.shared.setLanguage(language: selectedLanguage)
+        
+        UserDefaults.standard.set(languageCode, forKey: "language_code")
+
+        let vc = Util.loadViewController(fromStoryboard: "TabBarVC", storyboardName: "Home") as? TabBarVC
+        if let aVc = vc {
+            present(aVc, animated: true)
+        }
     }
     
     @IBAction func btnCross_Action(_ sender: UIButton) {
@@ -108,7 +122,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
         let cell = tableView.dequeueReusableCell(withIdentifier: "SettingCell", for: indexPath) as? SettingCell
         cell?.selectionStyle = .none
         
-        cell?.lblTitle.text = arrTitle[indexPath.row]
+        cell?.lblTitle.text = arrTitle[indexPath.row].localiz()
         
         cell?.imgviewSetting.image = UIImage(named: "setting_icon\(indexPath.row + 1)")
         
@@ -171,12 +185,12 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
             }
         }
         else if indexPath.row == 5 {
-            let uiAlert = UIAlertController(title: "Report a problem to admin", message: "Please send email to the admin from below button to report your problem.", preferredStyle:UIAlertController.Style.alert)
+            let uiAlert = UIAlertController(title: "Report a problem to admin".localiz(), message: "Please send email to the admin from below button to report your problem.".localiz(), preferredStyle:UIAlertController.Style.alert)
             present(uiAlert, animated: true, completion: nil)
             
             uiAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in }))
             
-            uiAlert.addAction(UIAlertAction(title: "Send email", style: .default, handler: { [weak self] action in
+            uiAlert.addAction(UIAlertAction(title: "Send email".localiz(), style: .default, handler: { [weak self] action in
                 
                 if !MFMailComposeViewController.canSendMail() {
                     Util.showAlertWithMessage("Mail services are not available", title: "")

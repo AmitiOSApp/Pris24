@@ -194,7 +194,7 @@ extension AllBidVC: UITableViewDataSource, UITableViewDelegate {
         
         cell?.lblUsername.text = dictBid!["full_name"] as? String
         cell?.lblPrice.text = "$\(dictBid!["bid_amount"] ?? "0.0")"
-        cell?.btnDistance.setTitle("\(dictBid!["distance"] ?? "0.0") km", for: .normal)
+        cell?.btnDistance.setTitle("\(dictBid!["distance"] ?? "0.0") \("km".localiz())", for: .normal)
         
         var createdDate = ""
         
@@ -203,7 +203,7 @@ extension AllBidVC: UITableViewDataSource, UITableViewDelegate {
             
             createdDate = Util.relativeDateStringForDate(tempDate)
         }
-        cell?.lblLastActiveOn.text = "Last active on: \(createdDate)"
+        cell?.lblLastActiveOn.text = "\("Last active on:".localiz()) \(createdDate)"
 
         if Util.isValidString(dictBid!["user_img"] as! String) {
             

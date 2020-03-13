@@ -66,7 +66,7 @@ class AuctionCell: UICollectionViewCell {
         lblOriginalPrice.text = "$\(dictProduct["base_price"] ?? "0.0")"
         lblOfferPrice.text = "$\(dictProduct["offer_price"] ?? "0.0")"
         lblLastBidAmount.text = "$\(dictProduct["last_bid"] ?? "0.0")"
-        lblDiscount.text = "\(dictProduct["discount"] ?? "0.0")% off"
+        lblDiscount.text = "\(dictProduct["discount"] ?? "0.0")% \("off".localiz())"
 
         if isActiveAuction {
             viewTimer.isHidden = false
@@ -84,21 +84,21 @@ class AuctionCell: UICollectionViewCell {
         
         if isSeller {
             lblUsername.text = ""
-            lblBitType.text = "Last bid"
+            lblBitType.text = "Last bid".localiz()
             
             if isActiveAuction {
                 lblProductName.text = dictProduct["selling"] as? String
 
                 if dictProduct["is_accepted_bid"] as? Bool == true {
-                    btnShowAllBid.setTitle("REVOKE", for: .normal)
+                    btnShowAllBid.setTitle("REVOKE".localiz(), for: .normal)
                 }
                 else {
-                    btnShowAllBid.setTitle("SHOW ALL BID", for: .normal)
+                    btnShowAllBid.setTitle("SHOW ALL BID".localiz(), for: .normal)
                 }
             }
             else {
                 lblProductName.text = dictProduct["product_name"] as? String
-                btnShowAllBid.setTitle("RATE BUYER", for: .normal)
+                btnShowAllBid.setTitle("RATE BUYER".localiz(), for: .normal)
             }
             if isActiveAuction {
                 btnEditWidthConst.constant = 30.0
@@ -112,19 +112,19 @@ class AuctionCell: UICollectionViewCell {
         else {
             lblLastBidAmount.text = "$\(dictProduct["bid_amount"] ?? "0.0")"
             lblProductName.text = dictProduct["product_name"] as? String
-            lblBitType.text = "My bid"
-            lblUsername.text = "By : \(Util.createUsername(dictProduct))"
+            lblBitType.text = "My bid".localiz()
+            lblUsername.text = "\("By".localiz()) : \(Util.createUsername(dictProduct))"
             
             if isActiveAuction {
                 if dictProduct["bid_status"] as? String == "2" {
-                    btnShowAllBid.setTitle("MAKE PAYMENT", for: .normal)
+                    btnShowAllBid.setTitle("MAKE PAYMENT".localiz(), for: .normal)
                 }
                 else {
-                    btnShowAllBid.setTitle("CANCEL BID", for: .normal)
+                    btnShowAllBid.setTitle("CANCEL BID".localiz(), for: .normal)
                 }
             }
             else {
-                btnShowAllBid.setTitle("RATE SELLER", for: .normal)
+                btnShowAllBid.setTitle("RATE SELLER".localiz(), for: .normal)
             }
             btnEditWidthConst.constant = 0.0
             btnDeleteWidthConst.constant = 0.0

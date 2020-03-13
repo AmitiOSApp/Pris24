@@ -1,0 +1,87 @@
+
+/* Class = "UITextField"; placeholder = "Confirm New Password"; ObjectID = "0LQ-WF-Os2"; */
+"0LQ-WF-Os2.placeholder" = "Confirm New Password";
+
+/* Class = "UILabel"; text = "Address"; ObjectID = "4cq-aY-K6E"; */
+"4cq-aY-K6E.text" = "Address";
+
+/* Class = "UITextField"; placeholder = "Last name"; ObjectID = "5vz-he-kYS"; */
+"5vz-he-kYS.placeholder" = "Last name";
+
+/* Class = "UITextField"; placeholder = "New Password"; ObjectID = "8if-QF-k3B"; */
+"8if-QF-k3B.placeholder" = "New Password";
+
+/* Class = "UIButton"; normalTitle = "SIGN UP"; ObjectID = "Bmm-Li-Hlu"; */
+"Bmm-Li-Hlu.normalTitle" = "SIGN UP";
+
+/* Class = "UITextField"; placeholder = "Mobile number"; ObjectID = "Bvd-86-gwr"; */
+"Bvd-86-gwr.placeholder" = "Mobile number";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "CcO-s6-rs0"; */
+"CcO-s6-rs0.normalTitle" = "LOGIN";
+
+/* Class = "UIButton"; normalTitle = "SEND OTP"; ObjectID = "Dyp-Qf-Wj9"; */
+"Dyp-Qf-Wj9.normalTitle" = "SEND OTP";
+
+/* Class = "UILabel"; text = "+98"; ObjectID = "GPz-h9-Swx"; */
+"GPz-h9-Swx.text" = "+98";
+
+/* Class = "UITextField"; placeholder = "First name"; ObjectID = "IaD-fQ-ttQ"; */
+"IaD-fQ-ttQ.placeholder" = "First name";
+
+/* Class = "UILabel"; text = "Please enter your email address and we will send you OTP."; ObjectID = "OJS-Qc-WaF"; */
+"OJS-Qc-WaF.text" = "Please enter your email address and we will send you OTP.";
+
+/* Class = "UITextField"; placeholder = "Confirm password"; ObjectID = "Pos-TT-zza"; */
+"Pos-TT-zza.placeholder" = "Confirm password";
+
+/* Class = "UITextField"; placeholder = "Mobile number"; ObjectID = "QAX-7S-ajO"; */
+"QAX-7S-ajO.placeholder" = "Mobile number";
+
+/* Class = "UILabel"; text = "Set New Password"; ObjectID = "SNd-WX-Wqg"; */
+"SNd-WX-Wqg.text" = "Set New Password";
+
+/* Class = "UILabel"; text = "Login"; ObjectID = "TdW-lc-A2i"; */
+"TdW-lc-A2i.text" = "Login";
+
+/* Class = "UIButton"; normalTitle = "LOGIN"; ObjectID = "U5G-5N-iXE"; */
+"U5G-5N-iXE.normalTitle" = "LOGIN";
+
+/* Class = "UIButton"; normalTitle = "SIGN UP"; ObjectID = "ad3-2B-3j3"; */
+"ad3-2B-3j3.normalTitle" = "SIGN UP";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "bgj-3u-XMg"; */
+"bgj-3u-XMg.placeholder" = "Password";
+
+/* Class = "UIButton"; normalTitle = "Send OTP"; ObjectID = "cPv-J0-ALP"; */
+"cPv-J0-ALP.normalTitle" = "Send OTP";
+
+/* Class = "UIButton"; normalTitle = "SUBMIT"; ObjectID = "dsd-MZ-zmx"; */
+"dsd-MZ-zmx.normalTitle" = "SUBMIT";
+
+/* Class = "UILabel"; text = "Sign Up"; ObjectID = "hY2-sh-f1S"; */
+"hY2-sh-f1S.text" = "Sign Up";
+
+/* Class = "UILabel"; text = "Forgot Password"; ObjectID = "hwt-Fg-tzL"; */
+"hwt-Fg-tzL.text" = "Forgot Password";
+
+/* Class = "UITextField"; placeholder = "Password"; ObjectID = "kpX-fy-afa"; */
+"kpX-fy-afa.placeholder" = "Password";
+
+/* Class = "UILabel"; text = "+98"; ObjectID = "mk2-AX-QB0"; */
+"mk2-AX-QB0.text" = "+98";
+
+/* Class = "UIButton"; normalTitle = "Verify"; ObjectID = "oxd-nK-yh0"; */
+"oxd-nK-yh0.normalTitle" = "Verify";
+
+/* Class = "UITextField"; placeholder = "Enter OTP"; ObjectID = "txZ-QB-kkE"; */
+"txZ-QB-kkE.placeholder" = "Enter OTP";
+
+/* Class = "UITextField"; placeholder = "Mobile Number"; ObjectID = "wFV-HU-Jql"; */
+"wFV-HU-Jql.placeholder" = "Mobile Number";
+
+/* Class = "UITextField"; placeholder = "Enter OTP"; ObjectID = "wks-Jd-cA6"; */
+"wks-Jd-cA6.placeholder" = "Enter OTP";
+
+/* Class = "UIButton"; normalTitle = "Forgot password"; ObjectID = "xlX-eW-NoD"; */
+"xlX-eW-NoD.normalTitle" = "Forgot password";

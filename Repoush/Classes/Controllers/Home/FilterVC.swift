@@ -18,7 +18,7 @@ class FilterVC: UIViewController {
     @IBOutlet weak var collectionviewFilterRange: UICollectionView!
 
     // MARK: - Property initialization
-    private var arrDistanceRange = ["5 km", "10 km", "25 km", "50 km", "100 km", "All"]
+    private var arrDistanceRange = ["5", "10", "25", "50", "100", "All".localiz()]
     private var locManager = CLLocationManager()
     private var latitude = 0.0
     private var longitude = 0.0
@@ -147,12 +147,12 @@ extension FilterVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "FilterCell", for: indexPath) as? FilterCell
         
-        cell?.lblDistanceRange.text = arrDistanceRange[indexPath.item]
-        
         if indexPath.item == 5 {
+            cell?.lblDistanceRange.text = arrDistanceRange[indexPath.item]
             cell?.viewDevider.isHidden = true
         }
         else {
+            cell?.lblDistanceRange.text = "\(arrDistanceRange[indexPath.item]) \("km".localiz())"
             cell?.viewDevider.isHidden = false
         }
         
@@ -168,11 +168,11 @@ extension FilterVC: UICollectionViewDataSource, UICollectionViewDelegate, UIColl
             self.collectionviewFilterRange.reloadData()
             
             if indexPath.item == 5 {
-                self.lblFilterType.text = "All auction"
+                self.lblFilterType.text = "All auctions".localiz()
                 appDelegate.distance = ""
             }
             else {
-                self.lblFilterType.text = self.arrDistanceRange[indexPath.item]
+                self.lblFilterType.text = "\(self.arrDistanceRange[indexPath.item]) \("km".localiz())"
                 appDelegate.distance = self.arrDistanceRange[indexPath.item]
             }
         }

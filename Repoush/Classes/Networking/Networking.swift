@@ -520,17 +520,17 @@ struct Networking {
      */
     static func downloadImage(fromUrl url: String, completionHandler:@escaping (_ image: UIImage?) -> Void) {
         
-        if url.isEmpty {
-            completionHandler(nil)
-            return
-        }
-        
-        let imageViewTest = UIImageView()
-        
-        imageViewTest.kf.setImage(with: URL(string: url), placeholder: nil, options: nil, progressBlock: nil) { (image, error, cacheType, imageURL) -> () in
-            
-            completionHandler(image)
-        }
+//        if url.isEmpty {
+//            completionHandler(nil)
+//            return
+//        }
+//        
+//        let imageViewTest = UIImageView()
+//        
+//        imageViewTest.kf.setImage(with: URL(string: url), placeholder: nil, options: nil, progressBlock: nil) { (image, error, cacheType, imageURL) -> () in
+//            
+//            completionHandler(image)
+//        }
     }
     
     /**
@@ -542,7 +542,7 @@ struct Networking {
     
     static func downloadImage(fromUrl url: String, withPlaceHolder paceholder: String, completionHandler:@escaping (_ image: UIImage?) -> Void) {
         
-        if url.isEmpty && paceholder.isEmpty {
+        /* if url.isEmpty && paceholder.isEmpty {
             completionHandler(nil)
             return
         }
@@ -567,7 +567,7 @@ struct Networking {
             else {
                 completionHandler(image)
             }
-        }
+        }*/
     }
     
 }

@@ -41,6 +41,8 @@ class MyAuctionVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
+        txvReview.placeholder = "Add your feedback".localiz()
+        
         ratingBar.ratingDidChange = { ratingValue in
             self.lblRate.text = "\(ratingValue)"
         }
@@ -520,7 +522,7 @@ extension MyAuctionVC: UICollectionViewDataSource, UICollectionViewDelegate, UIC
         
         cell?.allBidHandler = {
             
-            if cell?.btnShowAllBid.titleLabel?.text == "SHOW ALL BID" {
+            if cell?.btnShowAllBid.titleLabel?.text == "SHOW ALL BID".localiz() {
                 let dictTemp = self.arrProduct[indexPath.item] as? NSDictionary
 
                 let vc = Util.loadViewController(fromStoryboard: "AllBidVC", storyboardName: "Home") as? AllBidVC
@@ -530,26 +532,26 @@ extension MyAuctionVC: UICollectionViewDataSource, UICollectionViewDelegate, UIC
                     self.show(aVc, sender: nil)
                 }
             }
-            else if cell?.btnShowAllBid.titleLabel?.text == "CANCEL BID" {
+            else if cell?.btnShowAllBid.titleLabel?.text == "CANCEL BID".localiz() {
                 let dictTemp = self.arrProduct[indexPath.item] as? NSDictionary
                 self.cancelBidAPI_Call(indexPath.row, bidId: dictTemp!["id"] as! String)
             }
-            else if cell?.btnShowAllBid.titleLabel?.text == "REVOKE" {
+            else if cell?.btnShowAllBid.titleLabel?.text == "REVOKE".localiz() {
                 let dictTemp = self.arrProduct[indexPath.item] as? NSDictionary
                 self.updateBidStatusAPI_Call(dictTemp!["id"] as! String, userId: dictTemp!["user_id"] as! String, bidId: dictTemp!["id"] as! String)
             }
-            else if cell?.btnShowAllBid.titleLabel?.text == "MAKE PAYMENT" {
+            else if cell?.btnShowAllBid.titleLabel?.text == "MAKE PAYMENT".localiz() {
                 self.dictProduct = (self.arrProduct[indexPath.item] as? NSDictionary)!
                 self.checkoutAPI_Call()
             }
-            else if cell?.btnShowAllBid.titleLabel?.text == "RATE BUYER" {
+            else if cell?.btnShowAllBid.titleLabel?.text == "RATE BUYER".localiz() {
                 self.dictProduct = (self.arrProduct[indexPath.item] as? NSDictionary)!
                 self.showFeedbackDetail()
                 
                 self.viewBG.isHidden = false
                 self.viewRateReview.isHidden = false
             }
-            else if cell?.btnShowAllBid.titleLabel?.text == "RATE SELLER" {
+            else if cell?.btnShowAllBid.titleLabel?.text == "RATE SELLER".localiz() {
                 self.dictProduct = (self.arrProduct[indexPath.item] as? NSDictionary)!
                 self.showFeedbackDetail()
                 

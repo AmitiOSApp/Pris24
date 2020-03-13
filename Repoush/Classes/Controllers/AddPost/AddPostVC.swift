@@ -173,7 +173,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
         
-        let deleteAction = UIAlertAction(title: "Camera", style: .default, handler: {
+        let deleteAction = UIAlertAction(title: "Take photo".localiz(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
             let imagePicker = UIImagePickerController()
@@ -182,7 +182,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             imagePicker.sourceType = .camera
             self.present(imagePicker, animated: true, completion: nil)
         })
-        let saveAction = UIAlertAction(title: "Gallery", style: .default, handler: {
+        let saveAction = UIAlertAction(title: "Choose from Gallery".localiz(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
             let imagePicker = UIImagePickerController()
@@ -191,7 +191,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
         })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+        let cancelAction = UIAlertAction(title: "Cancel".localiz(), style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
         optionMenu.addAction(deleteAction)
@@ -208,7 +208,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBAction func btnPicker_Action(_ sender: UIButton) {
         if sender.titleLabel?.text == "Done" {
             let selectedIndex = pickerViewGender.selectedRow(inComponent: 0)
-            let strGender = selectedIndex == 0 ? "Male" : "Female"
+            let strGender = selectedIndex == 0 ? "Male".localiz() : "Female".localiz()
             btnGender.setTitle(strGender, for: .normal)
             btnGender.setTitleColor(UIColor.black, for: .normal)
         }
@@ -972,10 +972,10 @@ extension AddPostVC: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if row == 0 {
-            return "Male"
+            return "Male".localiz()
         }
         else {
-            return "Female"
+            return "Female".localiz()
         }
     }
     

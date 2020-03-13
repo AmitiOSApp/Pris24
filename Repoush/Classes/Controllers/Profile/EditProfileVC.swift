@@ -47,7 +47,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     @IBAction func btnTakeImage_Action(_ sender: UIButton) {
         let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
         
-        let deleteAction = UIAlertAction(title: "Camera", style: .default, handler: {
+        let deleteAction = UIAlertAction(title: "Take photo".localiz(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
             let imagePicker = UIImagePickerController()
@@ -56,7 +56,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             imagePicker.sourceType = .camera
             self.present(imagePicker, animated: true, completion: nil)
         })
-        let saveAction = UIAlertAction(title: "Gallery", style: .default, handler: {
+        let saveAction = UIAlertAction(title: "Choose from Gallery".localiz(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
             
             let imagePicker = UIImagePickerController()
@@ -65,7 +65,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             imagePicker.sourceType = .photoLibrary
             self.present(imagePicker, animated: true, completion: nil)
         })
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: {
+        let cancelAction = UIAlertAction(title: "Cancel".localiz(), style: .cancel, handler: {
             (alert: UIAlertAction!) -> Void in
         })
         optionMenu.addAction(deleteAction)
@@ -129,16 +129,16 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     private func setUserData() {
         txfFirstName.text = LoggedInUser.shared.firstName
         txfLastName.text = LoggedInUser.shared.lastName
-        lblGender.text = LoggedInUser.shared.gender == "" ? "Select gender" : LoggedInUser.shared.gender
-        lblAge.text = LoggedInUser.shared.dob == "" ? "Select dob" : LoggedInUser.shared.dob
+        lblGender.text = LoggedInUser.shared.gender == "" ? "Gender".localiz() : LoggedInUser.shared.gender
+        lblAge.text = LoggedInUser.shared.dob == "" ? "Date of birth".localiz() : LoggedInUser.shared.dob
         txfMobileNumber.text = LoggedInUser.shared.mobileNo
         txfEmailAddress.text = LoggedInUser.shared.email
         lblAddress.text = LoggedInUser.shared.address
         
-        if lblGender.text != "Select gender" {
+        if lblGender.text != "Gender".localiz() {
             lblGender.textColor = .black
         }
-        if lblAge.text != "Select dob" {
+        if lblAge.text != "Date of birth".localiz() {
             lblAge.textColor = .black
         }
         
@@ -176,10 +176,10 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
         else if !Util.isValidString(txfLastName.text!) {
             Util.showAlertWithMessage("Please enter last name", title: Key_Alert); return false
         }
-        else if lblGender.text == "Select gender" {
+        else if lblGender.text == "Gender".localiz() {
             Util.showAlertWithMessage("Please select gender", title: Key_Alert); return false
         }
-        else if lblAge.text == "Select dob" {
+        else if lblAge.text == "Date of birth".localiz() {
             Util.showAlertWithMessage("Please select date of birth", title: Key_Alert); return false
         }
         else if !Util.isValidString(txfMobileNumber.text!) {
@@ -223,7 +223,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
             longitudePass = "\(longitude)"
         }
         
-        let gender = lblGender.text == "Male" ? "1" : "2"
+        let gender = lblGender.text == "Male".localiz() ? "1" : "2"
 
         let postParams: [String: AnyObject] =
             [
@@ -303,10 +303,10 @@ extension EditProfileVC: UIPickerViewDataSource, UIPickerViewDelegate {
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if row == 0 {
-            return "Male"
+            return "Male".localiz()
         }
         else {
-            return "Female"
+            return "Female".localiz()
         }
     }
     

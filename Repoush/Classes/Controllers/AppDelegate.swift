@@ -40,6 +40,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().delegate = self
         UNUserNotificationCenter.current().removeAllDeliveredNotifications()
         
+        if let languageCode = UserDefaults.standard.string(forKey: "language_code") {
+            LanguageManger.shared.defaultLanguage = Languages(rawValue: languageCode)!
+            LanguageManger.shared.currentLanguage = Languages(rawValue: languageCode)!
+        }
+        else {
+            LanguageManger.shared.defaultLanguage = Languages(rawValue: Locale.current.languageCode!)!
+            LanguageManger.shared.currentLanguage = Languages(rawValue: Locale.current.languageCode!)!
+        }
+        
+        // Default language code
+        LanguageManger.shared.setLanguage(language: LanguageManger.shared.currentLanguage)
+        
         // Register the App for PNs
         // registerForPushNotifications()
         

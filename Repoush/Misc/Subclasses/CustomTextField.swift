@@ -18,6 +18,19 @@ class CustomTextField: UITextField {
         // initCommom()
 
         // adjustsFontSizeToFitDevice()
+        
+        self.placeholder = self.placeholder?.localiz()
+        
+        if UserDefaults.standard.string(forKey: "language_code") == "fa" {
+            if self.textAlignment == .left {
+                self.textAlignment = .right
+            }
+        }
+        else {
+            if self.textAlignment == .right {
+                self.textAlignment = .left
+            }
+        }
     }
 
     @IBInspectable var placeHolderColor: UIColor? {

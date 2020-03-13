@@ -119,7 +119,7 @@ class HomeVC: UIViewController {
     
     @IBAction func btnPlaceBid_Action(_ sender: UIButton) {
         
-        if sender.titleLabel?.text == "CANCEL" {
+        if sender.titleLabel?.text == "CANCEL".localiz() {
             viewBG.isHidden = true
             viewPlaceBid.isHidden = true
         }
@@ -180,12 +180,6 @@ class HomeVC: UIViewController {
         
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
-        var distance = ""
-        
-        if !appDelegate.distance.isEmpty {
-            distance = appDelegate.distance.replacingOccurrences(of: " km", with: "")
-        }
-        
         var latitude = LoggedInUser.shared.latitude
         var longitude = LoggedInUser.shared.longitude
         
@@ -202,7 +196,7 @@ class HomeVC: UIViewController {
                 kAPI_Longitude  : longitude as AnyObject,
                 kAPI_Language   : "en" as AnyObject,
                 "search"        : search as AnyObject,
-                "distance"      : distance as AnyObject,
+                "distance"      : appDelegate.distance as AnyObject,
         ]
         DLog(message: "\(postParams)")
         

@@ -21,6 +21,12 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate {
         
         // UITabBarItem.appearance().titlePositionAdjustment = UIOffset(horizontal: 0, vertical: -3)
         
+        tabBar.items![0].title = "HOME".localiz()
+        tabBar.items![1].title = "POST".localiz()
+        tabBar.items![2].title = "MY AUCTIONS".localiz()
+        tabBar.items![3].title = "SETTINGS".localiz()
+        tabBar.items![4].title = "PROFILE".localiz()
+
         self.delegate = self
     }
 

@@ -1,0 +1,248 @@
+/* 
+  Localizable.strings
+  Repoush
+
+  Created by Ravi Sendhav on 3/13/20.
+  Copyright © 2020 Ravi Sendhav. All rights reserved.
+*/
+
+
+"server_error_message" = "Server not responding, Please try again";
+"network_error_message" = "Please check your internet connection";
+
+// Login / Sign Up
+"LOGIN" = "ثبت نام";
+"SIGN UP" = "ثبت نام";
+"Login" = "ثبت نام";
+"Sign Up" = "ثبت نام";
+"Not registered yet?" = "تا حالا ثبت نام نکردی؟";
+"Already have an account?" = "تا حالا حساب کاربری داشتی؟";
+"Mobile number" = "شماره تلفن همراه";
+"Password" = "رمز عبور";
+"Forgot password" = "رمز عبور رو فراموش کردی؟";
+"First name" = "نام";
+"Last name" = "نام خانوادگی";
+"Enter OTP" = "کد ارسالی رو وارد کن";
+"Send OTP" = "ارسال کد فعال سازی";
+"Verify" = "تایید";
+"Confirm password" = "تکرار رمز عبور";
+"I agree to the following Terms & Conditions" = "رو قبول دارم شرایط و قوانین";
+
+// Tabbar
+"HOME" = "خونه";
+"POST" = "ارسال";
+"MY AUCTIONS" = "مزایده های من";
+"SETTINGS" = "تنظیمات";
+"PROFILE" = "پروفایل";
+
+// Home
+"Women" = "زنانه";
+"Women Item" = "خانومانه";
+"Kids" = "بچه ها";
+"Kids Item" = "بچگانه";
+"Look at" = "نگاهی به";
+"Search" = "جستجو";
+"Time left" = "زمان باقی مونده";
+"LAST BID AMOUNT" = "آخرین پیشنهاد";
+"TOTAL BID" = "تعداد کل پیشنهادها";
+"ENTER YOUR BID" = "پیشنهاد خودت را وارد کنید";
+"Enter amount" = "قیمت پیشنهادی تو";
+"PLACE BID" = "پیشنهاد قیمت";
+"off" = "off";
+"Place Bid" = "پیشنهاد قیمت";
+"TIME LEFT" = "زمان باقی مونده";
+"OFFER PRICE" = "قیمت پیشنهادی";
+"Offline" = "آفلاین";
+"Online" = "آنلاین";
+
+// Add Post
+"Gender" = "جنسیت";
+"Address" = "آدرس رو وارد کنید";
+"Post Product" = "ایجاد آیتم جدید";
+"Male" = "مرد";
+"Female" = "زن";
+"Boy" = "پسر";
+"Girl" = "دختر";
+"FOR" = "در قبال";
+"What are you selling?" = "چی میخوای بفروشی؟";
+"Size" = "سایز";
+"Condition" = "وضعیت";
+"Choose" = "انتخاب کنید";
+"Enter" = "وارد کنید";
+"Original price" = "قیمت اصلی";
+"Offer price" = "قیمت پیشنهادی";
+"Discount %" = "%تخفیف";
+"Brand (optional)" = "برند ( اختیاری )";
+"Description (optional)" = "توضیحات ( اختیاری )";
+"Off" = "%تخفیف";
+"off" = "%تخفیف";
+"Pickup location" = "مکان تحویل";
+"Same as the registered address" = "همون آدرسی کهباهاش ثبت نام کردم";
+"Add new address" = "اضافه کردن آدرس جدید";
+"POST NOW" = "ارسال اگهی";
+"SELL NOW" = "همین الان بفروش";
+"Calculated discount %" = "محاسبه تخفیف";
+
+// Setting
+"Settings" = "تنظیمات";
+"Notification" = "اطلاعیه";
+"Notifications" = "اعلان";
+"Privacy" = "امنیت";
+"Privacy policy" = "حریم خصوصی";
+"Change Password" = "تغییر رمز عبور";
+"Terms of use" = "قوانین استفاده";
+"Report a problem..." = "گزارش یه مشکل...";
+"Change Language" = "تغییر زبان";
+"Online / Offline" = "آنلاین/آفلاین";
+"Logout" = "خروج";
+"Change Language" = "تغییر زبان";
+"English" = "انگلیسی";
+"Persian" = "فارسی";
+"Report a problem to admin" = "گزارش یه مشکل به مدیر";
+"Please send email to the admin from below button to report your problem." = "لطفا از طریق دکمه زیر برای مدیر ایمیل بزن و مشکل رو بهش بگو";
+"Send email" = "ارسال ایمیل";
+"Are you sure you want to log out?" = "مطمئنی می خوای خارج بشی؟";
+"New Password" = "رمز عبور جدید";
+"Old Password" = "رمز عبور فعلی";
+
+// Profile
+"My Profile" = "حساب کاربری من";
+"Email address" = "آدرس ایمیل";
+"Date of birth" = "تاریخ تولد";
+"Location / City" = "موقعیت/شهر";
+"SUBMIT" = "ثبت";
+
+// My Auctions
+"Seller Profile" = "پروفایل فروشنده";
+"Buyer Profile" = "پروفایل خریدار";
+"Active Auctions" = "مزایده های فعال";
+"History" = "تاریخچه";
+"SHOW ALL BID" = "نمایش همه ی پیشنهادها";
+"ALL BID" = "نمایش همه ی پیشنهادها";
+"CANCEL BID" = "لغو پیشنهاد";
+"MAKE PAYMENT" = "پرداخت";
+"REVOKE" = "لغو";
+"RATE BUYER" = "امتیاز خریدار";
+"RATE SELLER" = "امتیاز دادن به فروشنده";
+"My bid" = "پیشنهاد های من";
+"Last bid" = "آخرین پیشنهاد";
+"By" = "توسط";
+"Add your feedback" = "بازخوردت رو بنویس";
+"Rate Now" = "امتیاز بده";
+
+// Filter
+"Show Items" = "نمایش آیتم ها";
+"All auctions" = "همه مزایده ها";
+"All" = "همه";
+"km" = "کیلومتر";
+"KM" = "کیلومتر";
+"Filter" = "فیلتر";
+
+// Product detail
+"Auction Detail" = "جزئیات مزایده";
+"REVIEWS" = "نظرات";
+"REVIEW" = "نظرات";
+"WHAT ARE YOU SELLING?" = "چی میخوای بفروشی؟";
+"SIZE" = "سایز";
+"CONDITION" = "وضعیت";
+"BRAND" = "نام تجاری";
+"GENDER" = "جنسیت";
+"AGE" = "سن";
+"PICKUP LOCATION" = "مکان تحویل";
+
+// Common
+"Cancel" = "انصراف";
+"CANCEL" = "انصراف";
+"Ok" = "خوبه";
+"OK" = "خوبه";
+"Yes" = "بلی";
+"YES" = "بلی";
+"Take photo" = "عکس بگیر";
+"Choose from Gallery" = "از گالری انتخاب کن";
+
+// All bid
+"ACCEPT" = "قبوله";
+"REJECT" = "قبول نیست";
+"Last active on:" = "آخرین بازدید:";
+
+"accept_terms" = "رو قبول دارم ";
+"Terms_Conditions" = "شرایط و قوانین";
+"terms_and_conditions" = "شرایط و قوانین";
+"OR" = "یا";
+"Deal_Price" = "قیمت مورد توافق";
+"Terms_Of_use" = "قوانین استفاده";
+"password_cpassword_notmatch_error" = "رمز عبور با تکرار آن، مشابه نیست";
+"gender_blank_error" = "لطفا جنسیت را انتخاب کن";
+"category_blank_error" = "لطفا دسته بندی را انتخاب کن";
+"address_blank_error" = "لطفا آدرس را وارد کن";
+"first_name_blank_error" = "لطفا نام را وارد کن";
+"last_name_blank_error" = "لطفا نام خانوادگی را وارد کن";
+"bid_amount_blank_error" = "لطفا مبلغ پیشنهادی خود را وارد کن";
+"mobile_number_blank_error" = "لطفا یک شماره موبایل معتبر را وارد کن";
+"password_blank_error" = "لطفا رمز عبور را وارد کن";
+"OTP_blank_error" = "لطفا کد فعال سازی را وارد کن";
+"c_password_blank_error" = "لطفا رمز عبور جدید را مجدد وارد کن";
+"password_not_macth_error" = "رمز عبور فعلی معتبر نیست";
+"Verification" = "تایید";
+"CreatePassword" = "ساخت رمز عبور";
+"PleaseEnterTheCodeReceiveOnYourRegisteredMobileNumber" = "لطفا کد فعال سازی ارسال شده به شماره موبایل خود را وارد کن";
+"please_enter_your_mobile_number_and_we_will_send_you_a_otp" = "لطفا شماره موبایلت رو وارد کن تا ما برات کد فعال سازی رو بفرستیم";
+"Resend" = "ارسال مجدد";
+"terms_and_conditions_blank_error" = "لطفا قوانین و مقررات رو قبول کن";
+"Press_BACK_again_to_exit" = "برای خروج، مجددا بازگشت رو بزن";
+"selling_blank_error" = "لطفا بنویس که چی میخوای بفروشی";
+"product_image_blank_error" = "لطفا اول عکس آیتم رو بذار";
+"size_blank_error" = "لطفا سایز رو مشخص کن";
+"age_blank_error" = "لطفا سن رو مشخص کن";
+"discount_blank_error" = "لطفا تخفیف رو وارد کن";
+"condition_blank_error" = "لطفا یکم درباره وضعیت آیتم بنویس";
+"original_price_blank_error" = "لطفا قیمت اولیه آیتم رو وارد کن";
+"offer_price_blank_error" = "لطفا قیمت پیشنهادی خودت رو وارد کن";
+"Edit_Auction" = "ویرایش مزایده";
+"Choose_from_Library" = "از عکسهای گوشی استفاده کن";
+"Add_Photo" = "عکس اضافه کن";
+"Select_File" = "یه فایل انتخاب کن";
+"You_need_to_allow_access_permissions" = "برنامه نیاز به اجازه دسترسی داره";
+"Permission_Granted" = "اجازه داده شد";
+"Permission_Denied" = "اجازه لغو شد";
+"Review_Rating" = "نظرات و امتیازها";
+"you_can_upload_3_photo" = "میتونی حداکثر سه تا عکس بذاری";
+"Awaiting_Payment" = "منتظر پرداخت";
+"Select_Image" = "انتخاب عکس";
+"Seller" = "فروشنده :- ";
+"No_Record_Found" = "هیچ موردی پیدا نشد";
+"TIMES_UP" = "اتمام زمان!!";
+"phone_number_blank_error" = "لطفا یه شماره موبایل معتبر وارد کن";
+"rating_blank_error" = "لطفا امتیاز بده";
+"review_blank_error" = "نظر خودت رو وارد کن";
+"Product_Details" = "جزئیات آیتم";
+"Delete_Post" = "حذف آیتم";
+"Delete_auction" = "حذف مزایده";
+"Repost_auction" = "ارسال مجدد مزایده";
+"Are_you_sure_you_want_to_delete_this_auction" = "مطمنی میخوای مزایده رو حذف کنی؟";
+"Are_you_sure_you_want_to_repost_this_auction" = "مطمئنی میخوای دوباره آیتم رو واسه مزایده بذاری؟";
+"no_location_detected" = "هیچ موقعیت مکانی یافت نشد";
+"permission_rationale" = "اجازه نامه";
+"permission_denied_explanation" = "توضیح لغو اجازه";
+"Bid_amount_should_be_greater" = "مبلغ پیشنهادی باید بزرگتر یا مساوی میلغ پیشنهادی فروشنده باشه";
+"Your_password_must" = "* رمز عبور باید بیشتر از 6 حرف یا عدد داشته باشه";
+"Repost" = "ارسال مجدد";
+"current_location" = "موقیت مکانی فعلی";
+"Yr" = "Y";
+"Clothes" = "لباس ها";
+"Action" = "عمل";
+"currency_symbol" = "T";
+"permission_necessary" = "Permission necessary";
+"external_storage_permission_is_necessary" = "External storage permission is necessary";
+"original_price_small_error" = "Original price should be greater than offer price";
+"bid_accepted" = "Bid Accepted :- ";
+"deal_completed" = "Deal Completed";
+"Bid_amount_should_be_greater_than_zero" = "Bid amount should be greater than zero";
+"Bid_amount_should_be_greater_than_last_bid" = "Bid amount should be greater than last bid";
+"You_can_not_delete_auction_first_image" = "You can not delete auction first image";
+"add_comment" = "Add Comment";
+"Comments" = "Comments";
+"Reply" = "Reply";
+"reply_text_blank_error" = "Please enter reply text";
+"ask_questions" = "Ask Questions?";
+"Questions" = "Questions";

@@ -1,0 +1,242 @@
+/* 
+  Localizable.strings
+  Repoush
+
+  Created by Ravi Sendhav on 3/13/20.
+  Copyright © 2020 Ravi Sendhav. All rights reserved.
+*/
+
+
+"server_error_message" = "Server not responding, Please try again";
+"network_error_message" = "Please check your internet connection";
+
+// Login / Sign Up
+"LOGIN" = "LOGIN";
+"SIGN UP" = "SIGN UP";
+"Login" = "Login";
+"Sign Up" = "Sign Up";
+"Not registered yet?" = "Not registered yet?";
+"Already have an account?" = "Already have an account?";
+"Mobile number" = "Mobile number";
+"Password" = "Password";
+"Forgot password" = "Forgot password";
+"First name" = "First name";
+"Last name" = "Last name";
+"Enter OTP" = "Enter OTP";
+"Send OTP" = "Send OTP";
+"Verify" = "Verify";
+"Confirm password" = "Confirm password";
+"I agree to the following Terms & Conditions" = "I agree to the following Terms & Conditions";
+
+// Tabbar
+"HOME" = "HOME";
+"POST" = "POST";
+"MY AUCTIONS" = "MY AUCTIONS";
+"SETTINGS" = "SETTINGS";
+"PROFILE" = "PROFILE";
+
+// Home
+"Women" = "Women";
+"Women Item" = "Women Item";
+"Kids" = "Kids";
+"Kids Item" = "Kids Item";
+"Look at" = "Look at";
+"Search" = "Search";
+"Time left" = "Time left";
+"LAST BID AMOUNT" = "LAST BID AMOUNT";
+"TOTAL BID" = "TOTAL BID";
+"ENTER YOUR BID" = "ENTER YOUR BID";
+"Enter amount" = "Enter amount";
+"PLACE BID" = "PLACE BID";
+"off" = "off";
+"Place Bid" = "Place Bid";
+"TIME LEFT" = "TIME LEFT";
+"OFFER PRICE" = "OFFER PRICE";
+"Offline" = "Offline";
+"Online" = "Online";
+
+// Add Post
+"Gender" = "Gender";
+"Male" = "Male";
+"Female" = "Female";
+"Boy" = "Boy";
+"Girl" = "Girl";
+"Address" = "Address";
+"Post Product" = "Post Product";
+"FOR" = "FOR";
+"What are you selling?" = "What are you selling?";
+"Size" = "Size";
+"Condition" = "Condition";
+"Choose" = "Choose";
+"Enter" = "Enter";
+"Original price" = "Original price";
+"Offer price" = "Offer price";
+"Discount %" = "Discount %";
+"Brand (optional)" = "Brand (optional)";
+"Description (optional)" = "Description (optional)";
+"Off" = "% Off";
+"Pickup location" = "Pickup location";
+"Same as the registered address" = "Same as the registered address";
+"Add new address" = "Add new address";
+"POST NOW" = "POST NOW";
+"SELL NOW" = "SELL NOW";
+"Calculated discount %" = "Calculated discount %";
+"off" = "off";
+
+// Setting
+"Settings" = "Settings";
+"Notification" = "Notification";
+"notifications" = "Notifications";
+"Privacy" = "Privacy";
+"Privacy policy" = "Privacy policy";
+"Change Password" = "Change Password";
+"Terms of use" = "Terms of use";
+"Report a problem..." = "Report a problem...";
+"Change Language" = "Change Language";
+"Online / Offline" = "Online / Offline";
+"Logout" = "Logout";
+"English" = "English";
+"Persian" = "Persian";
+"Report a problem to admin" = "Report a problem to admin";
+"Please send email to the admin from below button to report your problem." = "Please send email to the admin from below button to report your problem.";
+"Send email" = "Send email";
+"Are you sure you want to log out?" = "Are you sure you want to log out?";
+"New Password" = "New Password";
+"Old Password" = "Old Password";
+
+// Profile
+"My Profile" = "My Profile";
+"Email address" = "Email address";
+"Date of birth" = "Date of birth";
+"Location / City" = "Location / City";
+"SUBMIT" = "SUBMIT";
+
+// My Auctions
+"Seller Profile" = "Seller Profile";
+"Buyer Profile" = "Buyer Profile";
+"Active Auctions" = "Active Auctions";
+"History" = "History";
+"SHOW ALL BID" = "SHOW ALL BID";
+"ALL BID" = "ALL BID";
+"CANCEL BID" = "CANCEL BID";
+"MAKE PAYMENT" = "MAKE PAYMENT";
+"REVOKE" = "REVOKE";
+"RATE BUYER" = "RATE BUYER";
+"RATE SELLER" = "RATE SELLER";
+"My bid" = "My bid";
+"Last bid" = "Last bid";
+"By" = "By";
+"Add your feedback" = "Add your feedback";
+"Rate Now" = "Rate Now";
+
+// Filter
+"Show Items" = "Show Items";
+"All auctions" = "All auctions";
+"All" = "All";
+"km" = "km";
+"KM" = "KM";
+"Filter" = "Filter";
+
+// Product detail
+"Auction Detail" = "Auction Detail";
+"REVIEWS" = "REVIEWS";
+"REVIEW" = "REVIEW";
+"WHAT ARE YOU SELLING?" = "WHAT ARE YOU SELLING?";
+"SIZE" = "SIZE";
+"CONDITION" = "CONDITION";
+"BRAND" = "BRAND";
+"GENDER" = "GENDER";
+"AGE" = "AGE";
+"PICKUP LOCATION" = "PICKUP LOCATION";
+
+// Common
+"Cancel" = "Cancel";
+"CANCEL" = "CANCEL";
+"Ok" = "Ok";
+"OK" = "OK";
+"Yes" = "Yes";
+"YES" = "YES";
+"Take photo" = "Take photo";
+"Choose from Gallery" = "Choose from Gallery";
+
+// All bid
+"ACCEPT" = "ACCEPT";
+"REJECT" = "REJECT";
+"Last active on:" = "Last active on:";
+
+"password_cpassword_notmatch_error" = "Password and confirm password do not match";
+"gender_blank_error" = "Please select gender";
+"category_blank_error" = "Please select category";
+"address_blank_error" = "Please enter address";
+"first_name_blank_error" = "Please enter first name";
+"last_name_blank_error" = "Please enter last name";
+"bid_amount_blank_error" = "Please enter bid amount";
+"mobile_number_blank_error" = "Please enter valid mobile number";
+"password_blank_error" = "Please enter password";
+"OTP_blank_error" = "Please enter valid OTP";
+"c_password_blank_error" = "Please confirm password";
+"password_not_macth_error" = "Please enter valid password";
+"Verification" = "Verification";
+"CreatePassword" = "Create Password";
+"PleaseEnterTheCodeReceiveOnYourRegisteredMobileNumber" = "Please enter the code receive on your registered mobile number";
+"please_enter_your_mobile_number_and_we_will_send_you_a_otp" = "Please enter your mobile number and we will send you a OTP.";
+"Resend" = "Resend";
+"terms_and_conditions" = "Terms &amp; Conditions";
+"terms_and_conditions_blank_error" = "Please accept Terms &amp; Conditions";
+"Action" = "Action";
+"Press_BACK_again_to_exit" = "Press BACK again to exit";
+"Clothes" = "Clothes";
+"selling_blank_error" = "Please enter what are you selling";
+"product_image_blank_error" = "Please Upload the image first";
+"size_blank_error" = "Please select size";
+"age_blank_error" = "Please select age";
+"discount_blank_error" = "Please enter discount";
+"condition_blank_error" = "Please enter condition";
+"original_price_blank_error" = "Please enter original price";
+"offer_price_blank_error" = "Please enter offer price";
+"Edit_Auction" = "Edit Auction";
+"Add_Photo" = "Add Photo!";
+"Select_File" = "Select File";
+"You_need_to_allow_access_permissions" = "You need to allow access permissions";
+"Permission_Granted" = "Permission Granted";
+"Permission_Denied" = "Permission Denied";
+"Review_Rating" = "Review &amp; Rating";
+"you_can_upload_3_photo" = "You can upload maximum 3 photos";
+"Awaiting_Payment" = "Awaiting Payment";
+"Select_Image" = "Select Image";
+"Seller" = "Seller :- ";
+"No_Record_Found" = "No Record Found";
+"TIMES_UP" = "TIME\'S UP!!";
+"Deal_Price" = "Deal Price";
+"phone_number_blank_error" = "Please enter valid phone number";
+"rating_blank_error" = "Please select rating";
+"review_blank_error" = "Please enter review";
+"Product_Details" = "Product Details";
+"Delete_Post" = "Delete Post";
+"Delete_auction" = "Delete auction";
+"Repost_auction" = "Repost auction";
+"Are_you_sure_you_want_to_delete_this_auction" = "Are you sure you want to delete this auction";
+"Are_you_sure_you_want_to_repost_this_auction" = "Are you sure you want to re-post this auction";
+"no_location_detected" = "No_location_detected";
+"permission_rationale" = "permission_rationale";
+"permission_denied_explanation" = "permission_denied_explanation";
+"Bid_amount_should_be_greater" = "Bid amount should be greater than OR equal to offer price";
+"Your_password_must" = "* Your password must have more than 6 digits. (Max 15 char.)";
+"Repost" = "Repost";
+"current_location" = "Current Location";
+"Yr" = "Y";
+"currency_symbol" = "T ";
+"permission_necessary" = "Permission necessary";
+"external_storage_permission_is_necessary" = "External storage permission is necessary";
+"original_price_small_error" = "Original price should be greater than offer price";
+"bid_accepted" = "Bid Accepted :- ";
+"deal_completed" = "Deal Completed";
+"Bid_amount_should_be_greater_than_zero" = "Bid amount should be greater than zero";
+"Bid_amount_should_be_greater_than_last_bid" = "Bid amount should be greater than last bid";
+"You_can_not_delete_auction_first_image" = "You can not delete auction first image";
+"add_comment" = "Add Comment";
+"Comments" = "Comments";
+"Reply" = "Reply";
+"reply_text_blank_error" = "Please enter reply text";
+"ask_questions" = "Ask Questions?";
+"Questions" = "Questions";

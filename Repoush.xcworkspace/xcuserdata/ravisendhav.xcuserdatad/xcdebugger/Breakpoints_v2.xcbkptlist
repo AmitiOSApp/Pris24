@@ -26,7 +26,7 @@
                   moduleName = "Repoush"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/LoginSignUp/SignUpVC.swift"
-                  timestampString = "605678831.091048"
+                  timestampString = "605816856.798896"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "218"
@@ -41,7 +41,7 @@
                   moduleName = "Repoush"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/LoginSignUp/SignUpVC.swift"
-                  timestampString = "605678831.0950201"
+                  timestampString = "605816856.8021359"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "220"
@@ -57,60 +57,12 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Repoush/Classes/Controllers/AddPost/AddPostVC.swift"
-            timestampString = "605678831.0565979"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "553"
-            endingLineNumber = "553"
-            landmarkName = "postProductAPI_Call()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Repoush.AddPostVC.(postProductAPI_Call in _B9E82CE2752591F1F7D0000C5F3EEAAF)() -&gt; ()"
-                  moduleName = "Repoush"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/AddPost/AddPostVC.swift"
-                  timestampString = "605678831.106663"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "553"
-                  endingLineNumber = "553"
-                  offsetFromSymbolStart = "12131">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Alamofire.SessionManager.MultipartFormDataEncodingResult) -&gt; () in Repoush.AddPostVC.(postProductAPI_Call in _B9E82CE2752591F1F7D0000C5F3EEAAF)() -&gt; ()"
-                  moduleName = "Repoush"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/AddPost/AddPostVC.swift"
-                  timestampString = "605678831.1141649"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "555"
-                  endingLineNumber = "555"
-                  offsetFromSymbolStart = "93">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "Repoush/Classes/Controllers/MyAuction/MyAuctionVC.swift"
-            timestampString = "605678831.056917"
+            timestampString = "605816856.51589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
+            startingLineNumber = "393"
+            endingLineNumber = "393"
             landmarkName = "submitFeedbackAPI_Call()"
             landmarkType = "7">
             <Locations>
@@ -122,11 +74,11 @@
                   moduleName = "Repoush"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/MyAuction/MyAuctionVC.swift"
-                  timestampString = "605678831.125769"
+                  timestampString = "605816856.810068"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "391"
-                  endingLineNumber = "391"
+                  startingLineNumber = "393"
+                  endingLineNumber = "393"
                   offsetFromSymbolStart = "5017">
                </Location>
                <Location
@@ -137,11 +89,11 @@
                   moduleName = "Repoush"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ravisendhav/Desktop/Repoush/Repoush/Classes/Controllers/MyAuction/MyAuctionVC.swift"
-                  timestampString = "605678831.130244"
+                  timestampString = "605816856.812928"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "393"
-                  endingLineNumber = "393"
+                  startingLineNumber = "395"
+                  endingLineNumber = "395"
                   offsetFromSymbolStart = "210">
                </Location>
             </Locations>
