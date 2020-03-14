@@ -37,10 +37,10 @@ class LoginVC: UIViewController {
     // MARK: - Private Methods
     func isRequiredFieldValid() -> Bool {
         if !Util.isValidString(txfMobileNumber.text!) {
-            Util.showAlertWithMessage("Please enter mobile number", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter valid mobile number".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfPassword.text!) {
-            Util.showAlertWithMessage("Please enter password", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter password".localiz(), title: Key_Alert); return false
         }
         return true
     }
@@ -66,7 +66,7 @@ class LoginVC: UIViewController {
                 kAPI_DeviceType      : "ios" as AnyObject,
                 kAPI_DeviceToken     : Util.getValidString((UserDefaults.standard.object(forKey: kAPI_DeviceToken) as? String)) as AnyObject,
                 kAPI_CertificateType : appDelegate.certificateType as AnyObject,
-                kAPI_Language        : "en" as AnyObject,
+                kAPI_Language        : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         

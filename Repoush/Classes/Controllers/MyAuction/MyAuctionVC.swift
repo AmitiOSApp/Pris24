@@ -43,6 +43,13 @@ class MyAuctionVC: UIViewController {
         
         txvReview.placeholder = "Add your feedback".localiz()
         
+        if UserDefaults.standard.string(forKey: "language_code") == "fa" {
+            imgviewTab.image = UIImage(named: "tab2")
+        }
+        else {
+            imgviewTab.image = UIImage(named: "tab")
+        }
+        
         ratingBar.ratingDidChange = { ratingValue in
             self.lblRate.text = "\(ratingValue)"
         }
@@ -89,7 +96,12 @@ class MyAuctionVC: UIViewController {
             getUserProductAPI_Call(type)
         }
         
-        imgviewTab.image = UIImage(named: "tab")
+        if UserDefaults.standard.string(forKey: "language_code") == "fa" {
+            imgviewTab.image = UIImage(named: "tab2")
+        }
+        else {
+            imgviewTab.image = UIImage(named: "tab")
+        }
         btnActiveAuction.setTitleColor(.white, for: .normal)
         btnHistory.setTitleColor(.black, for: .normal)
     }
@@ -99,8 +111,12 @@ class MyAuctionVC: UIViewController {
         isActiveAuction = sender.tag == 300 ? true : false
         
         if sender.tag == 300 {
-            imgviewTab.image = UIImage(named: "tab")
-
+            if UserDefaults.standard.string(forKey: "language_code") == "fa" {
+                imgviewTab.image = UIImage(named: "tab2")
+            }
+            else {
+                imgviewTab.image = UIImage(named: "tab")
+            }
             btnActiveAuction.setTitleColor(.white, for: .normal)
             btnHistory.setTitleColor(.black, for: .normal)
 
@@ -120,7 +136,12 @@ class MyAuctionVC: UIViewController {
             }
         }
         else {
-            imgviewTab.image = UIImage(named: "tab2")
+            if UserDefaults.standard.string(forKey: "language_code") == "fa" {
+                imgviewTab.image = UIImage(named: "tab")
+            }
+            else {
+                imgviewTab.image = UIImage(named: "tab2")
+            }
 
             btnActiveAuction.setTitleColor(.black, for: .normal)
             btnHistory.setTitleColor(.white, for: .normal)
@@ -202,7 +223,7 @@ class MyAuctionVC: UIViewController {
             [
                 kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
                 kAPI_Type       : type as AnyObject,
-                kAPI_Language   : "en" as AnyObject,
+                kAPI_Language   : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -239,7 +260,7 @@ class MyAuctionVC: UIViewController {
             [
                 kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
                 kAPI_Type       : type as AnyObject,
-                kAPI_Language   : "en" as AnyObject,
+                kAPI_Language   : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         

@@ -308,8 +308,8 @@
 /* Class = "UILabel"; text = "37"; ObjectID = "WfX-oF-Xu1"; */
 "WfX-oF-Xu1.text" = "37";
 
-/* Class = "UIButton"; normalTitle = "Submit"; ObjectID = "Yby-tw-uCm"; */
-"Yby-tw-uCm.normalTitle" = "Submit";
+/* Class = "UIButton"; normalTitle = "SUBMIT"; ObjectID = "Yby-tw-uCm"; */
+"Yby-tw-uCm.normalTitle" = "SUBMIT";
 
 /* Class = "UILabel"; text = "Rob STark"; ObjectID = "Yoe-Ir-I9J"; */
 "Yoe-Ir-I9J.text" = "Rob STark";
@@ -476,8 +476,8 @@
 /* Class = "UITextField"; placeholder = "First name"; ObjectID = "mZ3-D1-CGF"; */
 "mZ3-D1-CGF.placeholder" = "First name";
 
-/* Class = "UILabel"; text = "Email Address"; ObjectID = "ma1-MA-YVy"; */
-"ma1-MA-YVy.text" = "Email Address";
+/* Class = "UILabel"; text = "Email address"; ObjectID = "ma1-MA-YVy"; */
+"ma1-MA-YVy.text" = "Email address";
 
 /* Class = "UILabel"; text = "Gender"; ObjectID = "pWB-mf-Vej"; */
 "pWB-mf-Vej.text" = "Gender";
@@ -557,8 +557,8 @@
 /* Class = "UILabel"; text = "Kids Item"; ObjectID = "z7j-lF-Saq"; */
 "z7j-lF-Saq.text" = "Kids Item";
 
-/* Class = "UILabel"; text = "Mobile Number"; ObjectID = "zF4-5t-nw4"; */
-"zF4-5t-nw4.text" = "Mobile Number";
+/* Class = "UILabel"; text = "Mobile number"; ObjectID = "zF4-5t-nw4"; */
+"zF4-5t-nw4.text" = "Mobile number";
 
 /* Class = "UIButton"; normalTitle = "PLACE BID"; ObjectID = "zUL-py-8zu"; */
 "zUL-py-8zu.normalTitle" = "PLACE BID";

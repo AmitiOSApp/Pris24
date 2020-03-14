@@ -35,16 +35,16 @@ class ForgotPasswordVC: UIViewController {
         // Resign all active responder
         resignAllActiveResponder()
         
-        if sender.titleLabel?.text == "SEND OTP" {
+        if sender.titleLabel?.text == "SEND OTP".localiz() {
             if !Util.isValidString(txfMobileNumber.text!) {
-                Util.showAlertWithMessage("Please enter mobile number", title: Key_Alert); return
+                Util.showAlertWithMessage("Please enter valid mobile number".localiz(), title: Key_Alert); return
             }
             // Perform Send OTP API
             sendOTPAPI_Call()
         }
         else {
             if !Util.isValidString(txfOTP.text!) {
-                Util.showAlertWithMessage("Please enter OTP", title: Key_Alert); return
+                Util.showAlertWithMessage("Please enter valid OTP".localiz(), title: Key_Alert); return
             }
             // Perform Verify OTP API
             verifyOTPAPI_Call()
@@ -85,12 +85,12 @@ class ForgotPasswordVC: UIViewController {
             }
             DLog(message: "\(result)")
             
-            Util.showAlertWithMessage("OTP sent successfully on your registered mobile number", title: "")
+            Util.showAlertWithMessage(jsonObj[Key_Message].stringValue, title: "")
             
             DispatchQueue.main.async { [weak self] in
                 self?.mobileNumber = (self?.txfMobileNumber.text)!
                 self?.viewOTP.isHidden = false
-                self?.btnNext.setTitle("VERIFY OTP", for: .normal)
+                self?.btnNext.setTitle("SUBMIT".localiz(), for: .normal)
             }
         }
     }

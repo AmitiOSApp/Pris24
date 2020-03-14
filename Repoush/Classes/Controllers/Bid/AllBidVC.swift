@@ -83,7 +83,7 @@ class AllBidVC: UIViewController {
         let postParams: [String: AnyObject] =
             [
                 kAPI_ProductId  : dictProduct["id"] as AnyObject,
-                kAPI_Language   : "en" as AnyObject,
+                kAPI_Language   : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         

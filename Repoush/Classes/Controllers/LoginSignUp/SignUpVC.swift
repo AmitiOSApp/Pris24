@@ -44,17 +44,17 @@ class SignUpVC: UIViewController {
 
         if sender.tag == ActionType.sendOtp.rawValue {
             if !Util.isValidString(txfMobileNumber.text!) {
-                Util.showAlertWithMessage("Please enter mobile number", title: Key_Alert); return
+                Util.showAlertWithMessage("Please enter mobile number".localiz(), title: Key_Alert); return
             }
             else if txfMobileNumber.text!.count < 10 {
-                Util.showAlertWithMessage("Please enter valid mobile number", title: Key_Alert); return
+                Util.showAlertWithMessage("Please enter valid mobile number".localiz(), title: Key_Alert); return
             }
             // Perform Send OTP API
             sendOTPAPI_Call()
         }
         else if sender.tag == ActionType.verifyOtp.rawValue {
             if !Util.isValidString(txfVerifyOtp.text!) {
-                Util.showAlertWithMessage("Please enter OTP", title: Key_Alert); return
+                Util.showAlertWithMessage("Please enter OTP".localiz(), title: Key_Alert); return
             }
             // Perform verify OTP API
             verifyOTPAPI_Call()
@@ -79,31 +79,31 @@ class SignUpVC: UIViewController {
     // MARK: - Private Methods
     private func isRequiredFieldValid() -> Bool {
         if !Util.isValidString(txfFirstName.text!) {
-            Util.showAlertWithMessage("Please enter first name", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter first name".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfLastName.text!) {
-            Util.showAlertWithMessage("Please enter last name", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter last name".localiz(), title: Key_Alert); return false
         }
-        else if lblAddress.text!.isEmpty || lblAddress.text == "Address" {
-            Util.showAlertWithMessage("Please select address", title: Key_Alert); return false
+        else if lblAddress.text!.isEmpty || lblAddress.text == "Address".localiz() {
+            Util.showAlertWithMessage("Please select address".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfPassword.text!) {
-            Util.showAlertWithMessage("Please enter password", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter password".localiz(), title: Key_Alert); return false
         }
         else if (txfPassword.text?.count)! < 6 {
-            Util.showAlertWithMessage("Password length should be greater than or equal to 6 digits", title: Key_Alert); return false
+            Util.showAlertWithMessage("Password length should be greater than or equal to 6 digits".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfConfirmPassword.text!) {
-            Util.showAlertWithMessage("Please enter confirm new password", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter confirm new password".localiz(), title: Key_Alert); return false
         }
         else if (txfConfirmPassword.text?.count)! < 6 {
-            Util.showAlertWithMessage("Confirm password length should be greater than or equal to 6 digits", title: Key_Alert); return false
+            Util.showAlertWithMessage("Confirm password length should be greater than or equal to 6 digits".localiz(), title: Key_Alert); return false
         }
         else if !Util.isPasswordSame(password: txfPassword.text!, confirmPassword: txfConfirmPassword.text!) {
-            Util.showAlertWithMessage("Password and confirm password should be same", title: Key_Alert); return false
+            Util.showAlertWithMessage("Password and confirm password should be same".localiz(), title: Key_Alert); return false
         }
         else if !btnTermsCondition.isSelected {
-            Util.showAlertWithMessage("Please accept terms of use", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please accept terms of use".localiz(), title: Key_Alert); return false
         }
         return true
     }
@@ -137,7 +137,7 @@ class SignUpVC: UIViewController {
         let postParams: [String: AnyObject] =
             [
                 kAPI_MobileNumber : txfMobileNumber.text as AnyObject,
-                kAPI_Language     : "en" as AnyObject,
+                kAPI_Language     : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -169,7 +169,7 @@ class SignUpVC: UIViewController {
         let postParams: [String: AnyObject] =
             [
                 kAPI_MobileNumber : txfMobileNumber.text as AnyObject,
-                kAPI_Language     : "en" as AnyObject,
+                kAPI_Language     : UserLanguage.shared.languageCode as AnyObject,
                 kAPI_OTP          : txfVerifyOtp.text as AnyObject,
         ]
         DLog(message: "\(postParams)")

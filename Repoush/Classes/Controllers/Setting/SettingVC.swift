@@ -36,6 +36,8 @@ class SettingVC: UIViewController, MFMailComposeViewControllerDelegate {
         LanguageManger.shared.defaultLanguage = selectedLanguage
         LanguageManger.shared.setLanguage(language: selectedLanguage)
         
+        UserLanguage.shared.languageCode = languageCode == "en" ? "en" : "pe"
+        
         UserDefaults.standard.set(languageCode, forKey: "language_code")
 
         let vc = Util.loadViewController(fromStoryboard: "TabBarVC", storyboardName: "Home") as? TabBarVC
@@ -188,7 +190,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
             let uiAlert = UIAlertController(title: "Report a problem to admin".localiz(), message: "Please send email to the admin from below button to report your problem.".localiz(), preferredStyle:UIAlertController.Style.alert)
             present(uiAlert, animated: true, completion: nil)
             
-            uiAlert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { action in }))
+            uiAlert.addAction(UIAlertAction(title: "Cancel".localiz(), style: .default, handler: { action in }))
             
             uiAlert.addAction(UIAlertAction(title: "Send email".localiz(), style: .default, handler: { [weak self] action in
                 
@@ -214,7 +216,7 @@ extension SettingVC: UITableViewDataSource, UITableViewDelegate {
             
             uiAlert.addAction(UIAlertAction(title: "Stay In", style: .default, handler: { action in }))
             
-            uiAlert.addAction(UIAlertAction(title: "YES", style: .default, handler: { [weak self] action in
+            uiAlert.addAction(UIAlertAction(title: "YES".localiz(), style: .default, handler: { [weak self] action in
                 
                 LoggedInUser.shared.clearUserData()
                 

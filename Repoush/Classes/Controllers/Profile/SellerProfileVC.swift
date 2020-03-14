@@ -65,14 +65,22 @@ class SellerProfileVC: UIViewController {
         lblUsername.text = Util.createUsername(dictProduct)
         lblReviewUsername.text = Util.createUsername(dictProduct)
 
-        lblReviewCount.text = "\(dictProduct["review"] ?? "0.0") REVIEWS"
-        lblRatingValue.text = "\(dictProduct["rating"] ?? "0")"
-        lblRatingCount.text = "\(dictProduct["rating"] ?? "0")"
+        lblReviewCount.text = "\(dictProduct["review"] ?? "0.0") \("REVIEWS".localiz())"
         
-        if let temp = dictProduct["rating"] as? Int {
-            ratingBar.value = CGFloat(temp)
+        var rating = 0.0
+        if let temp = Double("\(dictProduct["rating"] ?? 0.0)") {
+            rating = temp
         }
+        rating = Double(rating).rounded(1)
+        
+        lblRatingValue.text = "\(rating)"
+        lblRatingCount.text = "\(rating)"
 
+        if let temp = dictProduct["rating"] as? String {
+            if Util.isValidString(temp) {
+                ratingBar.value = CGFloat(Double(temp)!)
+            }
+        }
         let mobileNumber = dictProduct["user_phone"] as? String
 
         if dictProduct["is_alloted"] as? Bool == true {
@@ -116,15 +124,6 @@ class SellerProfileVC: UIViewController {
             imgviewUser.image = UIImage(named: "dummy_user")
             imgviewUserReview.image = UIImage(named: "dummy_user")
         }
-        
-        ratingBar.value = 0.0
-        if let temp = dictProduct["rating"] as? String {
-            if Util.isValidString(temp) {
-                ratingBar.value = CGFloat(Double(temp)!)
-            }
-        }
-        
-        lblRatingCount.text = dictProduct["rating"] as? String
         
         if let temp = dictProduct["rating_list"] as? NSArray {
             arrRatingList = NSMutableArray(array: temp)

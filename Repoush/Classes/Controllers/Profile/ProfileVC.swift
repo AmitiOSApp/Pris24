@@ -86,7 +86,7 @@ class ProfileVC: UIViewController {
         let postParams: [String: AnyObject] =
             [
                 kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
-                kAPI_Language   : "en" as AnyObject,
+                kAPI_Language   : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         

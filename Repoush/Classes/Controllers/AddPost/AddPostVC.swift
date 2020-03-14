@@ -70,7 +70,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         tabBarController?.delegate = self
 
         if isEdit {
-            lblPostProduct.text = "Edit Product"
+            lblPostProduct.text = "Edit Product".localiz()
             setProductDetail()
         }
         else {
@@ -98,7 +98,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             btnWomen.isSelected = true
             btnKids.isSelected = false
             
-            btnSize.setTitle("Choose", for: .normal)
+            btnSize.setTitle("Choose".localiz(), for: .normal)
             viewGenderHgtConst.constant = 0.0
 
             categoryId = 1
@@ -111,7 +111,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             btnWomen.isSelected = false
             btnKids.isSelected = true
             
-            btnSize.setTitle("Choose", for: .normal)
+            btnSize.setTitle("Choose".localiz(), for: .normal)
             categoryId = 2
             selectedIndex = 0
 
@@ -168,10 +168,10 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBAction func btnSelectImage_Action(_ sender: UIButton) {
         
         if (arrProductImage.count + arrOldImage.count) >= 3 {
-            Util.showAlertWithMessage("You can select maximum 3 image", title: ""); return
+            Util.showAlertWithMessage("You can upload maximum 3 photos".localiz(), title: ""); return
         }
         
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option".localiz(), preferredStyle: .actionSheet)
         
         let deleteAction = UIAlertAction(title: "Take photo".localiz(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -206,7 +206,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     @IBAction func btnPicker_Action(_ sender: UIButton) {
-        if sender.titleLabel?.text == "Done" {
+        if sender.titleLabel?.text == "Done".localiz() {
             let selectedIndex = pickerViewGender.selectedRow(inComponent: 0)
             let strGender = selectedIndex == 0 ? "Male".localiz() : "Female".localiz()
             btnGender.setTitle(strGender, for: .normal)
@@ -382,16 +382,16 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         txfBrand.text = ""
         txvDescription.text = ""
 
-        btnSize.setTitle("Choose", for: .normal)
+        btnSize.setTitle("Choose".localiz(), for: .normal)
         viewSizeHgtConst.constant = 0.0
         
-        btnSize.setTitle("Choose", for: .normal)
+        btnSize.setTitle("Choose".localiz(), for: .normal)
         viewGenderHgtConst.constant = 0.0
         
-        btnAge.setTitle("Choose", for: .normal)
+        btnAge.setTitle("Choose".localiz(), for: .normal)
         viewAgeHgtConst.constant = 0.0
 
-        btnDiscountPercent.setTitle("Calculated discount %", for: .normal)
+        btnDiscountPercent.setTitle("Calculated discount %".localiz(), for: .normal)
         btnDiscountPercent.setTitleColor(.lightGray, for: .normal)
 
         btnRegisteredAddress.isSelected = true
@@ -405,21 +405,21 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         let offerPrice = Int(txfOfferPrice.text ?? "") ?? 0
 
         if (arrProductImage.count + arrOldImage.count) == 0 {
-            Util.showAlertWithMessage("Please select product image", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please select product image".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfSelling.text!) {
             Util.showAlertWithMessage("Please enter what are you selling", title: Key_Alert); return false
         }
-        else if viewSizeHgtConst.constant != 0 && btnSize.titleLabel?.text == "Choose" {
+        else if viewSizeHgtConst.constant != 0 && btnSize.titleLabel?.text == "Choose".localiz() {
             Util.showAlertWithMessage("Please select size", title: Key_Alert); return false
         }
-        else if viewAgeHgtConst.constant != 0 && btnAge.titleLabel?.text == "Choose" {
+        else if viewAgeHgtConst.constant != 0 && btnAge.titleLabel?.text == "Choose".localiz() {
             Util.showAlertWithMessage("Please select age", title: Key_Alert); return false
         }
         else if !Util.isValidString(txfCondition.text!) {
             Util.showAlertWithMessage("Please enter condition of product", title: Key_Alert); return false
         }
-        else if viewGenderHgtConst.constant != 0 && btnGender.titleLabel?.text == "Choose" {
+        else if viewGenderHgtConst.constant != 0 && btnGender.titleLabel?.text == "Choose".localiz() {
             Util.showAlertWithMessage("Please select gender", title: Key_Alert); return false
         }
         else if !Util.isValidString(txfOriginalPrice.text!) {
@@ -466,7 +466,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         let postParams: [String: AnyObject] =
             [
                 kAPI_CategoryId : categoryId as AnyObject,
-                kAPI_Language   : "en" as AnyObject,
+                kAPI_Language   : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -502,17 +502,17 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         var size = ""
-        if btnSize.titleLabel?.text != "Choose" {
+        if btnSize.titleLabel?.text != "Choose".localiz() {
             size = btnSize.titleLabel!.text!
         }
         
         var gender = ""
-        if btnGender.titleLabel?.text != "Choose" {
+        if btnGender.titleLabel?.text != "Choose".localiz() {
             gender = btnGender.titleLabel!.text!
         }
         
         var age = ""
-        if btnAge.titleLabel?.text != "Choose" {
+        if btnAge.titleLabel?.text != "Choose".localiz() {
             age = btnAge.titleLabel!.text!
         }
         
@@ -597,17 +597,17 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         var size = ""
-        if btnSize.titleLabel?.text != "Choose" {
+        if btnSize.titleLabel?.text != "Choose".localiz() {
             size = btnSize.titleLabel!.text!
         }
         
         var gender = ""
-        if btnGender.titleLabel?.text != "Choose" {
+        if btnGender.titleLabel?.text != "Choose".localiz() {
             gender = btnGender.titleLabel!.text!
         }
         
         var age = ""
-        if btnAge.titleLabel?.text != "Choose" {
+        if btnAge.titleLabel?.text != "Choose".localiz() {
             age = btnAge.titleLabel!.text!
         }
         

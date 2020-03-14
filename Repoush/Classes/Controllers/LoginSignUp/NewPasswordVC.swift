@@ -43,16 +43,16 @@ class NewPasswordVC: UIViewController {
     // MARK: - Private Methods
     func isRequiredFieldValid() -> Bool {
         if !Util.isValidString(txfNewPassword.text!) {
-            Util.showAlertWithMessage("Please enter new password", title: ""); return false
+            Util.showAlertWithMessage("Please enter new password".localiz(), title: ""); return false
         }
         else if !Util.isValidString(txfConfirmNewPassword.text!) {
-            Util.showAlertWithMessage("Please enter confirm new password", title: ""); return false
+            Util.showAlertWithMessage("Please enter confirm password".localiz(), title: ""); return false
         }
         else if (txfNewPassword.text?.count)! < 6 || (txfConfirmNewPassword.text?.count)! < 6 {
-            Util.showAlertWithMessage("New password and confirm new password length should be greater than or equal to 6 digits", title: ""); return false
+            Util.showAlertWithMessage("New password and confirm password length should be greater than or equal to 6 digits".localiz(), title: ""); return false
         }
         else if !Util.isPasswordSame(password: txfNewPassword.text!, confirmPassword: txfConfirmNewPassword.text!) {
-            Util.showAlertWithMessage("New password and confirm new password should be same", title: ""); return false
+            Util.showAlertWithMessage("New password and confirm password should be same".localiz(), title: ""); return false
         }
         return true
     }

@@ -27,7 +27,7 @@ class TermsPrivacyVC: UIViewController {
         view.addSubview(webView)
         var strUrl = "http://24x7webtesting.com/repoush/home/privacy_policy_en"
         if !isPrivacy {
-            lblTitle.text = "Terms of use"
+            lblTitle.text = "Terms of use".localiz()
             strUrl = "http://24x7webtesting.com/repoush/home/terms_conditions_en"
         }
         let request = URLRequest(url: URL(string: strUrl)!)

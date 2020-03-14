@@ -45,7 +45,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     }
     
     @IBAction func btnTakeImage_Action(_ sender: UIButton) {
-        let optionMenu = UIAlertController(title: nil, message: "Choose Option", preferredStyle: .actionSheet)
+        let optionMenu = UIAlertController(title: nil, message: "Choose Option".localiz(), preferredStyle: .actionSheet)
         
         let deleteAction = UIAlertAction(title: "Take photo".localiz(), style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
@@ -92,10 +92,10 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
     
     @IBAction func btnPicker_Action(_ sender: UIButton) {
         
-        if sender.titleLabel?.text == "Done" {
+        if sender.titleLabel?.text == "Done".localiz() {
             if pickerAction == 100 {
                 let selectedIndex = pickerViewGender.selectedRow(inComponent: 0)
-                let strGender = selectedIndex == 0 ? "Male" : "Female"
+                let strGender = selectedIndex == 0 ? "Male".localiz() : "Female".localiz()
                 lblGender.text = strGender
                 lblGender.textColor = .black
             }
@@ -240,7 +240,7 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 kAPI_DeviceType  : "ios" as AnyObject,
                 kAPI_DeviceToken  : Util.getValidString((UserDefaults.standard.object(forKey: kAPI_DeviceToken) as? String)) as AnyObject,
                 kAPI_CertificateType : appDelegate.certificateType as AnyObject,
-                kAPI_Language        : "en" as AnyObject,
+                kAPI_Language        : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         

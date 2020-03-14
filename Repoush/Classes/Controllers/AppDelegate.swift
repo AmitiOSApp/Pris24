@@ -43,10 +43,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let languageCode = UserDefaults.standard.string(forKey: "language_code") {
             LanguageManger.shared.defaultLanguage = Languages(rawValue: languageCode)!
             LanguageManger.shared.currentLanguage = Languages(rawValue: languageCode)!
+            
+            UserLanguage.shared.languageCode = languageCode == "en" ? "en" : "pe"
         }
         else {
             LanguageManger.shared.defaultLanguage = Languages(rawValue: Locale.current.languageCode!)!
             LanguageManger.shared.currentLanguage = Languages(rawValue: Locale.current.languageCode!)!
+            
+            UserLanguage.shared.languageCode = Locale.current.languageCode! == "en" ? "en" : "pe"
         }
         
         // Default language code

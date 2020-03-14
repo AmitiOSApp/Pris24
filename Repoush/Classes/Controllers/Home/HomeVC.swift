@@ -127,16 +127,16 @@ class HomeVC: UIViewController {
             txfBidAmount.resignFirstResponder()
             
             if !Util.isValidString(txfBidAmount.text!) {
-                Util.showAlertWithMessage("Please enter bid amount", title: ""); return
+                Util.showAlertWithMessage("Please enter bid amount".localiz(), title: ""); return
             }
             let bidAmount = Int(txfBidAmount.text ?? "") ?? 0
 
             if bidAmount == 0 || bidAmount <= offerPrice {
-                Util.showAlertWithMessage("Bid amount should be greater than offer price", title: ""); return
+                Util.showAlertWithMessage("Bid amount should be greater than OR equal to offer price".localiz(), title: ""); return
             }
 
             if bidAmount < lastBidAmount {
-                Util.showAlertWithMessage("Bid amount can not be less than to last bid amount", title: ""); return
+                Util.showAlertWithMessage("Bid amount should be greater than last bid".localiz(), title: ""); return
             }
             
             // Perform Place bid API
@@ -194,7 +194,7 @@ class HomeVC: UIViewController {
                 kAPI_CategoryId : categoryId as AnyObject,
                 kAPI_Latitude   : latitude as AnyObject,
                 kAPI_Longitude  : longitude as AnyObject,
-                kAPI_Language   : "en" as AnyObject,
+                kAPI_Language   : UserLanguage.shared.languageCode as AnyObject,
                 "search"        : search as AnyObject,
                 "distance"      : appDelegate.distance as AnyObject,
         ]
@@ -234,7 +234,7 @@ class HomeVC: UIViewController {
                 kAPI_UserId     : LoggedInUser.shared.id as AnyObject,
                 kAPI_ProductId  : dictProduct["id"] as AnyObject,
                 kAPI_BidAmount  : txfBidAmount.text as AnyObject,
-                kAPI_Language   : "en" as AnyObject,
+                kAPI_Language   : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
@@ -264,7 +264,7 @@ class HomeVC: UIViewController {
         let postParams: [String: AnyObject] =
             [
                 kAPI_ProductId  : dictProduct["id"] as AnyObject,
-                kAPI_Language   : "en" as AnyObject,
+                kAPI_Language   : UserLanguage.shared.languageCode as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
