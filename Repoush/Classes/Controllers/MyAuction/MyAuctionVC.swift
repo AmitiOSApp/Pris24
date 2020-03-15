@@ -170,7 +170,7 @@ class MyAuctionVC: UIViewController {
     
     @IBAction func btnSubmitReview_Action(_ sender: UIButton) {
         if !Util.isValidString(txvReview.text) {
-            Util.showAlertWithMessage("Please enter your feedback", title: ""); return
+            Util.showAlertWithMessage("Please enter your feedback".localiz(), title: ""); return
         }
         // Perform Submit Feedback API
         submitFeedbackAPI_Call()

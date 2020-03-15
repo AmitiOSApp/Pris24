@@ -183,6 +183,7 @@
 "Please enter valid password" = "رمز عبور فعلی معتبر نیست";
 "Please enter the code receive on your registered mobile number" = "لطفا کد فعال سازی ارسال شده به شماره موبایل خود را وارد کن";
 "Please enter your mobile number and we will send you a OTP." = "لطفا شماره موبایلت رو وارد کن تا ما برات کد فعال سازی رو بفرستیم";
+"Please select product image" = "لطفاً تصویر محصول را انتخاب کنید";
 "Please select gender" = "لطفا جنسیت را انتخاب کن";
 "Please enter bid amount" = "لطفا مبلغ پیشنهادی خود را وارد کن";
 "Terms & Conditions" = "شرایط و قوانین";
@@ -196,8 +197,10 @@
 "Please enter offer price" = "لطفا قیمت پیشنهادی خودت رو وارد کن";
 "You can upload maximum 3 photos" = "میتونی حداکثر سه تا عکس بذاری";
 "No record found" = "هیچ موردی پیدا نشد";
+"Please select address" = "لطفا آدرس را انتخاب کنید";
 "Please enter review" = "نظر خودت رو وارد کن";
-"Original price should be greater than offer price" = "Original price should be greater than offer price";
+"Please enter your feedback" = "لطفا نظرات خود را وارد کنید";
+"Original price should be greater than offer price" = "قیمت اصلی باید بیشتر از قیمت پیشنهادی باشد";
 "Bid amount should be greater than zero" = "Bid amount should be greater than zero";
 "Bid amount should be greater than last bid" = "Bid amount should be greater than last bid";
 "You can not delete auction first image" = "You can not delete auction first image";

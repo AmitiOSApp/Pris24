@@ -56,6 +56,7 @@
 		6011D58F241BC82900477554 /* LocalizedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6011D58E241BC82900477554 /* LocalizedTextField.swift */; };
 		6011D599241D249F00477554 /* LocalizedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6011D598241D249F00477554 /* LocalizedButton.swift */; };
 		6011D59B241D2B4200477554 /* UserLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6011D59A241D2B4200477554 /* UserLanguage.swift */; };
+		6011D59D241E0CA300477554 /* LocalizedTF.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6011D59C241E0CA300477554 /* LocalizedTF.swift */; };
 		602ACAAF241ABAE0002D0886 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602ACAAD241ABAE0002D0886 /* Home.storyboard */; };
 		602ACAB2241ABAEB002D0886 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 602ACAB0241ABAEA002D0886 /* Main.storyboard */; };
 		602FEEA924063313000CBDE1 /* ProductDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 602FEEA824063313000CBDE1 /* ProductDetailVC.swift */; };
@@ -135,6 +136,7 @@
 		6011D597241D12DA00477554 /* fa-IR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fa-IR"; path = "fa-IR.lproj/Home.strings"; sourceTree = "<group>"; };
 		6011D598241D249F00477554 /* LocalizedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedButton.swift; sourceTree = "<group>"; };
 		6011D59A241D2B4200477554 /* UserLanguage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLanguage.swift; sourceTree = "<group>"; };
+		6011D59C241E0CA300477554 /* LocalizedTF.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizedTF.swift; sourceTree = "<group>"; };
 		602ACAAE241ABAE0002D0886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		602ACAB1241ABAEA002D0886 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		602ACAB4241ABB7C002D0886 /* fa-IR */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = "fa-IR"; path = "fa-IR.lproj/Main.strings"; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 				6003170223D8C18600674E8C /* CustomButton.swift */,
 				6011D598241D249F00477554 /* LocalizedButton.swift */,
 				6011D58E241BC82900477554 /* LocalizedTextField.swift */,
+				6011D59C241E0CA300477554 /* LocalizedTF.swift */,
 				6003170323D8C18600674E8C /* CustomTextField.swift */,
 				6003170423D8C18600674E8C /* CustomImageView.swift */,
 				6003170523D8C18600674E8C /* CustomTextview.swift */,
@@ -712,6 +715,7 @@
 				6003174C23D9FD2300674E8C /* SignUpVC.swift in Sources */,
 				60C2E88823EDEC61003D0D28 /* ProfileVC.swift in Sources */,
 				6003172D23D8C18700674E8C /* CustomTextview.swift in Sources */,
+				6011D59D241E0CA300477554 /* LocalizedTF.swift in Sources */,
 				6003175623DB622700674E8C /* HomeVC.swift in Sources */,
 				6003172A23D8C18600674E8C /* CustomButton.swift in Sources */,
 				6003173223D8C18700674E8C /* TextFieldDynamicText.swift in Sources */,

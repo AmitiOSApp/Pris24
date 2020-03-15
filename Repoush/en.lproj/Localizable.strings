@@ -198,7 +198,9 @@
 "Please enter valid password" = "Please enter valid password";
 "Please enter the code receive on your registered mobile number" = "Please enter the code receive on your registered mobile number";
 "Please enter your mobile number and we will send you a OTP." = "Please enter your mobile number and we will send you a OTP.";
+"Please select product image" = "Please select product image";
 "Please select gender" = "Please select gender";
+"Please select address" = "Please select address";
 "Please select category" = "Please select category";
 "Please enter bid amount" = "Please enter bid amount";
 "Terms & Conditions" = "Terms & Conditions";
@@ -214,6 +216,7 @@
 "You can upload maximum 3 photos" = "You can upload maximum 3 photos";
 "No record found" = "No record found";
 "Please select rating" = "Please select rating";
+"Please enter your feedback" = "Please enter your feedback";
 "Please enter review" = "Please enter review";
 "Original price should be greater than offer price" = "Original price should be greater than offer price";
 "Bid amount should be greater than zero" = "Bid amount should be greater than zero";

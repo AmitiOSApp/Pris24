@@ -1,15 +1,15 @@
 //
-//  LocalizedTextField.swift
+//  LocalizedTF.swift
 //  Repoush
 //
-//  Created by Ravi Sendhav on 3/13/20.
+//  Created by Ravi Sendhav on 3/15/20.
 //  Copyright © 2020 Ravi Sendhav. All rights reserved.
 //
 
 import UIKit
 
-class LocalizedTextField: UITextField {
-    
+class LocalizedTF: UITextField {
+
     // MARK: - Life Cycle Methods
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -17,15 +17,11 @@ class LocalizedTextField: UITextField {
         self.placeholder = self.placeholder?.localiz()
         
         if UserDefaults.standard.string(forKey: "language_code") == "fa" {
-//            if self.textAlignment == .left {
-//                self.textAlignment = .right
-//            }
+            self.textAlignment = .left
         }
         else {
-//            if self.textAlignment == .right {
-//                self.textAlignment = .left
-//            }
+            self.textAlignment = .right
         }
     }
-    
+
 }

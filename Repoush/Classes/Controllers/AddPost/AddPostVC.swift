@@ -408,31 +408,31 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             Util.showAlertWithMessage("Please select product image".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfSelling.text!) {
-            Util.showAlertWithMessage("Please enter what are you selling", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter what are you selling".localiz(), title: Key_Alert); return false
         }
         else if viewSizeHgtConst.constant != 0 && btnSize.titleLabel?.text == "Choose".localiz() {
-            Util.showAlertWithMessage("Please select size", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please select size".localiz(), title: Key_Alert); return false
         }
         else if viewAgeHgtConst.constant != 0 && btnAge.titleLabel?.text == "Choose".localiz() {
-            Util.showAlertWithMessage("Please select age", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please select age".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfCondition.text!) {
-            Util.showAlertWithMessage("Please enter condition of product", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter condition".localiz(), title: Key_Alert); return false
         }
         else if viewGenderHgtConst.constant != 0 && btnGender.titleLabel?.text == "Choose".localiz() {
-            Util.showAlertWithMessage("Please select gender", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please select gender".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfOriginalPrice.text!) {
-            Util.showAlertWithMessage("Please enter original price", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter original price".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfOfferPrice.text!) {
-            Util.showAlertWithMessage("Please enter offer price", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter offer price".localiz(), title: Key_Alert); return false
         }
         else if offerPrice >= originalPrice {
-            Util.showAlertWithMessage("Offer price should not be greater than or equal to original price", title: ""); return false
+            Util.showAlertWithMessage("Original price should be greater than offer price".localiz(), title: ""); return false
         }
         else if btnNewAddress.isSelected && !Util.isValidString(lblNewAddress.text!) {
-            Util.showAlertWithMessage("Please select address", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please select address".localiz(), title: Key_Alert); return false
         }
         return true
     }
@@ -570,10 +570,10 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     DLog(message: "\(result)")
                     
                     DispatchQueue.main.async { [weak self] in
-                        let uiAlert = UIAlertController(title: "Repoush", message: "Product added successfully", preferredStyle:UIAlertController.Style.alert)
+                        let uiAlert = UIAlertController(title: "Repoush", message: jsonObj[Key_Message].stringValue, preferredStyle:UIAlertController.Style.alert)
                         self?.present(uiAlert, animated: true, completion: nil)
                         
-                        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                        uiAlert.addAction(UIAlertAction(title: "Ok".localiz(), style: .default, handler: { action in
                             DispatchQueue.main.async { [weak self] in
                                 self?.clearFormData()
                                 self?.tabBarController?.selectedIndex = 0
@@ -585,7 +585,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 
                 let alertController = UIAlertController(title: kAPI_Alert, message: encodingError as? String, preferredStyle: UIAlertController.Style.alert
                 )
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+                alertController.addAction(UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default, handler: nil)
                 )
                 self.present(alertController, animated: true, completion: nil)
             }
@@ -666,10 +666,10 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     DLog(message: "\(result)")
                     
                     DispatchQueue.main.async { [weak self] in
-                        let uiAlert = UIAlertController(title: "Repoush", message: "Product added successfully", preferredStyle: UIAlertController.Style.alert)
+                        let uiAlert = UIAlertController(title: "Repoush", message: jsonObj[Key_Message].stringValue, preferredStyle: UIAlertController.Style.alert)
                         self?.present(uiAlert, animated: true, completion: nil)
                         
-                        uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                        uiAlert.addAction(UIAlertAction(title: "Ok".localiz(), style: .default, handler: { action in
                             DispatchQueue.main.async { [weak self] in
                                 
                                 if self!.isEdit {
@@ -687,7 +687,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 
                 let alertController = UIAlertController(title: kAPI_Alert, message: encodingError as? String, preferredStyle: UIAlertController.Style.alert
                 )
-                alertController.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil)
+                alertController.addAction(UIAlertAction(title: "OK".localiz(), style: UIAlertAction.Style.default, handler: nil)
                 )
                 self.present(alertController, animated: true, completion: nil)
             }

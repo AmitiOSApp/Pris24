@@ -168,29 +168,29 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
 
     private func isRequiredFieldValid() -> Bool {
         if imgviewUser.image == nil || imgviewUser.image == UIImage(named: "dummy_user") {
-            Util.showAlertWithMessage("Please select profile image", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please select profile image".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfFirstName.text!) {
-            Util.showAlertWithMessage("Please enter first name", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter first name".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfLastName.text!) {
-            Util.showAlertWithMessage("Please enter last name", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter last name".localiz(), title: Key_Alert); return false
         }
         else if lblGender.text == "Gender".localiz() {
-            Util.showAlertWithMessage("Please select gender", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please select gender".localiz(), title: Key_Alert); return false
         }
         else if lblAge.text == "Date of birth".localiz() {
-            Util.showAlertWithMessage("Please select date of birth", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please select date of birth".localiz(), title: Key_Alert); return false
         }
         else if !Util.isValidString(txfMobileNumber.text!) {
-            Util.showAlertWithMessage("Please enter mobile number", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please enter mobile number".localiz(), title: Key_Alert); return false
         }
         else if Util.isValidString(txfEmailAddress.text!) {
             if !Util.isValidEmail(txfEmailAddress.text!) {
-                Util.showAlertWithMessage("Please enter valid email address", title: Key_Alert); return false
+                Util.showAlertWithMessage("Please enter valid email address".localiz(), title: Key_Alert); return false
             }        }
         else if !Util.isValidString(lblAddress.text!) {
-            Util.showAlertWithMessage("Please select address", title: Key_Alert); return false
+            Util.showAlertWithMessage("Please select address".localiz(), title: Key_Alert); return false
         }
         return true
     }
