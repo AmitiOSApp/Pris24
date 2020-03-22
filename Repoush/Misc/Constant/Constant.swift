@@ -74,9 +74,11 @@ let colorBlack          = UIColor.black
 let colorLightGray      = UIColor.lightGray
 
 //************************** Constants for Font **************************//
-let AppFontRegular   = "SegoeCondensed"
-let AppFontLight     = "SegoeCondensed"
-let AppFontBold      = "SegoeCondensed-Bold"
+let AppFontRegular   = "Montserrat-Regular"
+let AppFontMedium    = "Montserrat-Medium"
+let AppFontBold      = "Montserrat-Bold"
+let AppFontLight     = "Montserrat-Light"
+let AppFontSemiBold  = "Montserrat-SemiBold"
 
 //************************** Constants for User default **************************//
 let Key_UD_IsUserLoggedIn           = "isUserLoggedIn"

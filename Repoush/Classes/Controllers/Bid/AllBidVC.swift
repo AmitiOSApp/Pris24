@@ -35,6 +35,7 @@ class AllBidVC: UIViewController {
         navigationController?.popViewController(animated: true)
     }
     
+    // MARK: - Private Methods
     private func setProductDetail() {
         
         lblProductName.text = dictProduct["selling"] as? String
@@ -101,7 +102,7 @@ class AllBidVC: UIViewController {
             
             if jsonObj["responseData"].arrayObject != nil {
                 let arrTemp = jsonObj["responseData"].arrayObject! as NSArray
-                self.arrAllBid = NSMutableArray(array: arrTemp.reversed())
+                self.arrAllBid = NSMutableArray(array: arrTemp)
             }
             
             DispatchQueue.main.async {

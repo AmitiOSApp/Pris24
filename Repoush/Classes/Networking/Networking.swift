@@ -40,6 +40,13 @@ struct Networking {
         case verifyForgotOTP([String: Any])
         case setNewPassword([String: Any])
         case repostProduct([String: Any])
+        case productComment([String: Any])
+        case productCommentReply([String: Any])
+        case productCommentList([String: Any])
+        case productCommentUpdate([String: Any])
+        case deleteProductComment([String: Any])
+        case productCommentReplyUpdate([String: Any])
+        case deleteProductReplyComment([String: Any])
 
         // MARK: - Methods
         var method: Alamofire.HTTPMethod {
@@ -109,6 +116,20 @@ struct Networking {
             case .setNewPassword:
                 return .post
             case .repostProduct:
+                return .post
+            case .productComment:
+                return .post
+            case .productCommentReply:
+                return .post
+            case .productCommentList:
+                return .post
+            case .productCommentUpdate:
+                return .post
+            case .deleteProductComment:
+                return .post
+            case .productCommentReplyUpdate:
+                return .post
+            case .deleteProductReplyComment:
                 return .post
             }
         }
@@ -181,6 +202,20 @@ struct Networking {
                 return "setNewpassword"
             case .repostProduct:
                 return "repost_product"
+            case .productComment:
+                return "product_comment"
+            case .productCommentReply:
+                return "product_comment_reply"
+            case .productCommentList:
+                return "product_comment_list"
+            case .productCommentUpdate:
+                return "product_comment_update"
+            case .deleteProductComment:
+                return "delete_product_comment"
+            case .productCommentReplyUpdate:
+                return "product_comment_reply_update"
+            case .deleteProductReplyComment:
+                return "delete_product_reply_comment"
             }
         }
         
@@ -261,6 +296,20 @@ struct Networking {
             case .setNewPassword(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .repostProduct(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .productComment(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .productCommentReply(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .productCommentList(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .productCommentUpdate(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .deleteProductComment(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .productCommentReplyUpdate(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+            case .deleteProductReplyComment(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             }
             return urlRequest

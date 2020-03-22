@@ -243,7 +243,7 @@ class MyAuctionVC: UIViewController {
             
             if jsonObj["responseData"].arrayObject != nil {
                 let arrTemp = jsonObj["responseData"].arrayObject! as NSArray
-                self?.arrProduct = NSMutableArray(array: arrTemp.reversed())
+                self?.arrProduct = NSMutableArray(array: arrTemp)
             }
             
             DispatchQueue.main.async {
@@ -280,7 +280,7 @@ class MyAuctionVC: UIViewController {
             
             if jsonObj["responseData"].arrayObject != nil {
                 let arrTemp = jsonObj["responseData"].arrayObject! as NSArray
-                self?.arrProduct = NSMutableArray(array: arrTemp.reversed())
+                self?.arrProduct = NSMutableArray(array: arrTemp)
             }
             
             DispatchQueue.main.async {

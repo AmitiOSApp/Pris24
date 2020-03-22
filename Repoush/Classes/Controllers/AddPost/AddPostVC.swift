@@ -484,7 +484,7 @@ class AddPostVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             
             if jsonObj["subcategory_data"].arrayObject != nil {
                 let arrTemp = jsonObj["subcategory_data"].arrayObject! as NSArray
-                self?.arrSubcategory = NSMutableArray(array: arrTemp.reversed())
+                self?.arrSubcategory = NSMutableArray(array: arrTemp)
             }
             
             DispatchQueue.main.async {

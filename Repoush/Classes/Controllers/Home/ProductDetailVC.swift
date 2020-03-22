@@ -33,6 +33,7 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
     @IBOutlet weak var lblReviewCount: UILabel!
     @IBOutlet weak var viewSize: UIView!
     @IBOutlet weak var viewGender: UIView!
+    @IBOutlet weak var btnQuestion: UIButton!
 
     @IBOutlet weak var viewBG: UIView!
     @IBOutlet weak var viewRateReview: UIView!
@@ -83,6 +84,14 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
         viewBG.isHidden = true
         viewRateReview.isHidden = true
     }
+    
+    @IBAction func btnQuestion_Action(_ sender: UIButton) {
+        let vc = Util.loadViewController(fromStoryboard: "QuestionVC", storyboardName: "Home") as? QuestionVC
+        vc?.dictProduct = dictProduct
+        if let aVc = vc {
+            show(aVc, sender: nil)
+        }
+    }
 
     // MARK: - Private Methods
     private func setProductDetail() {
@@ -98,6 +107,10 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
         lblCondition.text = dictProduct["product_condition"] as? String
         lblPickupLocation.text = dictProduct["address"] as? String
         lblReviewCount.text = "\(dictProduct["review"] ?? "0.0") \("REVIEWS".localiz())"
+
+        let commentCount = dictProduct["comment_count"] as? Int
+        
+        btnQuestion.setTitle("Questions ? (\(commentCount ?? 0))", for: .normal)
 
         var rating = 0.0
         if let temp = Double("\(dictProduct["rating"] ?? 0.0)") {
