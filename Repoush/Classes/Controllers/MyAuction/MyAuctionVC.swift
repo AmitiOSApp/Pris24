@@ -464,6 +464,15 @@ class MyAuctionVC: UIViewController {
                 return
             }
             DLog(message: "\(jsonObj)")
+            
+            if self.isActiveAuction {
+                // Perform Get user product API
+                self.getUserProductAPI_Call(self.type)
+            }
+            else {
+                // Perform Get user product history API
+                self.getProductHistoryAPI_Call(self.productType)
+            }
         }
     }
 
@@ -564,6 +573,10 @@ extension MyAuctionVC: UICollectionViewDataSource, UICollectionViewDelegate, UIC
             else if cell?.btnShowAllBid.titleLabel?.text == "MAKE PAYMENT".localiz() {
                 self.dictProduct = (self.arrProduct[indexPath.item] as? NSDictionary)!
                 self.checkoutAPI_Call()
+            }
+            else if cell?.btnShowAllBid.titleLabel?.text == "REPOST".localiz() {
+                let dictTemp = self.arrProduct[indexPath.item] as? NSDictionary
+                self.repostProductAPI_Call(dictTemp!["id"] as! String)
             }
             else if cell?.btnShowAllBid.titleLabel?.text == "RATE BUYER".localiz() {
                 self.dictProduct = (self.arrProduct[indexPath.item] as? NSDictionary)!

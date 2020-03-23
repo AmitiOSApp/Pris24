@@ -98,7 +98,13 @@ class AuctionCell: UICollectionViewCell {
             }
             else {
                 lblProductName.text = dictProduct["product_name"] as? String
-                btnShowAllBid.setTitle("RATE BUYER".localiz(), for: .normal)
+
+                if dictProduct["is_booked"] as? Bool == nil || dictProduct["is_booked"] as? Bool == false {
+                    btnShowAllBid.setTitle("REPOST".localiz(), for: .normal)
+                }
+                else {
+                    btnShowAllBid.setTitle("RATE BUYER".localiz(), for: .normal)
+                }
             }
             if isActiveAuction {
                 btnEditWidthConst.constant = 30.0

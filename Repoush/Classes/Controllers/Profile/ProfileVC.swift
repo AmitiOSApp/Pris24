@@ -20,12 +20,27 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var lblEmailAddress: UILabel!
     @IBOutlet weak var lblAddress: UILabel!
 
-    // MARK: - Property initialization
+    @IBOutlet weak var lblRatingValue: UILabel!
+    @IBOutlet weak var lblReviewCount: UILabel!
+    @IBOutlet weak var viewBG: UIView!
+    @IBOutlet weak var viewRateReview: UIView!
+    @IBOutlet weak var imgviewUserReview: UIImageView!
+    @IBOutlet weak var lblReviewUsername: UILabel!
+    @IBOutlet weak var lblRatingCount: UILabel!
+    @IBOutlet weak var tblReview: UITableView!
     
+    @IBOutlet weak var viewReviewHgtConst: NSLayoutConstraint!
+
+    // MARK: - Property initialization
+    private var arrRatingList = NSMutableArray()
+
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        tblReview.rowHeight = UITableView.automaticDimension
+        tblReview.estimatedRowHeight = 80
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -44,6 +59,16 @@ class ProfileVC: UIViewController {
         }
     }
     
+    @IBAction func btnRateReview_Action(_ sender: UIButton) {
+        viewBG.isHidden = false
+        viewRateReview.isHidden = false
+    }
+    
+    @IBAction func btnCross_Action(_ sender: UIButton) {
+        viewBG.isHidden = true
+        viewRateReview.isHidden = true
+    }
+
     // MARK: - Private Methods
     private func setUserData() {
         lblFirstName.text = LoggedInUser.shared.firstName
@@ -53,6 +78,18 @@ class ProfileVC: UIViewController {
         lblMobileNumber.text = LoggedInUser.shared.mobileNo
         lblEmailAddress.text = LoggedInUser.shared.email
         lblAddress.text = LoggedInUser.shared.address
+        
+        lblReviewUsername.text = "\(LoggedInUser.shared.firstName ?? "") \(LoggedInUser.shared.lastName ?? "")"
+        lblReviewCount.text = "\(LoggedInUser.shared.reviewCount ?? "0.0") \("REVIEWS".localiz())"
+        
+        var rating = 0.0
+        if let temp = Double("\(LoggedInUser.shared.rating ?? "0.0")") {
+            rating = temp
+        }
+        rating = Double(rating).rounded(1)
+        
+        lblRatingValue.text = "\(rating)"
+        lblRatingCount.text = "\(rating)"
         
         if Util.isValidString(LoggedInUser.shared.userImage!) {
             
@@ -104,9 +141,68 @@ class ProfileVC: UIViewController {
             
             if let userData = jsonObj["responseData"].dictionary {
                 LoggedInUser.shared.initLoggedInUserFromResponse(userData as AnyObject)
+                
+                if let temp = userData["rating_list"]?.array {
+                    self?.arrRatingList = NSMutableArray(array: temp)
+                }
+                
+                var count = self?.arrRatingList.count
+                
+                if (self?.arrRatingList.count)! > 4 {
+                    count = 4
+                }
+                self?.viewReviewHgtConst.constant = CGFloat((count! * 80) + 75)
+                
+                self?.tblReview.reloadData()
             }
             self?.setUserData()
         }
     }
 
+}
+
+// MARK: UITableViewDataSource, UITableViewDelegate
+extension ProfileVC: UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return arrRatingList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReviewCell", for: indexPath) as? ReviewCell
+        cell?.selectionStyle = .none
+        
+        let dictReview = arrRatingList[indexPath.row] as? NSDictionary
+        
+        cell?.lblUsername.text = Util.createUsername(dictReview!)
+        cell?.lblReview.text = dictReview!["feedback_message"] as? String
+        
+        cell?.ratingBar.value = 0.0
+        if let temp = dictReview!["rating"] as? String {
+            if Util.isValidString(temp) {
+                cell?.ratingBar.value = CGFloat(Double(temp)!)
+            }
+        }
+        
+        var feedbackDate = ""
+        
+        if let temp = dictReview!["feedback_date"] as? String {
+            let tempDate = Util.getDateFromString(temp, sourceFormat: "yyyy-MM-dd HH:mm:ss", destinationFormat: "yyyy-MM-dd HH:mm:ss.SSS")
+            
+            feedbackDate = Util.relativeDateStringForDate(tempDate)
+            
+            if feedbackDate != "Just now" {
+                feedbackDate = "\(feedbackDate) ago"
+            }
+        }
+        cell?.lblDate.text = feedbackDate
+        
+        return cell!
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
 }

@@ -75,6 +75,10 @@ class ProductDetailVC: UIViewController, UIGestureRecognizerDelegate {
         navigationController?.popViewController(animated: true)
     }
     
+    @IBAction func btnUserProfile_Action(_ sender: UIButton) {
+        
+    }
+    
     @IBAction func btnRateReview_Action(_ sender: UIButton) {
         viewBG.isHidden = false
         viewRateReview.isHidden = false

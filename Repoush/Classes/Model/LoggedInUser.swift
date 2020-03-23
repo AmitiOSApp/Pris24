@@ -22,7 +22,9 @@ class LoggedInUser {
     var mobileNo    : String?
     var gender      : String?
     var dob         : String?
-    var accountStatus       : String?
+    var accountStatus : String?
+    var rating      : String?
+    var reviewCount : String?
 
     var isUserLoggedIn  :Bool = false
     
@@ -56,6 +58,8 @@ class LoggedInUser {
         }
         LoggedInUser.shared.dob             = json[kAPI_Dob].string ?? ""
         LoggedInUser.shared.accountStatus   = json[kAPI_AccountStatus].string ?? ""
+        LoggedInUser.shared.rating          = json[kAPI_Rating].string ?? ""
+        LoggedInUser.shared.reviewCount     = "\(json[kAPI_Review].int ?? 0)"
 
         LoggedInUser.shared.isUserLoggedIn  = true
         UserDefaults.standard.set(true, forKey: Key_UD_IsUserLoggedIn)
@@ -78,6 +82,8 @@ class LoggedInUser {
         LoggedInUser.shared.gender          = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Gender))
         LoggedInUser.shared.dob             = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Dob))
         LoggedInUser.shared.accountStatus   = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_AccountStatus))
+        LoggedInUser.shared.rating          = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Rating))
+        LoggedInUser.shared.reviewCount     = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Review))
     }
     
     func saveValuesInUserDefaultFromSharedInstance() {
@@ -93,6 +99,8 @@ class LoggedInUser {
         UserDefaults.standard.set(LoggedInUser.shared.gender, forKey: kAPI_Gender)
         UserDefaults.standard.set(LoggedInUser.shared.dob, forKey: kAPI_Dob)
         UserDefaults.standard.set(LoggedInUser.shared.accountStatus, forKey: kAPI_AccountStatus)
+        UserDefaults.standard.set(LoggedInUser.shared.rating, forKey: kAPI_Rating)
+        UserDefaults.standard.set(LoggedInUser.shared.reviewCount, forKey: kAPI_Review)
     }
     
     func clearUserData() {

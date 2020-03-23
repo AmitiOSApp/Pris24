@@ -23,12 +23,24 @@ class TermsPrivacyVC: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-        webView.frame  = CGRect(x: 0, y: Util.getHeaderHeight(self), width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - Util.getHeaderHeight(self))
-        view.addSubview(webView)
-        var strUrl = "http://24x7webtesting.com/repoush/home/privacy_policy_en"
         if !isPrivacy {
             lblTitle.text = "Terms of use".localiz()
-            strUrl = "http://24x7webtesting.com/repoush/home/terms_conditions_en"
+        }
+        webView.frame  = CGRect(x: 0, y: Util.getHeaderHeight(self), width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height - Util.getHeaderHeight(self))
+        view.addSubview(webView)
+        
+        var strUrl = ""
+        if UserLanguage.shared.languageCode == "en" {
+            strUrl = "http://24x7webtesting.com/repoush/home/privacy_policy_en"
+            if !isPrivacy {
+                strUrl = "http://24x7webtesting.com/repoush/home/terms_conditions_en"
+            }
+        }
+        else {
+            strUrl = "http://24x7webtesting.com/repoush/home/privacy_policy_pe"
+            if !isPrivacy {
+                strUrl = "http://24x7webtesting.com/repoush/home/terms_conditions_pe"
+            }
         }
         let request = URLRequest(url: URL(string: strUrl)!)
         webView.load(request)

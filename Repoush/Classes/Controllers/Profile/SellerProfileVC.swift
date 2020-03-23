@@ -85,17 +85,16 @@ class SellerProfileVC: UIViewController {
 
         if dictProduct["is_alloted"] as? Bool == true {
             lblMobileNumber.text = mobileNumber
-            lblEmailAddress.text = dictProduct["user_email"] as? String
-            lblAddress.text = dictProduct["address"] as? String
         }
         else {
             if mobileNumber!.count > 2 {
                 let last2 = mobileNumber!.suffix(2)
                 lblMobileNumber.text = "********\(last2)"
             }
-            lblAddress.text = "********************"
-            lblEmailAddress.text = "********@xyz.com"
         }
+        
+        lblEmailAddress.text = "********@xyz.com"
+        lblAddress.text = "********************"
         
         if Util.isValidString(dictProduct["user_image"] as! String) {
             

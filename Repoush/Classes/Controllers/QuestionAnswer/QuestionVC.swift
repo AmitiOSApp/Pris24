@@ -51,6 +51,9 @@ class QuestionVC: UIViewController {
     }
     
     @IBAction func btnSend_Action(_ sender: UIButton) {
+        
+        txvQuestion.resignFirstResponder()
+        
         if !Util.isValidString(txvQuestion.text) {
             Util.showAlertWithMessage("Please enter something", title: ""); return
         }
@@ -59,6 +62,9 @@ class QuestionVC: UIViewController {
     }
     
     @IBAction func btnUpdateComment_Action(_ sender: UIButton) {
+        
+        txvUpdateComment.resignFirstResponder()
+
         if !Util.isValidString(txvUpdateComment.text) {
             Util.showAlertWithMessage("Please enter something", title: ""); return
         }
@@ -369,6 +375,9 @@ extension QuestionVC: UITableViewDataSource, UITableViewDelegate {
         let headerView = UIView()
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "QuestionCell") as! QuestionCell
         
+        headerCell.frame.size.width = tableView.frame.size.width
+        headerCell.contentView.frame.size.width = tableView.frame.size.width
+
         // headerCell.backgroundColor = .red
         
         headerCell.lblAnswerBySeller.isHidden = true
