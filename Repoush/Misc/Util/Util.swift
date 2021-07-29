@@ -47,7 +47,7 @@ class Util : NSObject {
         let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
         return emailTest.evaluate(with: emailStr)
     }
-    
+   
     class func isPhoneNumberLength(_ phoneNumber: String) -> Bool {
         return phoneNumber.count > 10 ? true : false
     }
@@ -195,7 +195,7 @@ class Util : NSObject {
     }
     
     class func showNetWorkAlert() {
-        showAlertWithMessage("Please check your connection and try again.", title:"No Network Connection")
+       // showAlertWithMessage("Please check your connection and try again.", title:"No Network Connection")
     }
     
     class func showAlertWithMessage(_ message: String, title: String) {
@@ -675,9 +675,7 @@ class Util : NSObject {
     class func createUsername(_ dictTemp: NSDictionary) -> String {
         let firstName = dictTemp["first_name"] as? String
         let lastName = dictTemp["last_name"] as? String
-        
         let username = "\(firstName ?? "") \(lastName ?? "")"
-        
         return username
     }
 

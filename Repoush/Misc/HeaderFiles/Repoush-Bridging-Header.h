@@ -16,5 +16,5 @@
 @import Reachability;
 @import GooglePlaces;
 @import AARatingBar;
-
+#import "SVProgressHUD.h"
 #endif /* Repoush_Bridging_Header_h */

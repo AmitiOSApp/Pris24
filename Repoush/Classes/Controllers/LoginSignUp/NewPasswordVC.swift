@@ -68,7 +68,12 @@ class NewPasswordVC: UIViewController {
     
     // MARK: - API Methods
     private func setNewPasswordAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -78,7 +83,7 @@ class NewPasswordVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.setNewPassword(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.setNewPassword(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -90,14 +95,11 @@ class NewPasswordVC: UIViewController {
                 return
             }
             DLog(message: "\(result)")
-            
             DispatchQueue.main.async { [weak self] in
                 let uiAlert = UIAlertController(title: "", message: jsonObj[Key_Message].stringValue, preferredStyle:UIAlertController.Style.alert)
                 self?.present(uiAlert, animated: true, completion: nil)
-                
                 uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { [weak self] action in
-                    
-                    let controllers = self?.navigationController?.viewControllers
+                let controllers = self?.navigationController?.viewControllers
                     for vc in controllers! {
                         if vc is LoginVC {
                             self?.navigationController?.popToViewController(vc, animated: true)

@@ -67,6 +67,46 @@ let colorDarkGray       = UIColor(red: 85/255, green: 85/255, blue: 85/255, alph
 let colorAppTheme       = UIColor(red: 246/255, green: 114/255, blue: 128/255, alpha: 1.0)
 let colorLight          = UIColor(red: 228/255, green: 228/255, blue: 228/255, alpha: 1.0)
 let colorGreen          = UIColor(red: 0/255, green: 178/255, blue: 89/255, alpha: 1.0)
+//let colorHeader          = UIColor(red: 2/255, green: 187/255, blue: 202/255, alpha: 1.0)
+let colorHeader          = "02BBCA"
+
+
+//let colorRed         = "#F67280"
+//let colorGreen         = "#00B259"
+//let colorGray         = "#AAAAAA"
+//let colorDarkGray         = "#858585"
+//let colorDarkGrayBold         = "#6C6C6C"
+//let colorLightBlue         = "#DDF7FF"
+//let colorYelow         = "#FFc61A"
+//let colorLightWhite         = "#f1f1f1"
+//let colorBlueLightGray         = "#E4E4E4"
+//let colorForgotPassword         = "#355C7D"
+//let colorDarkBlue         = "#003E4F"
+//let colorLightGreen         = "#E4E4E4"
+//let colorLightRed         = "#E4E4E4"
+//let colorBidButton         = "#cc0033"
+//let colorTopHeader         = "#02bbca"
+//
+//let colorOffLine = "cc0033"
+//let colorOriginalPrice = "828282"
+//let colorDiscount = "00d936"
+
+
+//let colorYellow         = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorPurple         = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorBlue           = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorPlaceHolder    = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorViewBG         = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorFaqBg          = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorRed            = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorGroupBG        = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorDarkGray       = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorAppTheme       = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorLight          = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+//let colorGreen          = UIColor(red: 238/255, green: 124/255, blue: 28/255, alpha: 1.0)
+
+
+let textColor = "313D4F"
 
 let colorClear          = UIColor.clear
 let colorWhite          = UIColor.white
@@ -93,6 +133,10 @@ let Key_Alert                        = "Alert"
 let Key_Message                      = "message"
 let Key_ResponseCode                 = "responseCode"
 let Key_ResponseMessage              = "responseMessage"
+
+let ALERTMESSAGE = "Pris24"
+let serverNotFound =  "Oops ! - server not responding, please try after some time."
+//let loaderText =  "Loading...."
 
 //************************** Constants for APNS **************************//
 let Key_APNS                         = "aps"

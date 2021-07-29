@@ -4,11 +4,13 @@ import UIKit
 //** Base url of web service
 //TODO: Build Changes
 //For Live
-//let kAPI_BaseURL                       = "http://18.222.1.10/project_klu/index.php/"
+let kAPI_BaseURL                       = "http://pris24.com/pris24_app/service/"
+//let kAPI_BaseURL                       = "http://pris24.com/pris24_app_ios/service/"
+   
 
 //For Development
-//let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush/service/"
-let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush_ios/service/"
+//let kAPI_BaseURL                        = "http://24x7webtesting.com/pris24_ios/service/"
+//let kAPI_BaseURL                        = "http://24x7webtesting.com/repoush_ios/service/"
 let kAPI_ImageBaseURL                   = "http://24x7webtesting.com/moodery/post/"
 
 //************************** Constant for API Keys **************************//
@@ -33,6 +35,7 @@ let kAPI_LoginType                      = "login_type"
 let kAPI_Latitude                       = "latitude"
 let kAPI_Longitude                      = "lognitude"
 let kAPI_Address                        = "address"
+
 let kAPI_PermanentLatitude              = "permanent_latitude"
 let kAPI_PermanentLognitude             = "permanent_lognitude"
 
@@ -87,6 +90,7 @@ let kAPI_RatingFor                      = "rating_for"
 let kAPI_CommentId                      = "comment_id"
 let kAPI_ReplyMessage                   = "reply_message"
 let kAPI_Review                         = "review"
+let kAPI_Role                         = "role"
 
 //**    Result Success |"1"| / Failure |"0"|
 let kAPI_Result_Success      = "1"
@@ -99,6 +103,18 @@ let kCertificateAppStore     = "live"
 
 //** Other Api Constants
 let kDevicePlatform          = "ios"
+
+
+let kAPI_EnterCVR                        = "cvr_number"
+let kAPI_CompanyName                        = "company_name"
+let kAPI_IndustyName                        = "industry_code"
+let kAPI_City                        = "city"
+let kAPI_ZipCode                        = "zip_code"
+
+
+
+
+
 
 //*> Server response code
 

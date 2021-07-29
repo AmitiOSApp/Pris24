@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="LoaderCollectionViewController" customModule="Pris24" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="372" height="71"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="372" height="71"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="290-98-g7O">
+                        <rect key="frame" x="8" y="3" width="356" height="65"/>
+                        <subviews>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="W4R-LB-ugH">
+                                <rect key="frame" x="168" y="22.5" width="20" height="20"/>
+                            </activityIndicatorView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="W4R-LB-ugH" firstAttribute="centerY" secondItem="290-98-g7O" secondAttribute="centerY" id="IAE-Pg-tWX"/>
+                            <constraint firstItem="W4R-LB-ugH" firstAttribute="centerX" secondItem="290-98-g7O" secondAttribute="centerX" id="Iua-2f-4vc"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="290-98-g7O" secondAttribute="bottom" constant="3" id="A7l-ei-j6x"/>
+                <constraint firstItem="290-98-g7O" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="F0k-RM-ka9"/>
+                <constraint firstItem="290-98-g7O" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="3" id="m0M-DS-94I"/>
+                <constraint firstAttribute="trailing" secondItem="290-98-g7O" secondAttribute="trailing" constant="8" id="rVg-LY-4Fu"/>
+            </constraints>
+            <size key="customSize" width="372" height="71"/>
+            <connections>
+                <outlet property="activityIndicator" destination="W4R-LB-ugH" id="HHh-9Z-Vzy"/>
+            </connections>
+            <point key="canvasLocation" x="373.91304347826087" y="88.727678571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

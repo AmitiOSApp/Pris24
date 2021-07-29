@@ -14,6 +14,7 @@ class SettingCell: UITableViewCell {
     @IBOutlet weak var imgviewSetting: UIImageView!
     @IBOutlet weak var lblTitle: UILabel!
     @IBOutlet weak var switchStatus: UISwitch!
+    
     @IBOutlet weak var imgviewLanguage: UIImageView!
 
     var statusHandler: (() -> Void)?
@@ -21,6 +22,7 @@ class SettingCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+     switchStatus.transform = CGAffineTransform(scaleX: 0.75, y: 0.75)
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

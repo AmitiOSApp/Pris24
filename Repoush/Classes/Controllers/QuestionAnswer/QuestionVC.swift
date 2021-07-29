@@ -123,7 +123,12 @@ class QuestionVC: UIViewController {
 
     // MARK: - API Methods
     private func sendProductCommentAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -135,7 +140,7 @@ class QuestionVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.productComment(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.productComment(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -155,7 +160,12 @@ class QuestionVC: UIViewController {
     }
 
     private func productCommentReplyAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -165,7 +175,7 @@ class QuestionVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.productCommentReply(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.productCommentReply(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -187,7 +197,12 @@ class QuestionVC: UIViewController {
     }
 
     private func productCommentListAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -196,7 +211,7 @@ class QuestionVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.productCommentList(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.productCommentList(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -220,7 +235,12 @@ class QuestionVC: UIViewController {
     }
     
     private func productCommentUpdateAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -231,7 +251,7 @@ class QuestionVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.productCommentUpdate(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.productCommentUpdate(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -253,7 +273,12 @@ class QuestionVC: UIViewController {
     }
 
     private func deleteProductCommentAPI_Call(_ dictTemp: NSDictionary) {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -262,7 +287,7 @@ class QuestionVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.deleteProductComment(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.deleteProductComment(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -279,7 +304,12 @@ class QuestionVC: UIViewController {
     }
     
     private func productCommentReplyUpdateAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         // id,reply_message
@@ -291,7 +321,7 @@ class QuestionVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.productCommentReplyUpdate(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.productCommentReplyUpdate(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -313,7 +343,12 @@ class QuestionVC: UIViewController {
     }
 
     private func deleteProductCommentReplyAPI_Call(_ dictTemp: NSDictionary) {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -322,7 +357,7 @@ class QuestionVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.deleteProductReplyComment(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.deleteProductReplyComment(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return

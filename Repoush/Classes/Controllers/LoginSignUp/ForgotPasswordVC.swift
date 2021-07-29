@@ -63,7 +63,12 @@ class ForgotPasswordVC: UIViewController {
     
     // MARK: - API Methods
     private func sendOTPAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -72,7 +77,7 @@ class ForgotPasswordVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.forgotPassword(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.forgotPassword(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -96,7 +101,12 @@ class ForgotPasswordVC: UIViewController {
     }
     
     private func verifyOTPAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -106,7 +116,7 @@ class ForgotPasswordVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.verifyOTP(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.verifyOTP(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return

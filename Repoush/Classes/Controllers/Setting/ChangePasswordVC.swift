@@ -7,22 +7,40 @@
 //
 
 import UIKit
-
+import ACFloatingTextfield_Swift
 class ChangePasswordVC: UIViewController {
     
     // MARK: - IBOutlets
-    @IBOutlet weak var txfOldPassword: UITextField!
-    @IBOutlet weak var txfNewPassword: UITextField!
-    @IBOutlet weak var txfConfirmNewPassword: UITextField!
-    
+    @IBOutlet weak var txfOldPassword: ACFloatingTextfield!
+    @IBOutlet weak var txfNewPassword: ACFloatingTextfield!
+    @IBOutlet weak var txfConfirmNewPassword: ACFloatingTextfield!
+    @IBOutlet weak var lblTitle:UILabel!
+    @IBOutlet weak var lblChangePassword:UILabel!
+    @IBOutlet weak var lblMaxPawword:UILabel!
+    @IBOutlet weak var btnSubmit:UIButton!
     // MARK: - Property initialization
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        if (MyDefaults().language ?? "") as String ==  "en"{
+                    self.changeLanguage(strLanguage: "en")
+                } else{
+                    self.changeLanguage(strLanguage: "da")
+                }
+
     }
-    
+    func changeLanguage(strLanguage:String) {
+           self.lblChangePassword.text = "Change Password".LocalizableString(localization: strLanguage)
+        self.lblMaxPawword.text = "Your_password_must".LocalizableString(localization: strLanguage)
+           self.lblTitle.text = "Change Password".LocalizableString(localization: strLanguage)
+           self.btnSubmit.setTitle("SUBMIT".LocalizableString(localization: strLanguage), for: .normal)
+           self.txfOldPassword.placeholder = "Old Password".LocalizableString(localization: strLanguage)
+           self.txfNewPassword.placeholder = "New Password".LocalizableString(localization: strLanguage)
+           self.txfConfirmNewPassword.placeholder = "Confirm Password".LocalizableString(localization: strLanguage)
+
+  }
     // MARK: - Action Methods
     @IBAction func btnBack_Action(_ sender: UIButton) {
         navigationController?.popViewController(animated: true)
@@ -76,7 +94,12 @@ class ChangePasswordVC: UIViewController {
     
     // MARK: - API Methods
     private func changePasswordAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -87,7 +110,7 @@ class ChangePasswordVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.changePassword(postParams), callerObj: self, showHud:true) { [weak self] (response) -> () in
+        Networking.performApiCall(Networking.Router.changePassword(postParams), callerObj: self, showHud:true, text: loading) { [weak self] (response) -> () in
             
             guard let result = response.result.value else {
                 return

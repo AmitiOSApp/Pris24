@@ -13,6 +13,7 @@ struct Networking {
         case userRegistration([String: Any])
         case userLogin([String: Any])
         case getSubCategory([String: Any])
+        case getCategory([String: Any])
         case postProduct([String: Any])
         case getAllProduct([String: Any])
         case placeBid([String: Any])
@@ -131,6 +132,8 @@ struct Networking {
                 return .post
             case .deleteProductReplyComment:
                 return .post
+            case .getCategory(_):
+                return .post
             }
         }
         
@@ -216,6 +219,8 @@ struct Networking {
                 return "product_comment_reply_update"
             case .deleteProductReplyComment:
                 return "delete_product_reply_comment"
+            case .getCategory(_):
+                return "getCategory"
             }
         }
         
@@ -242,6 +247,8 @@ struct Networking {
             case .userLogin(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .getSubCategory(let parameters):
+                urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+                case .getCategory(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .postProduct(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
@@ -311,6 +318,7 @@ struct Networking {
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
             case .deleteProductReplyComment(let parameters):
                 urlRequest = try URLEncoding.default.encode(urlRequest, with: parameters)
+           
             }
             return urlRequest
         }
@@ -324,10 +332,10 @@ struct Networking {
      * - parameter showHud: A boolean value that represent is need to display hud for the api or not
      * - parameter completionHandler: A closure that provide callback to caller after getting response
      */
-    static func performApiCall(_ requestName: Networking.Router, callerObj: AnyObject, showHud: Bool, completionHandler:@escaping ( (DataResponse<Any>) -> Void)) {
+    static func performApiCall(_ requestName: Networking.Router, callerObj: AnyObject, showHud: Bool,text: String, completionHandler:@escaping ( (DataResponse<Any>) -> Void)) {
         
         if showHud {
-            appDelegate.showLoader(callerObj as! UIViewController)
+            appDelegate.showLoader(callerObj as! UIViewController, text: text)
         }
         
         let request = Alamofire.request(requestName).validate().responseJSON { response in
@@ -431,7 +439,7 @@ struct Networking {
      * - parameter showHud: A boolean value that represent is need to display hud for the api or not
      * - parameter completionHandler: A closure that provide callback to caller after getting response
      */
-    static func uploadImages(_ requestName: Networking.Router, imageArray: [UIImage], strImageKey : String, callerObj: AnyObject, showHud: Bool, completionHandler: ((SessionManager.MultipartFormDataEncodingResult) -> Void)?) {
+    static func uploadImages(_ requestName: Networking.Router, imageArray: [UIImage], strImageKey : String, callerObj: AnyObject, showHud: Bool,text: String, completionHandler: ((SessionManager.MultipartFormDataEncodingResult) -> Void)?) {
         
         if imageArray.count < 1 {
             return
@@ -478,10 +486,10 @@ struct Networking {
      * - parameter showHud: A boolean value that represent is need to display hud for the api or not
      * - parameter completionHandler: A closure that provide callback to caller after getting response
      */
-    static func uploadImagesWithParams(_ requestName: Networking.Router, imageArray: [UIImage?]?, strImageKey : String, dictParams: [String: AnyObject], callerObj: AnyObject, showHud: Bool, completionHandler: ((SessionManager.MultipartFormDataEncodingResult) -> Void)?) {
+    static func uploadImagesWithParams(_ requestName: Networking.Router, imageArray: [UIImage?]?, strImageKey : String, dictParams: [String: AnyObject], callerObj: AnyObject, showHud: Bool,text: String, completionHandler: ((SessionManager.MultipartFormDataEncodingResult) -> Void)?) {
         
         if showHud {
-            appDelegate.showLoader(callerObj as! UIViewController)
+            appDelegate.showLoader(callerObj as! UIViewController, text: text)
         }
 
         Alamofire.upload(multipartFormData: { (multipartFormData) in
@@ -561,7 +569,92 @@ struct Networking {
             completionHandler!(encodingResult)
         })
     }
+    static func uploadImagesWithParamsAddPost(_ requestName: Networking.Router, imageArray: [[String:Any]], strImageKey : String, dictParams: [String: AnyObject], callerObj: AnyObject, showHud: Bool,text: String, completionHandler: ((SessionManager.MultipartFormDataEncodingResult) -> Void)?) {
+         
+        if showHud {
+            appDelegate.showLoader(callerObj as! UIViewController, text: text)
+              }
 
+              Alamofire.upload(multipartFormData: { (multipartFormData) in
+
+                  if imageArray.count > 0 {
+                     
+                    for items in imageArray {
+                        if items["isselected"] as! String == "yes" {
+                            let image = items["png"] as! UIImage
+                            let imageData: NSData? = image.jpegData(compressionQuality: 0.5) as NSData?
+                              if imageData != nil {
+                                  
+                                  multipartFormData.append(imageData! as Data, withName: strImageKey, fileName: "image.jpeg", mimeType: "image/jpeg")
+                                  
+                                  for (key, value) in dictParams {
+                                      let data = "\(value)".data(using: .utf8)
+                                      multipartFormData.append(data! as Data, withName: key)
+                                  }
+                              }
+                          
+                          else {
+                              for (key, value) in dictParams {
+                                  let data = "\(value)".data(using: .utf8)
+                                  multipartFormData.append(data! as Data, withName: key)
+                              }
+                          }
+                      }
+                    }
+                    }
+                  else {
+                      for (key, value) in dictParams {
+                          let data = "\(value)".data(using: .utf8)
+                          multipartFormData.append(data! as Data, withName: key)
+                      }
+                  }
+              },
+              with: requestName,encodingCompletion: { encodingResult in
+                  switch encodingResult {
+                  case .success(let upload, _, _):
+                      
+                      upload.responseJSON { response in
+                          DLog(message: "Image(s) Uploaded successfully:\(response)")
+                          
+                          let dataString = String(data: response.data!, encoding: String.Encoding.utf8)
+                          let resultTest = Util.convertStringToDictionary(dataString!)
+                          var errorDescription = ""
+                          
+                          if let errorDes = resultTest?["message"] {
+                              errorDescription = errorDes as! String
+                          }
+                          if errorDescription == "" && dataString != nil {
+                              errorDescription = dataString!
+                          }
+                          var strError = errorDescription as String
+                          
+                          if let contentType = response.response?.allHeaderFields["Content-Type"] as? String {
+                              if contentType == "text/html" {
+                                  strError = "Server error"
+                              }
+                          }
+                          print(strError)
+                          
+                          if showHud {
+                              appDelegate.hideLoader(callerObj as! UIViewController)
+                          }
+                          guard let result = response.result.value else {
+                              Util.showAlertWithMessage(msgSorry, title: "Error")
+                              return
+                          }
+                          DLog(message: "\(result)")
+                      }
+                  case .failure(let encodingError):
+                      DLog(message: "encodingError:\(encodingError)")
+                      
+                      if showHud {
+                          appDelegate.hideLoader(callerObj as! UIViewController)
+                      }
+                      Util.showAlertWithMessage(msgSorry, title:"Error")
+                  }
+                  completionHandler!(encodingResult)
+              })
+    }
     /**
      * Method use for Image downloading from URL using KingFisher library.
      * - parameter fromUrl: Downloading image URL string

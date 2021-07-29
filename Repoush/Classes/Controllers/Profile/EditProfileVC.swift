@@ -212,7 +212,12 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
 
     // MARK: - API Methods
     private func updateProfileAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         var latitudePass = LoggedInUser.shared.latitude
@@ -240,11 +245,11 @@ class EditProfileVC: UIViewController, UIImagePickerControllerDelegate, UINaviga
                 kAPI_DeviceType  : "ios" as AnyObject,
                 kAPI_DeviceToken  : Util.getValidString((UserDefaults.standard.object(forKey: kAPI_DeviceToken) as? String)) as AnyObject,
                 kAPI_CertificateType : appDelegate.certificateType as AnyObject,
-                kAPI_Language        : UserLanguage.shared.languageCode as AnyObject,
+                kAPI_Language        : MyDefaults().language as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
-        Networking.uploadImagesWithParams(Networking.Router.updateUserProfile(postParams), imageArray: [imgviewUser.image], strImageKey: "user_img", dictParams: postParams, callerObj: self, showHud: true) { (encodingResult) -> Void in
+        Networking.uploadImagesWithParams(Networking.Router.updateUserProfile(postParams), imageArray: [imgviewUser.image], strImageKey: "user_img", dictParams: postParams, callerObj: self, showHud: true, text: loading) { (encodingResult) -> Void in
             
             switch encodingResult {
                 

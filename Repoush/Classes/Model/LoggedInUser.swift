@@ -25,7 +25,8 @@ class LoggedInUser {
     var accountStatus : String?
     var rating      : String?
     var reviewCount : String?
-
+    var UserRole : String?
+    var company_name : String?
     var isUserLoggedIn  :Bool = false
     
     // MARK: Shared Instance
@@ -41,6 +42,7 @@ class LoggedInUser {
         //** Json Parsing using SwiftyJSON library
         let json = JSON(response)
         
+        print(json)
         LoggedInUser.shared.id              = json[kAPI_Id].string ?? ""
         LoggedInUser.shared.firstName       = json[kAPI_FirstName].string ?? ""
         LoggedInUser.shared.lastName        = json[kAPI_LastName].string ?? ""
@@ -50,6 +52,7 @@ class LoggedInUser {
         LoggedInUser.shared.latitude        = json[kAPI_PermanentLatitude].string ?? ""
         LoggedInUser.shared.longitude       = json[kAPI_PermanentLognitude].string ?? ""
         LoggedInUser.shared.mobileNo        = json[kAPI_MobileNumber].string ?? ""
+        LoggedInUser.shared.company_name    = json[kAPI_CompanyName].string ?? ""
         if json[kAPI_Gender].string == "0" {
             LoggedInUser.shared.gender      = ""
         }
@@ -60,7 +63,7 @@ class LoggedInUser {
         LoggedInUser.shared.accountStatus   = json[kAPI_AccountStatus].string ?? ""
         LoggedInUser.shared.rating          = json[kAPI_Rating].string ?? ""
         LoggedInUser.shared.reviewCount     = "\(json[kAPI_Review].int ?? 0)"
-
+        LoggedInUser.shared.UserRole             = json[kAPI_Role].string ?? ""
         LoggedInUser.shared.isUserLoggedIn  = true
         UserDefaults.standard.set(true, forKey: Key_UD_IsUserLoggedIn)
         
@@ -84,6 +87,8 @@ class LoggedInUser {
         LoggedInUser.shared.accountStatus   = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_AccountStatus))
         LoggedInUser.shared.rating          = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Rating))
         LoggedInUser.shared.reviewCount     = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Review))
+        LoggedInUser.shared.UserRole     = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_Role))
+        LoggedInUser.shared.company_name     = Util.getValidString(UserDefaults.standard.string(forKey: kAPI_CompanyName))
     }
     
     func saveValuesInUserDefaultFromSharedInstance() {
@@ -101,6 +106,7 @@ class LoggedInUser {
         UserDefaults.standard.set(LoggedInUser.shared.accountStatus, forKey: kAPI_AccountStatus)
         UserDefaults.standard.set(LoggedInUser.shared.rating, forKey: kAPI_Rating)
         UserDefaults.standard.set(LoggedInUser.shared.reviewCount, forKey: kAPI_Review)
+        UserDefaults.standard.set(LoggedInUser.shared.UserRole, forKey: kAPI_Role)
     }
     
     func clearUserData() {

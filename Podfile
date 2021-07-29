@@ -6,7 +6,8 @@ target 'Repoush' do
   use_frameworks!
 
   # Pods for Moodery
-  pod 'Kingfisher'
+  pod 'ImageScrollView'
+ pod 'Kingfisher'
   pod 'Alamofire'
   pod 'SwiftyJSON'
   pod 'IQKeyboardManagerSwift'
@@ -14,5 +15,13 @@ target 'Repoush' do
   pod 'GooglePlaces'
   pod 'GooglePlacePicker'
   pod 'AARatingBar'
-
+  pod 'PasswordTextField'
+  pod 'ACFloatingTextfield-Swift'
+  pod 'SwiftDefaults'
+  pod 'ImageSlideshow'
+  pod 'ImageSlideshow/SDWebImage'
+# pod 'ACProgressHUD-Swift'
+pod "UILoadControl"
+pod 'PKHUD', '~> 5.0'
+#pod 'SKActivityIndicatorView'
 end

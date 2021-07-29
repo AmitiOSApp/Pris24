@@ -1,0 +1,399 @@
+/* 
+  Localizable.strings
+  Repoush
+
+  Created by Apple on 13/10/20.
+  Copyright © 2020 Ravi Sendhav. All rights reserved.
+*/
+
+// Setting view controller
+
+//"Settings" = "Settings";
+//"Notification" = "Notification";
+//"notifications" = "Notifications";
+//"Privacy" = "Privacy";
+//"Privacy policy" = "Privacy policy";
+//"Change Password" = "Change Password";
+//"Terms of use" = "Terms of use";
+//"Report a problem..." = "Report a problem...";
+//"Change Language" = "Change Language";
+//"Online / Offline" = "Online / Offline";
+//"Logout" = "Logout";
+//"English" = "English";
+//"Persian" = "Persian";
+//"Report a problem to admin" = "Report a problem to admin";
+//"Please send email to the admin from below button to report your problem." = "Please send email to the admin from below button to report your problem.";
+//"Send email" = "Send email";
+//"Are you sure you want to log out?" = "Are you sure you want to log out?";
+//"New Password" = "New Password";
+//"Old Password" = "Old Password";
+
+
+
+
+//login view controller
+"NotregisterdYet" = "Not registered yet";
+"SignUp" = "Sign Up";
+"Email_Address" = "Email Address";
+"Password" = "Password";
+"login" = "Login";
+"OR" = "OR";
+"SkipToHome" = "SKIP TO HOME";
+
+//SignUp view controller
+"Already_have_an_account" = "Already have an a account ?";
+"Personal" = "PERSONAL";
+"Professional" = "PROFESSIONAL";
+"Address" = "Address";
+"IAgreeetothefollowing"="I Agree to the following";
+"Terms_Conditon" = "Terms & Conditions";
+"Industry_Name" = "Industry Name";
+"Enter_CVR" = "Enter CVR";
+"CompanyName" = "Company Name";
+"City" = "City";
+"Zip_Code" = "Zip Code";
+"YourPasswordmusthavemorethan6digits" = "Your Password must have more than 6 digits.[Max 15 char.]";
+"PromoCode" = "Promo Code";
+"first_name_blank_error" = "Please enter first name";
+"Please_enter_user_name" = "Please enter user name";
+"promo_code_blank_error" = "Please enter promo code";
+"last_name_blank_error" = "Please enter last name";
+"Please_enter_email_address" = "Please enter email address";
+"CVR_number_blank_error" = "Please enter CVR number";
+"company_name_blank_error" = "Please enter company name";
+"Please_enter_industry_name" = "Please enter industry name";
+"city_blank_error" = "Please enter city";
+"zipCode_blank_error" = "Please enter zip code";
+"Please_enter_OTP_Verification_code" = "Please enter OTP";
+"Please_enter_address" = "Please enter address";
+"Please_enter_password" = "Please enter password";
+"Password length should be greater than or equal to 6 digits" = "Password length should be greater than or equal to 6 digits";
+"Please enter confirm new password" = "Please enter confirm new password";
+"Password and confirm password should be same" = "Password and confirm password should be same";
+"Please enter mobile number" = "Please enter mobile number";
+
+"Please accept terms of use" = "Please accept terms of use";
+//"Personal" = "Personal";
+//"Professional" = "Professional";
+"price_is_not_start_with_zero" = "Price not can not start with zero";
+"price_enter_price" = "Indtast pris";
+"original_price_small_error" = "Original price should be greater than offer price";
+
+//Forgot password
+"ForgotPassword" = "Forgot Password";
+"Please_enter_your_email_address_and_we_will_send_you_a_OTP" = "Please enter your email address and we will send you a OTP";
+"EmailAddress" = "Email adresse";
+"send_otp" = "Send OTP";
+
+
+// forgot Password view controller
+
+"verification" = "Verification";
+"Please_enter_your_code_receive_on_your_registeres_email_address" = "please enter the code receive on your registered email address";
+"EnterOTP" = "Enter OTP";
+
+"Please_enter_email_address" = "Please enter email address";
+"Please_enter_otp" = "Please enter otp";
+
+
+
+// Setting view controller
+
+
+"Discount Notification" = "Discount Notification";
+"Notification" = "Notification";
+"Privacy" = "Privacy";
+"Change Password" = "Change Password";
+"Change Language" = "Change Language";
+"DiscountNotification" = "Discount Notification";
+"Terms of use" = "Terms of use";
+"Report a problem..." = "Report a problem...";
+"Offlin_Online" = "Offline / Online";
+"Logout" = "Logout";
+"ask_questions" = "Ask Questions?";
+
+
+
+
+// Tabbar view controller
+
+"HOME" = "HOME";
+"NEW AUCTION" = "NEW AUCTION";
+"MY AUCTIONS" = "MY AUCTIONS";
+"SETTINGS" = "SETTINGS";
+"PROFILE" = "PROFILE";
+"HOMEPage" = "Home";
+
+
+// Profile personal Profile controller
+
+"MyProfile" = "My Profile";
+"Reviews" = " Reviews";
+"FirstName" = "First Name";
+"LastName" = "Last Name";
+"Gender" = "Gender";
+"MobileNumber" = "Mobile Number";
+"EmailAddress" = "Email Address";
+"MyProfile" = "My Profile";
+"Locality" = "Locality/City";
+"Change Email" = "Change Email";
+"UPDATE" = "UPDATE";
+"DateOFBIRTH" = "Date of birth";
+"ComapnyName" = "Comapny Name";
+"CVR" = "CVR";
+"ZipCode" = "Zip Code";
+"City" = "City";
+
+
+// Change Email View controller
+
+"EmailAddress" = "Email Address";
+"SendOtp" = "Send OTP";
+"enter_otp" = "Enter OTP";
+"Resend" = "Resend";
+"Verify"  = "Verify";
+
+// Gender View controller
+
+"Male" = "Male";
+"Female" = "Female";
+"Search" = "Search";
+
+// Personal dicount notification controller
+"Received" = "Received";
+"ViewDetails" = "View Details";
+"Preview" = "Preview";
+"Privacy" = "Privacy"; 
+
+// Change Password View controller
+
+"Change Password" = "Change Password";
+"Old Password" = "Old Password";
+"New Password" = "New Password";
+//"Max Password" = "Privacy";
+"Confirm Password" = "Confirm Password";
+"SUBMIT" = "SUBMIT";
+"Change Language" = "Change Language";
+"Terms & Condition" = "Terms & Condition";
+
+
+// MY Auction View controller
+
+"Seller_Profile" = "Seller Profile";
+"Buyer_Profile" = "Buyer Profile";
+"My_Auctions" = "Active Auctions";
+"In_progress" = "In Progress";
+
+"No_Record_Found" = "NO RECORD FOUND";
+
+// MY Auction View controller Seller profile Active Auction
+
+"OFF" = "Off";
+"OriginalPrice" = "Original Price";
+"OfferPrice" = "Offer Price";
+"LastBid" = "Last Bid :";
+"LastBidAmount" = "Last Bid Amount";
+"Total_bid" = "Total Bid";
+"Entery_your_bid" = "Entery Your Bid";
+"ShowAllBid" = "Show All Bid";
+"TimeLeft" = "Time Left";
+"deal_completed" = "Deal Completed";
+"Cancel_Bid" = "Cancel Bid";
+"enter_amount" = "Enter Amount";
+
+// Product Detail View controller 
+"Share" = "  Share";
+"Questions" = "Questions?";
+"What_Are_You_Selling" = "WHAT ARE YOU SELLING?";
+"Condition" = "CONDTION";
+"Place_Bid" = "Place Bid";
+"Category" = "CATEGORY";
+"category_name" = "Category";
+"Product_Detail" = "PRODUCT DETAIL";
+
+"Sub_category" = "SUB CATEGORY";
+"PICK_Location" = "PICKUP LOCATION";
+"post_Location" = "Pickup Location";
+"Auction_Detail" = "Auction Detail";
+"No_Record_Found" = "No Record Found";
+"You_have_not_recived_any_bid" = "You have not recived any bid";
+
+// add post View controller
+"PostProduct" = "Post Product";
+"Subcategory" = "Sub Category";
+"selectSubcategory" = "Select Sub Category";
+"selectcategory" = "Select Category";
+"Sub_Category" = "Sub Category";
+"serverNotFound" = "Oops ! - server not responding, please try after some time.";
+"WhatareYouSelling" = "What are you selling?";
+"Condtion" = "Condtion";
+"OriginalPrice" = "Original Price";
+"OfferPrice" = "Offer Price";
+"Discount" = "Discount %";
+"Descriptions" = "Descriptions( Optional )";
+"PickUpLocation" = "Pickup Location";
+"Same_as_the_ragistered" = "Same as the registered address";
+"AddNewAddress" = "Add new address";
+"SellNow" = "Sell Now";
+"Choose" = "Choose";
+"Enter" = "Enter";
+"Calculate_Discount" = "Calculate Discount %";
+"Please_Select_an_Option" = "Please Select an Option";
+"Camera" = "Camera";
+"Dismiss" = "Dismiss";
+"Gallery" = "Gallery";
+"Edit_Auction" = "Edit Auction";
+"you_can_upload_3_photo" = "You can upload maximum 3 photos";
+"Do_you_want_to_delete_auction_image" = "Do you want to delete auction image";
+"Delete_auction" = "Delete Auction";
+"show_all_bid" = "Show All Bid";
+"All_Bid" = "All Bid";
+"Accept" = "Accept";
+"Reject" = "Reject";
+"Filter" = "Filter";
+"show_items" = "Show Auction";
+
+
+
+"Please_enter_original_price" = "Please enter original price";
+"Original_price_should_be_greater_than_100" = "Original price should be greater than 100";
+"Offer_price_should_be_greater_than_100" = "Offer price should be greater than 100";
+"Please_enter_offer_price" = "Please enter offer price";
+"Offer_Price_less_than_original_price" = "Offer Price less than original price";
+
+"Please_enter_what_are_you_selling" = "Please enter what are you selling";
+"Please_enter_sub_category" = "Please enter sub category";
+"Please_enter_condiotion" = "Please enter condition";
+"What_did_the_item_cost_from_new?_For_used_item.Enter_estimated_price." = "What did the item cost from new? For used item.Enter estimated price.";
+"Your_minimum_price_to_start_your_auction._You_are_not_obligated_to_sell_regardless_of_bid" = "Your minimum price to start your auction. You are not obligated to sell regardless of bid.";
+"Duplicate_Auction" = "Duplicate Auction";
+"Do_you_want_to_create_another_auction_now?" = "Do you want to create another auction now?";
+"Are_you_sure_you_want_to_delete_this_auction_Seller" = "Are you sure you want to delete this auction";
+"Are_you_sure_you_want_to_repost_this_auction" = "Are you sure you want to re-post this auction";
+"You_can_change_every_fields_that_needed" = "You can change every fields that needed";
+
+"You_Auction_is_live" = "# You Auction is live";
+"Sell_faster" = "# Sell faster";
+"Share_and_reach_more_people" = "# Share and reach more people";
+"Close" = "CLOSE";
+"Auction_is_live" = "Auction is live";
+// Alert Message P
+"Report_a_problem_to_admin" = "Report a problem to admin";
+"Please_send_email_to_the_admin_from_below_button_to_report_your_problem" = "Please send email to the admin from below button to report your problem";
+"Report_Cancel" = "Cancel";
+"Rate_Now" = "Rate Now";
+"Report_SendEmail" = "SEND EMAIL";
+"are_you_sure_you_want_to_log_out" = "Are you sure you want to logout?.";
+"Report_Yes" = "YES";
+"Cancel_Bid_myAuction_Alret" = "My Auction";
+"Cancel_Bid_myAuction_Message_Alret" = "Are you sure want to cancel thid bid?.";
+"Reply_To_Buyer" = "Reply To Buyer";
+"Reply" = "Reply";
+"Delete_Questions" = "Delete Question?.";
+"Are_You_Want_To_Delete" = "Are you sure you want to delete questions ?";
+
+
+"Do_you_want_to_create_another_auction_now" = "Do you want to create another auction now?";
+"Please Login Or Register To Continue" = "PleaseLogin Or Register To Continue";
+"Okay" = "Ok";
+
+
+"Mobile_Number" = "Mobile Number";
+"Email_Address" = "Email Address";
+"location_city" = "Location/City";
+
+"Post_Product" = "Post Product";
+"Key_Alert" = "Error";
+
+
+"ItemName" = "Item Name :";
+"DiscountPercentage" = "Discount Percentage :";
+"StoresAddress" = "Store's Address :";
+"ValidUntil" = "Valid Until :";
+"Hours" = "Hours :";
+"From" = "From :";
+"To" = "To :";
+"show_notification" = "Show Notification";
+"Discount_Notifications" = "Discount Notifications";
+
+"item_name_blank_error" = "Please enter item name";
+"discount_percentage_blank_error" = "Please enter discount percentage";
+"store_address_blank_error" = "Please select store address";
+"valid_until_blank_error" = "Please select valid until:";
+"Please_enter_from_date" = "Please enter from date";
+"Please_enter_to_date" = "Please enter to date";
+
+"My_bid" = "My Bid :";
+"Bid_Awarded_Successfully" = "Bid Awarded Successfully , Auction moved to Progress tab";
+"your_bid_for_the_following_auction_has_been_rejected_by_the_seller" ="dit bud på den følgende auktion er blevet afvist af sælgeren";
+"RATE_SALLER" = "RATE SELLER";
+ 
+"Deal_InCompleted" = "Deal InCompleted";
+"CANCEL_BID" = "CANCEL BID";
+"bid_amount_blank_error" = "Please enter bid amount.";
+"Bid_amount_should_be_greater_than_last_bid" = "Bid amount should be greater than last bid";
+"original_price_small_error" = "Original price should be greater than offer price";
+"Loading" = "Loading...";
+"Your_Auction_is_being_Created" = "Your auction is being created";
+"You_can_not_delete_auction_first_image" = "You can not delete auction first image";
+"Select" = "Select";
+"You_have_not_received_any_bid" = "You have not received any bid";
+
+
+"CreatePassword" = "Create Password";
+"Your_password_must"= "Your password must have more than 6 digits. (Max 15 char.)";
+"Password_must_be_at_least_6_digits_long"= "Password must be at least 6 digits long.";
+
+"REPOST" = "REPOST";
+"SEND_OFFER" = "SEND OFFER";
+
+"Repost_auction" = "Repost Auction";
+"Are_you_sure_you_want_to_repost_this_auction" = "Are you sure you want to repost this auction";
+
+"Send_Offer" = "Send Offer";
+"Do_you_want_to_send_notification" = "Do you want to send a notification to everyone interested in this item?";
+
+"Notification_NoDatafound" = "NO RECORD FOUND";
+"Sent"= "Sent";
+"Received"= "Received";
+"bid_accepted" = "Bid Accepted";
+"All_Auction" = "All auction";
+"cancel_bid" = "Cancel";
+"add_Condition" = "Condition";
+"All" = "All";
+"showAllbidYes" = "Yes";
+"showAllbidNo" = "No";
+"Bid_rejected" = "Bid Rejected";
+"Rate_Buyer" = "Rate Buyer";
+"Repost_auction" = "Repost auction";
+"order_received" = "Product Received";
+"Reply_To" = "Reply";
+"Do_you_want_to_send_notification" = "Do you want to send a notification to everyone interested in this item?";
+"Notification_Updates" = "Notification Updates";
+"Send_Notification" = "Send Notification";
+"Edit" = "Edit";
+"Recipients_List" = "Recipients List";
+
+"View_Recipients_List" = "View Recipients List";
+"UserName" = "User Name";
+"Mail_services_are_not_available" = "Mail services are not available";
+"Deal_Completed_Item_Moved_to_History" = "Deal Completed,Item Moved to History";
+"Deal_completed_Auction" = "Deal completed";
+"Please_write_reviews" = "Please write reviews";
+"Please_enter_reviews" = "Please enter reviews";
+
+"What_i_Sell" = "WHAT I SELL";
+"Active_auctions" = "Active auctions";
+"For_pick_up" = "For pick up";
+"History" = "History";
+
+"WHAT_I_BUY" = "WHAT I BUY";
+"My_bids" = "My bids";
+"Purchase_history" = "Purchase history";
+"Alert" = "Husk";
+"Next" = "Next";
+"Previous"= "Previous";
+"Buyer Name"= "Buyer Name";
+"Buyer Email"= "Buyer Email";
+
+

@@ -1,0 +1,358 @@
+/* 
+  Localizable.strings
+  Repoush
+
+  Created by Apple on 13/10/20.
+  Copyright © 2020 Ravi Sendhav. All rights reserved.
+*/
+
+
+//Login view controller
+"NotregisterdYet" = "Endnu ikke registreret";
+"SignUp" = "Tilmeld dig";
+"Email_Address" = "Email adresse";
+"Password" = "Password";
+"login" = "Log ind";
+"OR" = "Eller";
+"SkipToHome" = "Gå til startside";
+
+
+//SignUp view controller
+"Already_have_an_account" = "Har allerede en konto";
+"Personal" = "Privat";
+"Professional" = "Erhverv";
+"Address" = "Adresse";
+"IAgreeetothefollowing" = "Jeg godkender følgende vilkår";
+"Terms_Conditon" = "Vilkår og betingelser";
+"Industry_Name" = "Branchenavn";
+"Enter_CVR" = "Indtast CVR";
+"CompanyName" = "Firmanavn";
+"City" = "By";
+"Zip_Code" = "Postnummer";
+"YourPasswordmusthavemorethan6digits" = "Dit password skal have 6-15 karakterer";
+"PromoCode" = "rabatkode";
+"promo_code_blank_error" = "Promo kode mangler";
+"first_name_blank_error" = "Udfyld fornavn";
+"Please_enter_user_name" = "Indtast brugernavn";
+"last_name_blank_error" = "Udfyld efternavn";
+"Please_enter_email_address" = "Indtast venligst e-mail-adresse";
+"CVR_number_blank_error" = "Indtast CVR nummer";
+"company_name_blank_error" = "Virksomhedsnavn mangler";
+"Please_enter_industry_name" = "Indtast branchens navn";
+"city_blank_error" = "Indtast by";
+"zipCode_blank_error" = "Indtast postnummer";
+"Please_enter_OTP_Verification_code" = "Indtast venligst OTP-bekræftelseskode";
+"Please_enter_address" = "Indtast adresse";
+"Please_enter_password" = "Indtast adgangskoden";
+"Password length should be greater than or equal to 6 digits" = "Adgangskodelængden skal være større end eller lig med 6 cifre";
+"Please enter confirm new password" = "Indtast venligst bekræft ny adgangskode";
+"Password and confirm password should be same" = "Adgangskode og bekræft adgangskode skal være den samme";
+"Please enter mobile number" = "Indtast venligst dit mobilnumme";
+"Please accept terms of use" = "Accepter venligst brugsbetingelserne";
+
+//"Personal" = "Personlig";
+//"Professional" = "Professionel";
+
+
+// forgot Password view controller
+
+"ForgotPassword" = "Glemt password";
+"Please_enter_your_email_address_and_we_will_send_you_a_OTP" = "Indtast din e-mail og vi sender dig en engangskode";
+"EmailAddress" = "Email adresse";
+"send_otp" = "Send engangskode";
+
+
+// forgot Password view controller
+
+"verification" = "Verificering";
+"Please_enter_your_code_receive_on_your_registeres_email_address" = "Indtast koden sendt til dit mobilnummer";
+"EnterOTP" = "Indtast engangskode";
+
+"Please_enter_email_address" = "Indtast venligst e-mail-adresse";
+"Please_enter_otp" = "Indtast venligst Otp";
+
+
+
+// Tabbar view controller
+
+"HOME" = "Forside";
+"HOMEPage" = "Forside";
+"NEW AUCTION" = "Opret ny auktion";
+"MY AUCTIONS" = "Mine auktioner";
+"SETTINGS" = "Indstillinger";
+"PROFILE" = "Profil";
+
+
+// Setting view controller
+
+"Discount Notification" = "Rabat notifikationer";
+"Notification" = "Adviseringer";
+"Privacy" = "Privatliv";
+"Change Password" = "Skift Password";
+"Change Language" = "Skift sprog";
+
+"Terms of use" = "Brugervilkår";
+"Report a problem..." = "Rapporter et problem";
+"Offlin_Online" = "Offline / Online";
+"Logout" = "Log ud";
+
+
+
+// Profile personal View controller
+
+"MyProfile" = "Min profil";
+"Reviews" = " Bedømmelser";
+"FirstName" = "Fornavn";
+"LastName" = "Efternavn";
+"Gender" = "Køn";
+"MobileNumber" = "Mobilnummer";
+"EmailAddress" = "Email adresse";
+"Locality" = "Lokalitet / by";
+"ChangeEmail" = "Skift e-mail";
+"UPDATE" = "Gem";
+"DateOFBIRTH" = "Fødselsdato";
+"ComapnyName" = "firmanavn";
+"CVR" = "CVR";
+"ZipCode" = "Postnummer";
+"City" = "By";
+// Change Email View controller
+"Change Email" = "Skift Email";
+"EmailAddress" = "Email adresse";
+"SendOtp" = "Send engangskode";
+"enter_otp" = "Indtast engangskode";
+"Resend" = "Send igen";
+"Verify"  = "Bekræft";
+
+// Gender View controller
+
+"Male" = "Mand";
+"Female" = "Kvinde";
+"Search" = "Søg";
+
+// Personal dicount notification controller
+"Received" = "Modtaget";
+"ViewDetails" = "Vis detaljer";
+"Preview" = "Kladde";
+"Privacy" = "Privatliv";
+"price_is_not_start_with_zero" = "prisen starter ikke med nul";
+"price_enter_price" = "Indtast pris";
+
+
+// Change Password View controller
+
+"Change Password" = "Skift Password";
+"Old Password" = "Tidligere password";
+"New Password" = "Nyt password";
+"Max Password" = "Privacy";
+"Confirm Password" = "Bekræft password";
+"SUBMIT" = "Send";
+"Change Language" = "Skift sprog";
+"Terms & Condition" = "Vilkår og betingelser";
+
+
+// MY Auction View controller
+
+"Seller_Profile" = "Jeg sælger";
+"Buyer_Profile" = "Jeg køber";
+"My_Auctions" = "Mine auktioner";
+"In_progress" = " Under behandling ";
+"History" = "Historik";
+"No_Record_Found" = "Intet søgeresultat";
+"Rate_Now" = "Bedøm nu";
+"Sub_Category" = "Underkategori";
+// MY Auction View controller Seller profile Active Auction
+
+"OFF" = "rabat";
+"OriginalPrice" = "Oprindelig pris";
+"OfferPrice" = "Udbudspris";
+"LastBid" = "Seneste bud :";
+"ShowAllBid" = "Vis alle bud";
+"TimeLeft" = "Resterende tid";
+"deal_completed" = "Handel afsluttet";
+"Cancel_Bid" = "Slet bud";
+
+// add post View controller
+"PostProduct" = "Post produkt";
+"Subcategory" = "Vælg underkategori";
+"WhatareYouSelling" = "Hvad sælger du?";
+"Condtion" = "Tilstand";
+
+"Discount" = "Rabat %";
+"Descriptions" = "Beskrivelse (kan udelades)";
+"PickUpLocation" = "Afhentningsadressse";
+"Same_as_the_ragistered" = "Samme som min profil adresse";
+"AddNewAddress" = "Tilføj ny adresse";
+"SellNow" = "Sælg nu";
+"Choose" = "Vælg";
+"Enter" = "Indtast";
+"Calculate_Discount" = "Beregn rabat %";
+"Please_Select_an_Option" = "Vælg en mulighed";
+"Camera" = "Kamera";
+"Dismiss" = "Afskedige";
+"Gallery" = "Galleri";
+
+
+
+"Please_enter_original_price" = "Indtast oprindelig pris";
+"Original_price_should_be_greater_than_100" = "Tilbudspris skal være højere end 100 kr";
+"Offer_price_should_be_greater_than_100" = "ilbudspris skal være højere end 100 kr";
+"Please_enter_offer_price" = "Indtast tilbudspris";
+"Offer_Price_less_than_original_price" = "ilbudspris skal være lavere end oprindelig pris";
+
+"Please_enter_what_are_you_selling" = "Indtast venligst hvad sælger du";
+"Please_enter_sub_category" = "Indtast venligst underkategori";
+"Please_enter_condiotion" = "Indtast venligst betingelse";
+"What_did_the_item_cost_from_new?_For_used_item.Enter_estimated_price." = "Hvad kostede varen fra ny? Ved brugt vare: Angiv estimeret pris.";
+"Your_minimum_price_to_start_your_auction._You_are_not_obligated_to_sell_regardless_of_bid" = "Din mindstepris til at starte din auktion. Du forpligtes ikke til salg, uanset bud.";
+
+"You_Auction_is_live" = "# Dit speedsalg er startet";
+"Sell_faster" = "# Sælg hurtigere";
+"Share_and_reach_more_people" = "# Del med flest mulige nu";
+"Close" = "Luk";
+"Auction_is_live" = "Auktion er live";
+"Duplicate_Auction" = "Dupliker auktion";
+"Do_you_want_to_create_another_auction_now?" = "Vil du starte en anden auktion nu?";
+"Are_you_sure_you_want_to_delete_this_auction_Seller" = "Sikker på at slette auktionen";
+"Are_you_sure_you_want_to_repost_this_auction" = "Sikker på at genopslå denne auktion";
+"You_can_change_every_fields_that_needed" = "Du kan ændre de felter, du behøver";
+"Edit_Auction" = "Rediger auktion";
+"you_can_upload_3_photo" = "Maksimalt 3 fotos kan uploades";
+"Do_you_want_to_delete_auction_image" = "Vil du slette auktionsbillede";
+"Delete_auction" = "Slet auktion";
+"show_all_bid" = "Vis alle bud";
+"All_Bid" = "Alle bud";
+"Accept" = "Jeg sælger";
+"Reject" = "Nej tak";
+"Filter" = "Filter";
+"show_items" = "Vis auktioner";
+"serverNotFound" = "Ups! - serveren svarer ikke, prøv venligst efter et stykke tid.";
+// Product Detail View controller
+"Share" = "  Del";
+"Questions" = "Spørgsmål?";
+"What_Are_You_Selling" = "HVAD SÆLGER DU";
+"Condition" = "TILSTAND";
+"add_Condition" = "Tilstand";
+"Place_Bid" = "BYD";
+"Category" = "KATEGORI";
+"category_name" = "Kategori";
+"Product_Detail" = "PRODUKTDETALJER";
+"Sub_category" = "UNDERKATEGORI";
+"PICK_Location" = "AFHENTNINGSADRESSSE";
+"Auction_Detail" = "Auktionsdetaljer";
+"LastBidAmount" = "Seneste bud";
+"Total_bid" = "Antal bud";
+"Entery_your_bid" = "Giv dit bud";
+"enter_amount" = "Indtast beløb";
+"No_Record_Found" = "Intet søgeresultat";
+"You_have_not_recived_any_bid" = "Du har endnu ikke modtaget nogen bud";
+// Alert Message P
+
+"Report_a_problem_to_admin" = "Rapporter et problem";
+"Please_send_email_to_the_admin_from_below_button_to_report_your_problem" = "Send email til admin via knappen nedenfor til at beskrive dit problem";
+"Report_Cancel" = "Nej";
+"Report_SendEmail" = "SEND EMAIL";
+"are_you_sure_you_want_to_log_out" = "Sikker på at du vil logge ud?.";
+"Report_Yes" = "JA";
+"Cancel_Bid_myAuction_Alret" = "Mine auktioner";
+"Cancel_Bid_myAuction_Message_Alret" = "Er du sikker på, du vil annullere dette bud?.";
+"Reply_To_Buyer" = "Svar køber";
+"Reply" = "Svar";
+"Delete_Questions" = "Slet spørgsmål?.";
+"Are_You_Want_To_Delete" = "Er du sikker på, at du vil slette spørgsmål?";
+"original_price_small_error" = "Oprindelig pris skal være højere end tilbudsprisen";
+"Do_you_want_to_create_another_auction_now" = "Vil du starte en anden auktion nu?";
+"Please Login Or Register To Continue" = "Log ind eller tilmeld dig for at fortsætte";
+"Okay" = "Okay";
+"Mobile_Number" = "Mobilnummer";
+"Email_Address" = "Email adresse";
+"location_city" = "by";
+"Post_Product" = "Indsæt produkt";
+"Key_Alert" = "Fejl";
+
+"ItemName" = "Varenavn :";
+"DiscountPercentage" = "Rabat % :";
+"StoresAddress" = "Firmaadresse :";
+"ValidUntil" = "Gyldig indtil :";
+"Hours" = "Åbningstid :";
+"From" = "Fra :";
+"To" = "To :";
+"show_notification" = "Vis notifikation";
+"Discount_Notifications" = "Rabat notifikationer";
+
+"item_name_blank_error" = "Indtast varenavn";
+"discount_percentage_blank_error" = "Indtast rabat %";
+"store_address_blank_error" = "Indtast firma adresse";
+"valid_until_blank_error" = "Indtast gyldig indtil:";
+"Please_enter_from_date" = "Indtast venligst fra dato";
+"Please_enter_to_date" = "Indtast til dato";
+"My_bid" = "Mit bud :";
+"selectSubcategory" = "Vælgunderkategori";
+"selectcategory" = "Vælgkategori";
+"Bid_Awarded_Successfully" = "Du har accepteret bud og solgt din vare. Auktionen er ophørt og flyttet til “Under Behandling”";
+"your_bid_for_the_following_auction_has_been_rejected_by_the_seller" ="your bid for the following auction has been rejected by the seller";
+"RATE_SALLER" = "Bedøm sælger";
+"Deal_Completed" = "Handel afsluttet";
+"Deal_InCompleted" = "Handel ikke fuldført";
+"CANCEL_BID" = "Slet bud";
+"bid_amount_blank_error" = "Indtast et bud";
+"Bid_amount_should_be_greater_than_last_bid" = "Bud skal være højere end seneste bud";
+"original_price_small_error" = "Oprindelig pris skal være højere end tilbudsprisen";
+"Loading" = "Indlæser...";
+"Your_Auction_is_being_Created" = "Din auktion oprettes";
+"You_can_not_delete_auction_first_image" = "Du kan ikke slette det første billede i auktionen";
+"Select" = "Vælg";
+"You_have_not_received_any_bid" = "Du har endnu ikke modtaget nogen bud";
+
+"CreatePassword" = "Create Password";
+"Your_password_must"= "Dit password skal have 6-15 karakterer";
+"Password_must_be_at_least_6_digits_long"= "Adgangskoden skal være mindst 6 cifre.";
+
+"REPOST" = "Opslå igen";
+"SEND_OFFER" = "Send bud";
+
+"Send_Offer" = "Send bud";
+"Do_you_want_to_send_notification" = "Ønsker du at sende notifikation til alle, der er interesseret i denne vare?";
+"Notification_NoDatafound" = "DU HAR IKKE MODTAGET NOTIFIKATIONER";
+"Sent"= "Afsendt";
+"Received"= "Modtaget";
+"bid_accepted" = "Bud accepteret";
+"post_Location" = "Afhentningsadressse";
+"All_Auction" = "Alle auktioner";
+"cancel_bid" = "AFBRYD";
+"All" = "Alle";
+"showAllbidYes" = "Ja";
+"showAllbidNo" = "Nej";
+
+"Bid_rejected" = "Bud Afvist";
+"Rate_Buyer" = "Bedøm køber";
+"Repost_auction" = "Genopslå auktion";
+"order_received" = "Ordre modtaget";
+"ask_questions" = "Stil spørgsmål";
+"Reply_To" = "Svar";
+"Do_you_want_to_send_notification" = "Ønsker du at sende notifikation til alle, der er interesseret i denne vare?";
+"Notification_Updates" = "Beskednotifikationer";
+"Send_Notification" = "Send notifikation";
+"Edit" = "Ret";
+"Recipients_List" = "Modtagerliste";
+"View_Recipients_List" = "Vis modtagerliste";
+"UserName" = "Brugernavn";
+"Mail_services_are_not_available" = "Mail service er ikke tilgængelig";
+"Deal_Completed_Item_Moved_to_History" = "Handlen er nu flyttet til historik";
+"Deal_completed_Auction" = "Du har sluttet en handel";
+"Please_write_reviews" = "Skriv din bedømmelse";
+"Please_enter_reviews" = "Indtast anmeldelser";
+
+
+"What_i_Sell" = "JEG SÆLGER";
+"Active_auctions" = "Aktive auktioner";
+"For_pick_up" = "Til afhentning";
+"History" = "Historik";
+
+"WHAT_I_BUY" = "JEG KØBER";
+"My_bids" = "Mine Bud";
+"Purchase_history" = "Købshistorik";
+"Alert" = "Husk";
+"Next" = "Næste";
+"Previous"= "Forrige";
+"Buyer Name"= " Købers Navn";
+"Buyer Email"= "Købers Email";

@@ -1,5 +1,6 @@
 PODS:
   - AARatingBar (0.1.1)
+  - ACFloatingTextfield-Swift (1.8)
   - Alamofire (4.9.1)
   - GoogleMaps (3.1.0):
     - GoogleMaps/Maps (= 3.1.0)
@@ -11,46 +12,84 @@ PODS:
     - GooglePlaces (= 3.1.0)
   - GooglePlaces (3.1.0):
     - GoogleMaps/Base (= 3.1.0)
+  - ImageScrollView (1.9.2)
+  - ImageSlideshow (1.9.1):
+    - ImageSlideshow/Core (= 1.9.1)
+  - ImageSlideshow/Core (1.9.1)
+  - ImageSlideshow/SDWebImage (1.9.1):
+    - ImageSlideshow/Core
+    - SDWebImage (>= 3.7)
   - IQKeyboardManagerSwift (6.5.4)
   - Kingfisher (5.12.0):
     - Kingfisher/Core (= 5.12.0)
   - Kingfisher/Core (5.12.0)
+  - PasswordTextField (1.2.0)
+  - PKHUD (5.3.0)
   - ReachabilitySwift (5.0.0)
+  - SDWebImage (5.8.4):
+    - SDWebImage/Core (= 5.8.4)
+  - SDWebImage/Core (5.8.4)
+  - SwiftDefaults (0.1.7)
   - SwiftyJSON (5.0.0)
+  - UILoadControl (2.1.0)
 
 DEPENDENCIES:
   - AARatingBar
+  - ACFloatingTextfield-Swift
   - Alamofire
   - GooglePlacePicker
   - GooglePlaces
+  - ImageScrollView
+  - ImageSlideshow
+  - ImageSlideshow/SDWebImage
   - IQKeyboardManagerSwift
   - Kingfisher
+  - PasswordTextField
+  - PKHUD (~> 5.0)
   - ReachabilitySwift
+  - SwiftDefaults
   - SwiftyJSON
+  - UILoadControl
 
 SPEC REPOS:
   trunk:
     - AARatingBar
+    - ACFloatingTextfield-Swift
     - Alamofire
     - GoogleMaps
     - GooglePlacePicker
     - GooglePlaces
+    - ImageScrollView
+    - ImageSlideshow
     - IQKeyboardManagerSwift
     - Kingfisher
+    - PasswordTextField
+    - PKHUD
     - ReachabilitySwift
+    - SDWebImage
+    - SwiftDefaults
     - SwiftyJSON
+    - UILoadControl
 
 SPEC CHECKSUMS:
   AARatingBar: 24e09c431f3e2aaa2eb91b897360c6c28b69a9c9
+  ACFloatingTextfield-Swift: c3212cef9548ae58fa914ea1c26a2f9a4f7cd7df
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
   GoogleMaps: 5c13302e6fe6bb6e686b267196586b91cd594225
   GooglePlacePicker: fa975116ac202ac29822c0a79758ea1c4db5a95f
   GooglePlaces: e874db179f2675c4f3eeda0b686b540273a578b0
+  ImageScrollView: 329f63d29b22f21594250d31536aa83e018571ed
+  ImageSlideshow: 67184be896a28472bd3b906c33ce4e0734aa3d22
   IQKeyboardManagerSwift: 2dde0fc70110e8eac7ccce2a46fdbec6a850b414
   Kingfisher: dc6e0f53bb5b12c3e75bedb0e01bbd7a640eea69
+  PasswordTextField: 2548de43f150fc90a014da47b0d97e31aada4b94
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
   ReachabilitySwift: 985039c6f7b23a1da463388634119492ff86c825
+  SDWebImage: cf6922231e95550934da2ada0f20f2becf2ceba9
+  SwiftDefaults: 0203ab6a54c4569e81e50d29df9a98da3cec3eb3
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
+  UILoadControl: e742ddbe4c67ba1f13b00b7d462d4141307d021f
 
-PODFILE CHECKSUM: 5f8e0076deb3fbf1bb1624dce02f7c616b059ab9
+PODFILE CHECKSUM: 43d7d6207c52760205c3f6e3ea7e0a1644010ee8
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.9.3

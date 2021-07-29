@@ -13,8 +13,10 @@ class FilterCell: UICollectionViewCell {
     // MARK: - IBOutlets
     @IBOutlet weak var lblDistanceRange: UILabel!
     @IBOutlet weak var viewSelect: UIView!
+    @IBOutlet weak var viewdeSelect: UIView!
     @IBOutlet weak var viewDevider: UIView!
-
+    @IBOutlet weak var viewDeviderWidthConstrints: UIView!
+    @IBOutlet weak var btnKiloMeter: UIButton!
     var selectRangeHandler: (() -> Void)?
 
     // MARK: Action Methods

@@ -65,7 +65,12 @@ class ReportVC: UIViewController {
     
     // MARK: - API Methods
     private func repotAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -75,7 +80,7 @@ class ReportVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.userLogin(postParams), callerObj: self, showHud:true) { [weak self] (response) -> () in
+        Networking.performApiCall(Networking.Router.userLogin(postParams), callerObj: self, showHud:true, text: loading) { [weak self] (response) -> () in
             
             guard let result = response.result.value else {
                 return

@@ -78,17 +78,22 @@ class AllBidVC: UIViewController {
 
     // MARK: - API Methods
     private func getAllBidAPI_Call() {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
             [
                 kAPI_ProductId  : dictProduct["id"] as AnyObject,
-                kAPI_Language   : UserLanguage.shared.languageCode as AnyObject,
+                kAPI_Language   : MyDefaults().language as AnyObject,
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.getAllBid(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.getAllBid(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
@@ -112,7 +117,12 @@ class AllBidVC: UIViewController {
     }
 
     private func updateBidStatusAPI_Call(_ selectedIndex: Int, bidStatus: String, userId: String, bidId: String) {
-        
+        var loading = ""
+                  if (MyDefaults().language ?? "") as String ==  "en"{
+                      loading = "Loading".LocalizableString(localization: "en")
+                  } else{
+                      loading = "Loading".LocalizableString(localization: "da")
+                  }
         if !isNetworkAvailable { Util.showNetWorkAlert(); return }
         
         let postParams: [String: AnyObject] =
@@ -124,7 +134,7 @@ class AllBidVC: UIViewController {
         ]
         DLog(message: "\(postParams)")
         
-        Networking.performApiCall(Networking.Router.updateBidStatus(postParams), callerObj: self, showHud: true) { (response) -> () in
+        Networking.performApiCall(Networking.Router.updateBidStatus(postParams), callerObj: self, showHud: true, text: loading) { (response) -> () in
             
             guard let result = response.result.value else {
                 return
